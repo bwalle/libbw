@@ -1,0 +1,3 @@
+For documentation, just install the Doxygen tool and run 'doxygen'. Then
+point your browser to doc/api/html/index.html. If you still have questions,
+don't hesitate to ask me (bernhard@bwalle.de).
