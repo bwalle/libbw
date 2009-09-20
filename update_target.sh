@@ -70,7 +70,7 @@ fi
 
 rsync -v -r --delete $TEMPDIR/libbw/src/* $TARGET
 
-echo > $TARGET/.libbw <<EOF
+cat > $TARGET/.libbw <<EOF
 HG_COMMIT=$REVISION
 VERSION=$VERSION
 EOF
