@@ -26,7 +26,7 @@
  */
 
 /**
- * @file io.h
+ * @file completion.h
  * @brief Shell-like command line reader with completion
  *
  * This file contains a shell-like command reader with completion.
