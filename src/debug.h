@@ -44,6 +44,7 @@ namespace bw {
 /* Debugging {{{ */
 
 /**
+ * @class Debug debug.h libbw/debug.h
  * @brief Debugging singleton class
  *
  * This is the class used for debugging in the program. The class is a

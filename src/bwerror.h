@@ -43,6 +43,7 @@ namespace bw {
 /* IOError {{{ */
 
 /**
+ * @class IOError bwerror.h libbw/error.h
  * @brief Input/Output error
  *
  * This exception class is thrown when an Input/Output error occurred. Use the
