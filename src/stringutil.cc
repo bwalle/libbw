@@ -1,5 +1,5 @@
-/*
- * Copyright (c) 2008-2009, Bernhard Walle <bernhard@bwalle.de>
+/* {{{
+ * Copyright (c) 2008-2010, Bernhard Walle <bernhard@bwalle.de>
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -22,7 +22,7 @@
  * LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND
  * ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
  * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
- * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+ * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE. }}}
  */
 #include <string>
 #include <vector>
@@ -70,15 +70,13 @@ std::string stripr(std::string a)
 bool startsWith(const std::string &str, const std::string &start, bool casesensitive)
 {
     size_t len = start.size();
-    if (str.size() < len) {
+    if (str.size() < len)
         return false;
-    }
 
-    if (casesensitive) {
+    if (casesensitive)
         return str.substr(0, len) == start;
-    } else {
+    else
         return strcasecmp(str.substr(0, len).c_str(), start.c_str()) == 0;
-    }
 }
 
 /* ---------------------------------------------------------------------------------------------- */
@@ -118,9 +116,8 @@ std::vector<std::string> stringsplit(const std::string &str, const std::string &
         s = s.substr(pos + pattern.length());
     }
 
-    if (s != "") {
+    if (s != "")
         retval.push_back(s);
-    }
 
     return retval;
 }
