@@ -40,6 +40,8 @@
 #include "bwerror.h"
 #include <vector>
 
+namespace bw {
+
 /* Interface for completors {{{ */
 
 /**
@@ -328,6 +330,8 @@ class AbstractLineReader : public LineReader {
 };
 
 /* }}} */
+
+} // end namespace bw
 
 #endif /* COMPLETION_H */
 

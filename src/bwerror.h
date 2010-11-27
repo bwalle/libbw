@@ -38,6 +38,8 @@
 
 #include <stdexcept>
 
+namespace bw {
+
 /* IOError {{{ */
 
 /**
@@ -63,5 +65,7 @@ class IOError : public std::runtime_error {
 };
 
 /* }}} */
+
+} // end namespace usb
 
 #endif // BWERROR_H

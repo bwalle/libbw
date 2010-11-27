@@ -1,6 +1,7 @@
 2010-11-27  Bernhard Walle <bernhard@bwalle.de>
 
 	* Doxygen fixes.
+	* Move everything into 'bw' namespace.
 
 2010-03-21  Bernhard Walle <bernhard@bwalle.de>
 

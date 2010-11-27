@@ -39,6 +39,8 @@
 #include <cstdio>
 #include <cstdarg>
 
+namespace bw {
+
 /* Debugging {{{ */
 
 /**
@@ -251,6 +253,8 @@ class Debug {
 };
 
 /* }}} */
+
+} // end namespace bw
 
 #endif /* DEBUG_H */
 
