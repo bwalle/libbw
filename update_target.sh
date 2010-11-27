@@ -28,7 +28,7 @@
 
 
 TEMPDIR=`mktemp -d`
-REVISION=`git show-ref --hash HEAD`
+REVISION=`git describe HEAD`
 VERSION=`cat VERSION`
 TARGET=$1
 
