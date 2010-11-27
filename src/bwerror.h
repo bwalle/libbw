@@ -27,6 +27,15 @@
 #ifndef BWERROR_H
 #define BWERROR_H
 
+/**
+ * @file bwerror.h
+ * @brief Exception classes
+ *
+ * This file contains classes for error/exception handling.
+ *
+ * @author Bernhard Walle <bernhard@bwalle.de>
+ */
+
 #include <stdexcept>
 
 /* IOError {{{ */
