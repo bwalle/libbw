@@ -5,6 +5,7 @@
 	* Use "git describe" to build the version hash.
 	* Change the documentation to include <libbw/header.h> instead of
 	  <header.h>.
+	* Add debugging macros (e.g. BW_DEBUG).
 
 2010-03-21  Bernhard Walle <bernhard@bwalle.de>
 

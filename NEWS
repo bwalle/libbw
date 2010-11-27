@@ -3,6 +3,7 @@
  - Move everything into 'bw' namespace.
  - Use "git describe" to build the version hash.
  - Change the documentation to include <libbw/header.h> instead of <header.h>.
+ - Add debugging macros (e.g. BW_DEBUG).
 
 0.1.3
 -----
