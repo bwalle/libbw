@@ -52,13 +52,28 @@ include_directories( ${CURSES_INCLUDE_DIR} )
 # for bwconfig.h
 include_directories( ${CMAKE_CURRENT_BINARY_DIR} )
 
+set(LIBBW_SRCS
+    debug.h
+    debug.cc
+    stringutil.h
+    stringutil.cc
+    completion.h
+    completion.cc
+    bwerror.h
+)
+
+if (CMAKE_HOST_UNIX)
+    set(LIBBW_SRCS
+        ${LIBBW_SRCS}
+        serialfile.h
+        serialfile_posix.cc
+    )
+endif (CMAKE_HOST_UNIX)
 
 add_library(
     bw
     STATIC
-    debug.cc
-    stringutil.cc
-    completion.cc
+    ${LIBBW_SRCS}
 )
 
 configure_file(
