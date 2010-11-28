@@ -24,16 +24,8 @@
 # (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
 # SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE. }}}
 
-#
-# Project file for test builds
-#
-
-project(libbw CXX)
-cmake_minimum_required(VERSION 2.6)
-
-include_directories(${CMAKE_CURRENT_SOURCE_DIR}/src)
-
-add_subdirectory(src)
-add_subdirectory(examples)
+if (CMAKE_HOST_UNIX)
+    add_subdirectory(serialread)
+endif (CMAKE_HOST_UNIX)
 
 # vim: set sw=4 ts=4 et fdm=marker:

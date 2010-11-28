@@ -3,6 +3,7 @@
 	* Fix undocumented stuff.
 	* Fix compiler warnings.
 	* Add SerialFile class to access a serial console.
+	* Add example program 'serialread'.
 
 2010-11-27  Bernhard Walle <bernhard@bwalle.de>
 
