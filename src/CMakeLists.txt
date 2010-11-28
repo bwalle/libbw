@@ -101,6 +101,11 @@ add_library(
     ${LIBBW_SRCS}
 )
 
+target_link_libraries(
+    bw
+    ${EXTRA_LIBS}
+)
+
 configure_file(
     "${CMAKE_CURRENT_SOURCE_DIR}/bwconfig.h.in"
     "${CMAKE_CURRENT_BINARY_DIR}/bwconfig.h"
