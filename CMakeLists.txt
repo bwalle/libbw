@@ -28,7 +28,7 @@
 # Project file for test builds
 #
 
-project(libbw CXX)
+project(libbw CXX C)
 cmake_minimum_required(VERSION 2.6)
 
 include_directories(${CMAKE_CURRENT_SOURCE_DIR}/src)

@@ -49,6 +49,16 @@ endif (NOT CURSES_LIBRARIES)
 set (EXTRA_LIBS ${EXTRA_LIBS} ${CURSES_LIBRARIES})
 include_directories( ${CURSES_INCLUDE_DIR} )
 
+# do we have a proper getopt_long() implementation
+
+include(CheckFunctionExists)
+
+set(CMAKE_REQUIRED_DEFINITIONS "-D_GNU_SOURCE=1")
+set(CMAKE_REQUIRED_INCLUDES "getopt.h")
+check_function_exists("getopt_long" HAVE_GETOPT_LONG)
+unset(CMAKE_REQUIRED_DEFINITIONS)
+unset(CMAKE_REQUIRED_INCLUDES)
+
 # for bwconfig.h
 include_directories( ${CMAKE_CURRENT_BINARY_DIR} )
 
@@ -60,6 +70,8 @@ set(LIBBW_SRCS
     completion.h
     completion.cc
     bwerror.h
+    optionparser.h
+    optionparser.cc
 )
 
 if (CMAKE_HOST_UNIX)
@@ -69,6 +81,18 @@ if (CMAKE_HOST_UNIX)
         serialfile_posix.cc
     )
 endif (CMAKE_HOST_UNIX)
+
+# link our own version of getopt_long() if the system doesn't provide a
+# suitable one
+if (NOT HAVE_GETOPT_LONG)
+    include_directories("${CMAKE_CURRENT_SOURCE_DIR}/ext/getopt")
+    set(LIBBW_SRCS
+        ${LIBBW_SRCS}
+        ext/getopt/getopt.c
+        ext/getopt/getopt.h
+        ext/getopt/getopt_long.c
+    )
+endif (NOT HAVE_GETOPT_LONG)
 
 add_library(
     bw
