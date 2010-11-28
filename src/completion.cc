@@ -138,12 +138,16 @@ bool AbstractLineReader::eof() const
 /* ---------------------------------------------------------------------------------------------- */
 void AbstractLineReader::readHistory(const std::string &file)
     throw (IOError)
-{}
+{
+    (void)file;
+}
 
 /* ---------------------------------------------------------------------------------------------- */
 void AbstractLineReader::writeHistory(const std::string &file)
     throw (IOError)
-{}
+{
+    (void)file;
+}
 
 /* ---------------------------------------------------------------------------------------------- */
 bool AbstractLineReader::haveHistory() const
@@ -171,7 +175,9 @@ bool AbstractLineReader::haveCompletion() const
 
 /* ---------------------------------------------------------------------------------------------- */
 void AbstractLineReader::setCompletor(Completor *comp)
-{}
+{
+    (void)comp;
+}
 
 /* }}} */
 /* SimpleLineReader {{{ */
