@@ -1,3 +1,17 @@
+0.2.2
+-----
+ - Fix build on Mac OS.
+ - Add target_link_libraries() for the extra libraries.
+
+0.2.1
+-----
+ - Fix undocumented stuff.
+ - Fix compiler warnings.
+ - Add SerialFile class to access a serial console.
+ - Add example program 'serialread'.
+ - Add replace_char() function in stringutil.h.
+ - Add OptionParser.
+
 0.2.0
 -----
  - Move everything into 'bw' namespace.

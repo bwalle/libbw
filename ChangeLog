@@ -7,6 +7,7 @@
 	* Add replace_char() function in stringutil.h.
 	* Add OptionParser.
 	* Fix build on Mac OS.
+	* Add target_link_libraries() for the extra libraries.
 
 2010-11-27  Bernhard Walle <bernhard@bwalle.de>
 
