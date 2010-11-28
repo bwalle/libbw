@@ -165,6 +165,8 @@ class Debug {
          * @brief Singleton getter
          *
          * This function returns the only instance of Debug.
+         *
+         * @return a pointer to the only debug instance.
          */
         static Debug *debug();
 

@@ -73,9 +73,12 @@ class Completor {
          * @param[in] full_text the full line
          * @param[in] start_idx the start index
          * @param[in] end_idx the end index
+         * @return the completed values
          */
         virtual std::vector<std::string> complete(const std::string &text,
-                const std::string &full_text, size_t start_idx, ssize_t end_idx) = 0;
+                                                  const std::string &full_text,
+                                                  size_t            start_idx,
+                                                  ssize_t           end_idx) = 0;
 };
 
 /* }}} */
