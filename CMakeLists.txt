@@ -28,7 +28,9 @@
 # Project file for test builds
 #
 
-PROJECT(libbw CXX)
-CMAKE_MINIMUM_REQUIRED(VERSION 2.6)
+project(libbw CXX)
+cmake_minimum_required(VERSION 2.6)
 
-ADD_SUBDIRECTORY(src)
+add_subdirectory(src)
+
+# vim: set sw=4 ts=4 et fdm=marker:
