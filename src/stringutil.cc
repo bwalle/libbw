@@ -122,6 +122,25 @@ std::vector<std::string> stringsplit(const std::string &str, const std::string &
     return retval;
 }
 
+/* ---------------------------------------------------------------------------------------------- */
+std::string replace_char(const std::string  &input,
+                         char               old_char,
+                         const std::string  &new_string)
+{
+    std::string ret = input;
+    size_t pos = 0;
+
+    while ((pos = input.find(old_char, pos)) != std::string::npos) {
+        ret.erase(pos);
+        ret.insert(pos, new_string);
+
+        pos++;
+    }
+
+    return ret;
+}
+
+
 } // end namespace bw
 
 // :tabSize=4:indentSize=4:noTabs=true:mode=c++:folding=explicit:collapseFolds=1:maxLineLen=100:

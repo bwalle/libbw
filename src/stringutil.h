@@ -128,6 +128,21 @@ char **stringvector_to_array(const std::vector<std::string> &vec);
  */
 std::vector<std::string> stringsplit(const std::string &str, const std::string &pattern);
 
+/**
+ * @brief Replaces a character with a character or a string
+ *
+ * This original string is not modified.
+ *
+ * @param[in] input the input string
+ * @param[in] old_char the old character
+ * @param[in] new_string the new string
+ * @return the replaced string
+ */
+std::string replace_char(const std::string  &input,
+                         char               old_char,
+                         const std::string  &new_string);
+
+
 #endif /* STRINGUTIL_H */
 
 } // end namespace bw
