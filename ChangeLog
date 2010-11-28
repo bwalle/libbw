@@ -6,6 +6,7 @@
 	* Add example program 'serialread'.
 	* Add replace_char() function in stringutil.h.
 	* Add OptionParser.
+	* Fix build on Mac OS.
 
 2010-11-27  Bernhard Walle <bernhard@bwalle.de>
 
