@@ -80,6 +80,8 @@ if (CMAKE_HOST_UNIX)
         ${LIBBW_SRCS}
         serialfile.h
         serialfile_posix.cc
+        os.h
+        os_posix.cc
     )
 endif (CMAKE_HOST_UNIX)
 

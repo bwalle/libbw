@@ -1,3 +1,7 @@
+2010-12-05  Bernhard Walle <bernhard@bwalle.de>
+
+	* Add daemonize().
+
 2010-11-28  Bernhard Walle <bernhard@bwalle.de>
 
 	* Fix undocumented stuff.
