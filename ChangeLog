@@ -1,3 +1,7 @@
+2011-02-27  Bernhard Walle <bernhard@bwalle.de>
+
+	* Locking serial port works different on Linux and Mac OS.
+
 2011-02-26  Bernhard Walle <bernhard@bwalle.de>
 
 	* Fix build on Mac OS X.

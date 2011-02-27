@@ -194,6 +194,28 @@ class SerialFile {
                          FlowControl    flowControl,
                          bool           rawMode = true);
 
+    protected:
+        /**
+         * @brief Creates a lock for the serial port
+         *
+         * On systems that use lock files to lock access to the serial port, this
+         * function should create the lock file and should return if the locking was
+         * successful.
+         *
+         * This function is called in openPort() automatically.
+         *
+         * @return @c true if locking was successful, @c false otherwise.
+         */
+        bool createLock();
+
+        /**
+         * @brief Removes the lock for the serial port
+         *
+         * On systems that use lock files, it should remove the lock file created by
+         * createLock().
+         */
+        void removeLock();
+
     private:
         SerialFilePrivate *d;
 };

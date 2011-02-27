@@ -83,6 +83,17 @@ if (CMAKE_HOST_UNIX)
         os.h
         os_posix.cc
     )
+    if (CMAKE_SYSTEM_NAME STREQUAL "Linux")
+        set(LIBBW_SRCS
+            ${LIBBW_SRCS}
+            serialfile_linux.cc
+        )
+    else ()
+        set(LIBBW_SRCS
+            ${LIBBW_SRCS}
+            serialfile_posix_generic.cc
+        )
+    endif ()
 endif (CMAKE_HOST_UNIX)
 
 # link our own version of getopt_long() if the system doesn't provide a

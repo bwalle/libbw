@@ -40,82 +40,16 @@
 #include <termios.h>
 
 #include "serialfile.h"
+#include "serialfile_private_posix.h"
 
 namespace bw {
 
-/* Module-static stuff (lock file deletion) {{{ */
-
-/// Set to @c true after deleteFilesAtExit() has been registered as delete
-/// handler.
-static bool s_delete_handler_registered = false;
-
-/// Vector of files which should be deleted at exit.
-static std::vector<std::string> s_files_to_delete;
-
-/**
- * @brief Helper function which deletes a file
- *
- * This helper function just converts @p fileName to a const char * string and then calls
- * std::remove().
- *
- * @param[in] fileName the file name to delete
- */
-static void delete_file(const std::string &file)
-{
-    std::remove(file.c_str());
-}
-
-/**
- * @brief Deletes the lock file at exit
- *
- * This function should be registered as exit handler. It deletes all files which have been
- * added to the module-global s_filesToDelete vector. After the delete handler has been registered,
- * set s_deleteHandlerRegistered to true.
- */
-static void delete_files_at_exit()
-{
-    std::for_each(
-        s_files_to_delete.begin(),
-        s_files_to_delete.end(),
-        delete_file
-    );
-}
-
-/* }}} */
-/* SerialFilePrivate {{{ */
-
-/**
- * @brief Data object for SerialFile.
- *
- * The reason why that data objects are not members of SerialFile is just that we can provide
- * the same interface for different platforms and have the concrete (typed) members as private
- * data of the platform implementation.
- */
-struct SerialFilePrivate {
-    std::string fileName;
-    std::string lockFileName;
-    std::string lastError;
-    int         fd;
-};
-
-/* }}} */
 /* SerialFile {{{ */
 
 /* ---------------------------------------------------------------------------------------------- */
 SerialFile::SerialFile(const std::string &portName)
-    : d(new SerialFilePrivate)
-{
-    d->fileName = portName;
-    d->fd = -1;
-
-    if (d->fileName.size() > 5 && d->fileName.substr(0, 5) == "/dev/")
-        d->lockFileName = "/var/lock/LCK.." + d->fileName.substr(5, d->fileName.size());
-
-    if (!s_delete_handler_registered) {
-        std::atexit(delete_files_at_exit);
-        s_delete_handler_registered = true;
-    }
-}
+    : d( new SerialFilePrivate(portName) )
+{}
 
 /* ---------------------------------------------------------------------------------------------- */
 SerialFile::~SerialFile()
@@ -126,28 +60,16 @@ SerialFile::~SerialFile()
 /* ---------------------------------------------------------------------------------------------- */
 bool SerialFile::openPort()
 {
-    // lockfile support: check for a lockfile
-    if (!d->lockFileName.empty()) {
-        std::ifstream lock(d->lockFileName.c_str());
-        if (lock) {
-            d->lastError = "Device is locked.";
-            return false;
-        }
+    if (!createLock()) {
+        d->lastError = "Device is locked.";
+        return false;
     }
 
     d->fd = open(d->fileName.c_str(), O_RDWR | O_NOCTTY | O_NDELAY);
     if (d->fd < 0) {
         d->lastError = std::string(std::strerror(errno));
-        d->fd = 0;
+        removeLock();
         return false;
-    }
-
-    // create lockfile
-    if (!d->lockFileName.empty()) {
-        std::ofstream lock(d->lockFileName.c_str());
-        if (lock)
-            lock << getpid() << std::endl;
-        s_files_to_delete.push_back(d->lockFileName);
     }
 
     return true;
@@ -161,16 +83,7 @@ void SerialFile::closePort()
 
     close(d->fd);
     d->fd = -1;
-
-    if (!d->lockFileName.empty()) {
-        remove(d->lockFileName.c_str());
-        std::vector<std::string>::iterator result = std::find(
-                s_files_to_delete.begin(),
-                s_files_to_delete.end(),
-                d->lockFileName);
-        if (result != s_files_to_delete.end())
-            s_files_to_delete.erase(result);
-    }
+    removeLock();
 }
 
 /* ---------------------------------------------------------------------------------------------- */
