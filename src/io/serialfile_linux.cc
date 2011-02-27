@@ -47,7 +47,7 @@ namespace io {
 
 /* Module-static stuff (lock file deletion) {{{ */
 
-/// Set to @c true after deleteFilesAtExit() has been registered as delete
+/// Set to \c true after deleteFilesAtExit() has been registered as delete
 /// handler.
 static bool s_delete_handler_registered = false;
 
@@ -55,12 +55,12 @@ static bool s_delete_handler_registered = false;
 static std::vector<std::string> s_files_to_delete;
 
 /**
- * @brief Helper function which deletes a file
+ * \brief Helper function which deletes a file
  *
- * This helper function just converts @p fileName to a const char * string and then calls
+ * This helper function just converts \p fileName to a const char * string and then calls
  * std::remove().
  *
- * @param[in] fileName the file name to delete
+ * \param[in] fileName the file name to delete
  */
 static void delete_file(const std::string &file)
 {
@@ -68,7 +68,7 @@ static void delete_file(const std::string &file)
 }
 
 /**
- * @brief Deletes the lock file at exit
+ * \brief Deletes the lock file at exit
  *
  * This function should be registered as exit handler. It deletes all files which have been
  * added to the module-global s_filesToDelete vector. After the delete handler has been registered,
@@ -84,12 +84,12 @@ static void delete_files_at_exit()
 }
 
 /**
- * @brief Computes the name of the lock file from the portName
+ * \brief Computes the name of the lock file from the portName
  *
- * @param[in] portName the full path to the port that should be opened, e.g.
+ * \param[in] portName the full path to the port that should be opened, e.g.
  *            /dev/ttyS0.
- * @return the full path to the lock file name and an empty string if
- *         no lock file should be created for @p portName
+ * \return the full path to the lock file name and an empty string if
+ *         no lock file should be created for \p portName
  */
 static std::string computeLockFileName(const std::string &portName)
 {

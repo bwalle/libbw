@@ -64,39 +64,39 @@ It's just shared!
 
 Assume you have a project structure like following:
 
-@verbatim
+\verbatim
 .
 |-- README
 |-- doc
 |-- ext
 |   `-- libbw
 `-- src
-@endverbatim
+\endverbatim
 
 then you can copy <i>LibBW</i> to the project directory by using a simple
 
-@verbatim
+\verbatim
  % ./update_target.sh /path/to/project/ext/libbw
-@endverbatim
+\endverbatim
 
 \subsection step1 CMake-based projects
 
 To finally use the library in the application, you need to add following code
 into the to-level <i>CMakeLists.txt</i> build file:
 
-@code
+\code
 # libbw
 
 ADD_SUBDIRECTORY(ext/libbw)
 INCLUDE_DIRECTORIES(${CMAKE_CURRENT_SOURCE_DIR}/ext)
 SET (EXTRA_LIBS ${EXTRA_LIBS} bw)
-@endcode
+\endcode
 
 Then you can include the header files for example with
 
-@code
+\code
 #include <libbw/error.h>
-@endcode
+\endcode
 
 */
 

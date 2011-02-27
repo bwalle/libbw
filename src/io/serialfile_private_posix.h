@@ -36,7 +36,7 @@ namespace io {
 /* SerialFilePrivate {{{ */
 
 /**
- * @brief Data object for SerialFile.
+ * \brief Data object for SerialFile.
  *
  * The reason why that data objects are not members of SerialFile is just that we can provide
  * the same interface for different platforms and have the concrete (typed) members as private

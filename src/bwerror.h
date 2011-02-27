@@ -28,12 +28,12 @@
 #define BWERROR_H
 
 /**
- * @file bwerror.h
- * @brief Exception classes
+ * \file bwerror.h
+ * \brief Exception classes
  *
  * This file contains classes for error/exception handling.
  *
- * @author Bernhard Walle <bernhard@bwalle.de>
+ * \author Bernhard Walle <bernhard@bwalle.de>
  */
 
 #include <stdexcept>
@@ -43,23 +43,23 @@ namespace bw {
 /* IOError {{{ */
 
 /**
- * @class IOError bwerror.h libbw/error.h
- * @brief Input/Output error
+ * \class IOError bwerror.h libbw/error.h
+ * \brief Input/Output error
  *
  * This exception class is thrown when an Input/Output error occurred. Use the
  * std::runtime_error::what() method to retrieve the error message in your
  * exception handler.
  *
- * @author Bernhard Walle <bernhard@bwalle.de>
+ * \author Bernhard Walle <bernhard@bwalle.de>
  */
 class IOError : public std::runtime_error {
     public:
         /**
-         * @brief Constructor
+         * \brief Constructor
          *
          * Creates a new IOError.
          *
-         * @param[in] string the error string
+         * \param[in] string the error string
          */
         IOError(const std::string& string)
             : std::runtime_error(string) {}

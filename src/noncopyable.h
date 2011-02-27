@@ -44,11 +44,11 @@ namespace bw {
  *
  * Example:
  *
- * @code
+ * \code
  * class DontCopyMe : private bw::Noncopyable {
  *    // ...
  * };
- * @endcode
+ * \endcode
  *
  * The traditional method is to make the copy constructor and the assignment
  * operator private. This solution is more elegant, and it has been "stolen"

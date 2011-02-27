@@ -28,25 +28,25 @@
 #define OS_H
 
 /**
- * @file
- * @brief Operating system abstraction functions
+ * \file
+ * \brief Operating system abstraction functions
  *
  * This file contains operating system specific functions.
  *
- * @author Bernhard Walle <bernhard@bwalle.de>
+ * \author Bernhard Walle <bernhard@bwalle.de>
  */
 
 namespace bw {
 
 /**
- * @brief Puts the current process to background.
+ * \brief Puts the current process to background.
  *
  * Currently the function is implemented in POSIX only.
  *
  * The function is for programs wishing to detach themselves from the
  * controlling terminal and run in the background as system daemons.
  *
- * @return 0 on success, any standard error code on failure.
+ * \return 0 on success, any standard error code on failure.
  */
 int daemonize();
 

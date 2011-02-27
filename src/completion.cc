@@ -70,27 +70,27 @@ class ReadlineLineReader : public AbstractLineReader {
 #endif
 
 /**
- * @brief Simple line reader without history and completion
+ * \brief Simple line reader without history and completion
  *
  * This line reader implementation is simple: You cannot use the cursor keys, it has
  * no history and also no completion.
  *
- * @author Bernhard Walle <bernhard@bwalle.de>
+ * \author Bernhard Walle <bernhard@bwalle.de>
  */
 class SimpleLineReader : public AbstractLineReader {
     public:
         /**
-         * @brief Constructor
+         * \brief Constructor
          *
          * Creates a new instance of a SimpleLineReader.
          *
-         * @param[in] prompt the prompt of the line reader
+         * \param[in] prompt the prompt of the line reader
          */
         SimpleLineReader(const std::string &prompt);
 
     public:
         /**
-         * @copydoc LineReader::readLine()
+         * \copydoc LineReader::readLine()
          */
         std::string readLine(const char *prompt = NULL);
 };
