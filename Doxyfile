@@ -623,7 +623,7 @@ FILE_PATTERNS          = *.h \
 # should be searched for input files as well. Possible values are YES and NO.
 # If left blank NO is used.
 
-RECURSIVE              = NO
+RECURSIVE              = YES
 
 # The EXCLUDE tag can be used to specify files and/or directories that should
 # excluded from the INPUT source files. This way you can easily exclude a
@@ -643,7 +643,7 @@ EXCLUDE_SYMLINKS       = NO
 # against the file with absolute path, so to exclude all test directories
 # for example use the pattern */test/*
 
-EXCLUDE_PATTERNS       = *private*
+EXCLUDE_PATTERNS       = *private* *ext*
 
 # The EXCLUDE_SYMBOLS tag can be used to specify one or more symbol names
 # (namespaces, classes, functions, etc.) that should be excluded from the
@@ -657,7 +657,7 @@ EXCLUDE_SYMBOLS        =
 # directories that contain example code fragments that are included (see
 # the \include command).
 
-EXAMPLE_PATH           =
+EXAMPLE_PATH           = examples
 
 # If the value of the EXAMPLE_PATH tag contains directories, you can use the
 # EXAMPLE_PATTERNS tag to specify one or more wildcard pattern (like *.cpp
@@ -1549,7 +1549,7 @@ CLASS_GRAPH            = YES
 # indirect implementation dependencies (inheritance, containment, and
 # class references variables) of the class with other documented classes.
 
-COLLABORATION_GRAPH    = YES
+COLLABORATION_GRAPH    = NO
 
 # If the GROUP_GRAPHS and HAVE_DOT tags are set to YES then doxygen
 # will generate a graph for groups, showing the direct groups dependencies

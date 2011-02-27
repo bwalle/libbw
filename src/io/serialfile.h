@@ -59,6 +59,7 @@ struct SerialFilePrivate;
  * set the communication parameters. No control terminal etc. etc.
  *
  * \author Bernhard Walle <bernhard@bwalle.de>
+ * \ingroup io
  */
 class SerialFile {
 

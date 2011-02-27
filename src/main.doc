@@ -98,6 +98,9 @@ Then you can include the header files for example with
 #include <libbw/error.h>
 \endcode
 
+\defgroup thread Threading functions
+\defgroup io     I/O classes
+
 */
 
 // vim: set ft=doxygen:

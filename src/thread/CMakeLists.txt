@@ -1,5 +1,5 @@
 # {{{
-# Copyright (c) 2009-2010, Bernhard Walle <bernhard@bwalle.de>
+# Copyright (c) 2011, Bernhard Walle <bernhard@bwalle.de>
 # All rights reserved.
 #
 # Redistribution and use in source and binary forms, with or without
@@ -25,8 +25,8 @@
 # SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE. }}}
 
 if (CMAKE_HOST_UNIX)
-    add_subdirectory(serialread)
-    add_subdirectory(thread)
+    set(LIBBW_THREAD_SRCS
+        thread/thread_common.cc
+        thread/thread_posix.cc
+    )
 endif (CMAKE_HOST_UNIX)
-
-# vim: set sw=4 ts=4 et fdm=marker:

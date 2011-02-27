@@ -83,7 +83,9 @@ endif (CMAKE_HOST_UNIX)
 
 include(io/CMakeLists.txt)
 set(LIBBW_SRCS ${LIBBW_SRCS} ${LIBBW_IO_SRCS})
-message("LIBBW_IO_SRCS=${LIBBW_IO_SRCS}")
+
+include(thread/CMakeLists.txt)
+set(LIBBW_SRCS ${LIBBW_SRCS} ${LIBBW_THREAD_SRCS})
 
 # link our own version of getopt_long() if the system doesn't provide a
 # suitable one

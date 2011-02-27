@@ -3,6 +3,7 @@
 	* Locking serial port works different on Linux and Mac OS.
 	* Move serial file into own subdirectory and namespace 'io'.
 	* Add Noncopyable.
+	* Add thread class.
 
 2011-02-26  Bernhard Walle <bernhard@bwalle.de>
 

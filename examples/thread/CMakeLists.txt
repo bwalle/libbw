@@ -24,9 +24,13 @@
 # (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
 # SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE. }}}
 
-if (CMAKE_HOST_UNIX)
-    add_subdirectory(serialread)
-    add_subdirectory(thread)
-endif (CMAKE_HOST_UNIX)
+add_executable(
+    thread
+    thread.cc
+)
+target_link_libraries(
+    thread
+    bw
+)
 
 # vim: set sw=4 ts=4 et fdm=marker:
