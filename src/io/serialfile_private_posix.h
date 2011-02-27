@@ -1,5 +1,5 @@
 /* {{{
- * Copyright (c) 2008-2010, Bernhard Walle <bernhard@bwalle.de>
+ * Copyright (c) 2011, Bernhard Walle <bernhard@bwalle.de>
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -25,22 +25,37 @@
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE. }}}
  */
 
-#include "serialfile.h"
+#ifndef SERIALFILE_PRIVATE_POSIX_H
+#define SERIALFILE_PRIVATE_POSIX_H
+
+#include <string>
 
 namespace bw {
+namespace io {
 
-/* SerialFile {{{ */
+/* SerialFilePrivate {{{ */
 
-/* ---------------------------------------------------------------------------------------------- */
-bool SerialFile::createLock()
+/**
+ * @brief Data object for SerialFile.
+ *
+ * The reason why that data objects are not members of SerialFile is just that we can provide
+ * the same interface for different platforms and have the concrete (typed) members as private
+ * data of the platform implementation.
+ */
+struct SerialFilePrivate
 {
-    return true;
-}
+    SerialFilePrivate(const std::string &portName)
+        : fileName(portName)
+        , fd(-1) {}
 
-/* ---------------------------------------------------------------------------------------------- */
-void SerialFile::removeLock()
-{}
+    std::string fileName;
+    std::string lastError;
+    int         fd;
+};
 
 /* }}} */
 
+} // end namespace io
 } // end namespace bw
+
+#endif /* SERIALFILE_PRIVATE_POSIX_H */

@@ -43,6 +43,7 @@
  */
 
 namespace bw {
+namespace io {
 
 struct SerialFilePrivate;
 
@@ -245,6 +246,7 @@ std::ostream &operator<<(std::ostream &os, const SerialFile &serialFile);
 
 /* }}} */
 
+} // end namespace io
 } // end namespace bw
 
 #endif /* SERIALFILE_H */

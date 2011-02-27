@@ -43,6 +43,7 @@
 #include "serialfile_private_posix.h"
 
 namespace bw {
+namespace io {
 
 /* Module-static stuff (lock file deletion) {{{ */
 
@@ -151,4 +152,7 @@ void SerialFile::removeLock()
         s_files_to_delete.erase(result);
 }
 
+/* }}} */
+
+} // end namespace io
 } // end namespace bw

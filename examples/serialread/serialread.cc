@@ -28,7 +28,7 @@
 #include <cstdlib>
 #include <csignal>
 
-#include "serialfile.h"
+#include <io/serialfile.h>
 
 /* ---------------------------------------------------------------------------------------------- */
 void dummy_signalhandler(int signal)
@@ -56,14 +56,14 @@ int main(int argc, char *argv[])
     std::string device = argv[1];
     int baudrate = std::atoi(argv[2]);
 
-    bw::SerialFile serialFile(argv[1]);
+    bw::io::SerialFile serialFile(argv[1]);
     if (!serialFile.openPort()) {
         std::cerr << "Failed to open serial device '" << serialFile << "': "
                   << serialFile.getLastError() << std::endl;
         return EXIT_FAILURE;
     }
 
-    if (!serialFile.reconfigure(baudrate, bw::SerialFile::FC_NONE)) {
+    if (!serialFile.reconfigure(baudrate, bw::io::SerialFile::FC_NONE)) {
         std::cerr << "Failed to set baudrate for serial device '" << serialFile << "': "
                   << serialFile.getLastError() << std::endl;
         return EXIT_FAILURE;

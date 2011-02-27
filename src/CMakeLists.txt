@@ -74,27 +74,16 @@ set(LIBBW_SRCS
     optionparser.h
     optionparser.cc
 )
-
 if (CMAKE_HOST_UNIX)
     set(LIBBW_SRCS
         ${LIBBW_SRCS}
-        serialfile.h
-        serialfile_posix.cc
-        os.h
         os_posix.cc
     )
-    if (CMAKE_SYSTEM_NAME STREQUAL "Linux")
-        set(LIBBW_SRCS
-            ${LIBBW_SRCS}
-            serialfile_linux.cc
-        )
-    else ()
-        set(LIBBW_SRCS
-            ${LIBBW_SRCS}
-            serialfile_posix_generic.cc
-        )
-    endif ()
 endif (CMAKE_HOST_UNIX)
+
+include(io/CMakeLists.txt)
+set(LIBBW_SRCS ${LIBBW_SRCS} ${LIBBW_IO_SRCS})
+message("LIBBW_IO_SRCS=${LIBBW_IO_SRCS}")
 
 # link our own version of getopt_long() if the system doesn't provide a
 # suitable one

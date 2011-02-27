@@ -43,6 +43,7 @@
 #include "serialfile_private_posix.h"
 
 namespace bw {
+namespace io {
 
 /* SerialFile {{{ */
 
@@ -286,4 +287,5 @@ std::ostream &operator<<(std::ostream &os, const SerialFile &serialFile)
 
 /* }}} */
 
+} // end namespace io
 } // end namespace bw
