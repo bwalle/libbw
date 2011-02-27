@@ -40,6 +40,28 @@
 
 namespace bw {
 
+/* Error {{{ */
+
+/**
+ * \class Error bwerror.h libbw/error.h
+ * \brief Base class for all exceptions in that library.
+ *
+ * \author Bernhard Walle <bernhard@bwalle.de>
+ */
+class Error : public std::runtime_error {
+    public:
+        /**
+         * \brief Constructor
+         *
+         * Creates a new Error.
+         *
+         * \param[in] string the error string
+         */
+        Error(const std::string &string)
+            : std::runtime_error(string) {}
+};
+
+/* }}} */
 /* IOError {{{ */
 
 /**
@@ -52,7 +74,7 @@ namespace bw {
  *
  * \author Bernhard Walle <bernhard@bwalle.de>
  */
-class IOError : public std::runtime_error {
+class IOError : public Error {
     public:
         /**
          * \brief Constructor
@@ -62,7 +84,50 @@ class IOError : public std::runtime_error {
          * \param[in] string the error string
          */
         IOError(const std::string& string)
-            : std::runtime_error(string) {}
+            : Error(string) {}
+};
+
+/* }}} */
+/* SystemError {{{ */
+
+/**
+ * \brief Standard error class for system errors that have a valid errno information.
+ *
+ * \author Bernhard Walle <bernhard@bwalle.de>
+ */
+class SystemError : public Error {
+    public:
+        /**
+         * \brief Creates a new object of SystemError with string as error message.
+         *
+         * \param[in] string the error message
+         * \param[in] errorcode the system error code (errno)
+         */
+        SystemError(const std::string &string, int errorcode)
+            : Error(string)
+            , m_errorcode(errorcode)
+        {
+            m_errorstring = string + " (" + strerror(m_errorcode) + ")";
+        }
+
+        /**
+         * \brief Returns a readable error message from the string and the error code.
+         *
+         * \return Error message in the format 'string (strerror(errorcode))'.
+         */
+        virtual const char *what() const throw ()
+        {
+            return m_errorstring.c_str();
+        }
+
+        /**
+         * Don't know why that is necessary to avoid compiler errors.
+         */
+        virtual ~SystemError() throw () {}
+
+    private:
+        int m_errorcode;
+        std::string m_errorstring;
 };
 
 /* }}} */
