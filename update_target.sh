@@ -27,7 +27,7 @@
 #
 
 
-TEMPDIR=`mktemp -d`
+TEMPDIR=`mktemp -d -t libbw-XXXXXX`
 REVISION=`git describe HEAD`
 VERSION=`cat VERSION`
 TARGET=$1
