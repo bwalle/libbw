@@ -132,6 +132,8 @@ bool SerialFile::createLock()
     if (lock)
         lock << ::getpid() << std::endl;
     s_files_to_delete.push_back(lockfile);
+
+    return true;
 }
 
 /* ---------------------------------------------------------------------------------------------- */
