@@ -31,6 +31,7 @@ add_executable(
 target_link_libraries(
     thread
     bw
+    pthread
 )
 
 # vim: set sw=4 ts=4 et fdm=marker:

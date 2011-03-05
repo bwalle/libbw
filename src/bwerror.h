@@ -37,6 +37,7 @@
  */
 
 #include <stdexcept>
+#include <cstring>
 
 namespace bw {
 
@@ -107,7 +108,7 @@ class SystemError : public Error {
             : Error(string)
             , m_errorcode(errorcode)
         {
-            m_errorstring = string + " (" + strerror(m_errorcode) + ")";
+            m_errorstring = string + " (" + std::strerror(m_errorcode) + ")";
         }
 
         /**

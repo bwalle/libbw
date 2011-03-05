@@ -1,6 +1,7 @@
 2011-03-05  Bernhard Walle <bernhard@bwalle.de>
 
 	* Fix warning in serialfile_linux.cc.
+	* Fix build on Linux.
 
 2011-02-27  Bernhard Walle <bernhard@bwalle.de>
 
