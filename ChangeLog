@@ -2,6 +2,7 @@
 
 	* Fix warning in serialfile_linux.cc.
 	* Fix build on Linux.
+	* Fix cmake library search on Mac OS.
 
 2011-02-27  Bernhard Walle <bernhard@bwalle.de>
 
