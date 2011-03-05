@@ -1,3 +1,7 @@
+2011-03-05  Bernhard Walle <bernhard@bwalle.de>
+
+	* Fix cmake library search on Mac OS.
+
 2011-02-26  Bernhard Walle <bernhard@bwalle.de>
 
 	* Fix build on Mac OS X.
