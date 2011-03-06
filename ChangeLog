@@ -1,3 +1,8 @@
+2011-03-06  Bernhard Walle <bernhard@bwalle.de>
+
+	* Don't try to link against libcurses when libreadline has not been
+	  found.
+
 2011-03-05  Bernhard Walle <bernhard@bwalle.de>
 
 	* Fix cmake library search on Mac OS.
