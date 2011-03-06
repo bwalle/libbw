@@ -60,6 +60,13 @@ check_function_exists("getopt_long" HAVE_GETOPT_LONG)
 unset(CMAKE_REQUIRED_DEFINITIONS)
 unset(CMAKE_REQUIRED_INCLUDES)
 
+# check for strcasecmp() -> WIN32
+SET(HAVE_STRCASECMP 0)
+check_function_exists("strcasecmp" HAVE_STRCASECMP_RET)
+if (HAVE_STRCASECMP_RET)
+    SET(HAVE_STRCASECMP 1)
+endif (HAVE_STRCASECMP_RET)
+
 # for bwconfig.h
 include_directories( ${CMAKE_CURRENT_BINARY_DIR} )
 

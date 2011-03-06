@@ -4,6 +4,7 @@
 	  found.
 	* Change completion interface from ssize_t to int since Win32 has no
 	  ssize_t.
+	* Add compatibility strcasecmp() for Win32.
 
 2011-03-05  Bernhard Walle <bernhard@bwalle.de>
 
