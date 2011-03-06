@@ -42,7 +42,7 @@
 
 namespace bw {
 
-#if !HAVE_STRCASECMP
+#ifndef HAVE_STRCASECMP
 
 /**
  * @brief Compares two strings case-insensitive

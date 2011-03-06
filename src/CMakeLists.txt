@@ -24,8 +24,6 @@
 # (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
 # SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE. }}}
 
-set (HAVE_LIBREADLINE 0)
-
 # Readline
 
 find_path(READLINE_INCLUDE_DIR readline/readline.h
@@ -40,7 +38,7 @@ mark_as_advanced(READLINE_LIBRARY)
 if (READLINE_LIBRARY AND READLINE_INCLUDE_DIR)
     include_directories( ${READLINE_INCLUDE_DIR} )
     set (EXTRA_LIBS ${EXTRA_LIBS} ${READLINE_LIBRARY})
-    set (HAVE_LIBREADLINE 1)
+    set (HAVE_LIBREADLINE TRUE)
 
     if (NOT CURSES_LIBRARIES)
         find_package(Curses REQUIRED)
@@ -61,19 +59,11 @@ unset(CMAKE_REQUIRED_DEFINITIONS)
 unset(CMAKE_REQUIRED_INCLUDES)
 
 # check for strcasecmp() -> WIN32
-set(HAVE_STRCASECMP 0)
-check_function_exists("strcasecmp" HAVE_STRCASECMP_RET)
-if (HAVE_STRCASECMP_RET)
-    SET(HAVE_STRCASECMP 1)
-endif (HAVE_STRCASECMP_RET)
+check_function_exists("strcasecmp" HAVE_STRCASECMP)
 
 # check for unistd.h
 include(CheckIncludeFile)
-set(HAVE_UNISTD_H 0)
-check_include_file("unistd.h" HAVE_UNISTD_H_RET)
-if (HAVE_UNISTD_H_RET)
-    set(HAVE_UNISTD_H 1)
-endif (HAVE_UNISTD_H_RET)
+check_include_file("unistd.h" HAVE_UNISTD_H)
 
 # for bwconfig.h
 include_directories( ${CMAKE_CURRENT_BINARY_DIR} )

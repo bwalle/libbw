@@ -6,6 +6,7 @@
 	  ssize_t.
 	* Add compatibility strcasecmp() for Win32.
 	* Only include "unistd.h" if we have it.
+	* CMakeLists.txt: Switch to cmakedefine.
 
 2011-03-05  Bernhard Walle <bernhard@bwalle.de>
 

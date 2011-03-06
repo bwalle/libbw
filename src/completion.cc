@@ -34,7 +34,7 @@
 
 #include "bwconfig.h"
 
-#if HAVE_LIBREADLINE
+#ifdef HAVE_LIBREADLINE
 # include <readline/readline.h>
 # include <readline/history.h>
 #endif
@@ -46,7 +46,7 @@ namespace bw {
 
 /* class definitions {{{ */
 
-#if HAVE_LIBREADLINE
+#ifdef HAVE_LIBREADLINE
 class ReadlineLineReader : public AbstractLineReader {
     public:
         ReadlineLineReader(const std::string &prompt);
@@ -67,7 +67,7 @@ class ReadlineLineReader : public AbstractLineReader {
     private:
         Completor *m_completor;
 };
-#endif
+#endif /* HAVE_LIBREADLINE */
 
 /**
  * \brief Simple line reader without history and completion
@@ -101,11 +101,11 @@ class SimpleLineReader : public AbstractLineReader {
 /* ---------------------------------------------------------------------------------------------- */
 LineReader *LineReader::defaultLineReader(const std::string &prompt)
 {
-#if HAVE_LIBREADLINE
+#ifdef HAVE_LIBREADLINE
     return new ReadlineLineReader(prompt);
 #else
     return new SimpleLineReader(prompt);
-#endif
+#endif /* HAVE_LIBREADLINE */
 }
 
 /* }}} */
@@ -204,7 +204,7 @@ std::string SimpleLineReader::readLine(const char *prompt)
 /* }}} */
 /* ReadlineLineReader {{{ */
 
-#if HAVE_LIBREADLINE
+#ifdef HAVE_LIBREADLINE
 
 /* completion stuff, not really object oriented :-( */
 
@@ -345,7 +345,7 @@ void ReadlineLineReader::setCompletor(Completor *comp)
 
 /* }}} */
 
-#endif
+#endif /* HAVE_LIBREADLINE */
 
 } // end namespace bw
 
