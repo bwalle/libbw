@@ -2,6 +2,8 @@
 
 	* Don't try to link against libcurses when libreadline has not been
 	  found.
+	* Change completion interface from ssize_t to int since Win32 has no
+	  ssize_t.
 
 2011-03-05  Bernhard Walle <bernhard@bwalle.de>
 
