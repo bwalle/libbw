@@ -36,7 +36,7 @@
 namespace bw {
 namespace thread {
 
-/* MutexPrivate {{{ */
+/* WaitCondPrivate {{{ */
 
 struct WaitCondPrivate {
     pthread_cond_t waitcond;
