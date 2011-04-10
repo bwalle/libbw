@@ -29,5 +29,6 @@ if (CMAKE_HOST_UNIX)
         thread/thread_common.cc
         thread/thread_posix.cc
         thread/mutex_posix.cc
+        thread/waitcond_posix.cc
     )
 endif (CMAKE_HOST_UNIX)
