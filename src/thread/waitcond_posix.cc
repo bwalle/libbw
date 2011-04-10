@@ -27,7 +27,7 @@
 
 #include <cerrno>
 
-#include <time.h>
+#include <sys/time.h>
 
 #include "mutex.h"
 #include "waitcond.h"
@@ -70,10 +70,19 @@ bool WaitCond::wait(Mutex *mutex, unsigned int timeout)
 
     if (hasTimeout) {
         struct timespec abstime;
+        struct timeval tv;
 
-        err = clock_gettime(CLOCK_REALTIME, &abstime);
+        /* 
+         * clock_gettime() would provide struct timespec directly, but 
+         * isn't present on Mac OS
+         */
+
+        err = gettimeofday(&tv, NULL);
         if (err < 0)
-            throw SystemError("Unable to call clock_gettime()", errno);
+            throw SystemError("Unable to call gettimeofday()", errno);
+
+        abstime.tv_sec = tv.tv_sec;
+        abstime.tv_nsec = tv.tv_usec * 1000;
 
         abstime.tv_sec += timeout / 1000;
         if ( (abstime.tv_nsec + (timeout % 1000) * 1000000) > 1000000000 )
