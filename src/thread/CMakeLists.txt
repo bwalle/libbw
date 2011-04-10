@@ -30,5 +30,6 @@ if (CMAKE_HOST_UNIX)
         thread/thread_posix.cc
         thread/mutex_posix.cc
         thread/waitcond_posix.cc
+        thread/semaphore_posix.cc
     )
 endif (CMAKE_HOST_UNIX)
