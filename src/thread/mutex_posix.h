@@ -25,65 +25,23 @@
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE. }}}
  */
 
-#include <cerrno>
+#ifndef MUTEX_POSIX_H
+#define MUTEX_POSIX_H
 
-#include "mutex.h"
-#include "mutex_posix.h"
+#include <pthread.h>
 
 namespace bw {
 namespace thread {
 
-/* Mutex {{{ */
+/* MutexPrivate {{{ */
 
-/* ---------------------------------------------------------------------------------------------- */
-Mutex::Mutex()
-    throw (Error)
-    : m_d(new MutexPrivate())
-{
-    int err = pthread_mutex_init(&m_d->mutex, NULL);
-    if (err != 0)
-        throw SystemError("Unable to call pthread_mutex_init()", err);
-}
-
-/* ---------------------------------------------------------------------------------------------- */
-Mutex::~Mutex()
-{
-    pthread_mutex_destroy(&m_d->mutex);
-}
-
-/* ---------------------------------------------------------------------------------------------- */
-void Mutex::lock()
-    throw (Error)
-{
-    int err = pthread_mutex_lock(&m_d->mutex);
-    if (err != 0)
-        throw SystemError("Unable to call pthread_mutex_lock()", err);
-}
-
-/* ---------------------------------------------------------------------------------------------- */
-bool Mutex::tryLock()
-    throw (Error)
-{
-    int err = pthread_mutex_trylock(&m_d->mutex);
-    if (err != 0)
-        if (err == EBUSY)
-            return false;
-        else
-            throw SystemError("Unable to call pthread_mutex_trylock()", err);
-    else
-        return true;
-}
-
-/* ---------------------------------------------------------------------------------------------- */
-void Mutex::unlock()
-    throw (Error)
-{
-    int err = pthread_mutex_unlock(&m_d->mutex);
-    if (err != 0)
-        throw SystemError("Unable to call pthread_mutex_unlock()", err);
-}
+struct MutexPrivate {
+    pthread_mutex_t mutex;
+};
 
 /* }}} */
 
 } // end namespace thread
 } // end namespace bw
+
+#endif /* MUTEX_POSIX_H */

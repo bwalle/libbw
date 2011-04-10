@@ -46,6 +46,7 @@ namespace bw {
 namespace thread {
 
 struct MutexPrivate;
+class WaitCond;
 
 /* Mutex {{{ */
 
@@ -66,7 +67,7 @@ struct MutexPrivate;
 class Mutex : private ::bw::Noncopyable {
 
     public:
-        friend class MutexPrivate;
+        friend class WaitCond;
 
     public:
         /**
