@@ -24,14 +24,10 @@
 # (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
 # SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE. }}}
 
-add_executable(
-    thread
-    thread.cc
-)
-target_link_libraries(
-    thread
-    bw
-    pthread
-)
+add_executable(thread mutex.cc)
+target_link_libraries(thread bw pthread)
+
+add_executable(mutex mutex.cc)
+target_link_libraries(mutex bw pthread)
 
 # vim: set sw=4 ts=4 et fdm=marker:

@@ -28,5 +28,6 @@ if (CMAKE_HOST_UNIX)
     set(LIBBW_THREAD_SRCS
         thread/thread_common.cc
         thread/thread_posix.cc
+        thread/mutex_posix.cc
     )
 endif (CMAKE_HOST_UNIX)
