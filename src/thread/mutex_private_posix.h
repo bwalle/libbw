@@ -25,8 +25,8 @@
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE. }}}
  */
 
-#ifndef MUTEX_POSIX_H
-#define MUTEX_POSIX_H
+#ifndef MUTEX_PRIVATE_POSIX_H
+#define MUTEX_PRIVATE_POSIX_H
 
 #include <pthread.h>
 
@@ -44,4 +44,4 @@ struct MutexPrivate {
 } // end namespace thread
 } // end namespace bw
 
-#endif /* MUTEX_POSIX_H */
+#endif /* MUTEX_PRIVATE_POSIX_H */

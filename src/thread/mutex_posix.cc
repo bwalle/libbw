@@ -28,7 +28,7 @@
 #include <cerrno>
 
 #include "mutex.h"
-#include "mutex_posix.h"
+#include "mutex_private_posix.h"
 
 namespace bw {
 namespace thread {
