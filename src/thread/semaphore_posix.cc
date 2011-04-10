@@ -57,43 +57,12 @@ Semaphore::~Semaphore()
 }
 
 /* ---------------------------------------------------------------------------------------------- */
-bool Semaphore::wait(unsigned int timeout)
+void Semaphore::wait()
     throw (Error)
 {
-    bool hasTimeout = (timeout == std::numeric_limits<unsigned int>::max());
-    int err;
-
-    if (hasTimeout) {
-        struct timespec abstime;
-        struct timeval tv;
-
-        /* 
-         * clock_gettime() would provide struct timespec directly, but 
-         * isn't present on Mac OS
-         */
-
-        err = gettimeofday(&tv, NULL);
-        if (err < 0)
-            throw SystemError("Unable to call gettimeofday()", errno);
-
-        abstime.tv_sec = tv.tv_sec;
-        abstime.tv_nsec = tv.tv_usec * 1000;
-
-        abstime.tv_sec += timeout / 1000;
-        if ( (abstime.tv_nsec + (timeout % 1000) * 1000000) > 1000000000 )
-            abstime.tv_sec ++;
-        abstime.tv_nsec += (timeout % 1000) * 1000 * 1000;
-
-        err = sem_timedwait(&m_d->semaphore, &abstime);
-        if (err == ETIMEDOUT)
-            return false;
-    } else
-        err = sem_wait(&m_d->semaphore);
-
+    int err = sem_wait(&m_d->semaphore);
     if (err < 0)
-        throw SystemError("Unable to call sem_wait()/sem_timedwait()", errno);
-
-    return true;
+        throw SystemError("Unable to call sem_wait()", errno);
 }
 
 /* ---------------------------------------------------------------------------------------------- */

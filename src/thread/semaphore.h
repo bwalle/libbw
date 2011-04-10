@@ -89,14 +89,10 @@ class Semaphore : private ::bw::Noncopyable {
          * zero, then the call blocks until either it becomes possible to
          * perform the decrement (i.e., the semaphore value rises above zero).
          *
-         * \param[in] timeout if not std::numeric_limits<unsigned int>::max(),
-         * \return \c false on timeout, \c true if the semaphore has been
-         *         locked successfully.
          * \sa tryWait()
-         * 
          * \exception Error on a system error
          */
-        bool wait(unsigned int timeout = std::numeric_limits<unsigned int>::max())
+        void wait()
         throw (Error);
 
         /**
