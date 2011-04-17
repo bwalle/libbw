@@ -248,6 +248,11 @@ bool SerialFile::reconfigure(int            baudrate,
         options.c_oflag &= ~OPOST;
     }
 
+    // Disable translation of \r to \n since \r\n results in \n\n which doesn't make
+    // sense. The input has to deal with \r\n line endings and readLine() is able to do
+    // that.
+    options.c_iflag &= ~ICRNL;
+
     // initialize all control characters
     // default values can be found in /usr/include/termios.h, and are given
     // in the comments, but we don't need them here
