@@ -3,6 +3,7 @@
 	* Add CMake build open 'BUILD_EXAMPLES' that allows to build the
 	  library only.
 	* Add SerialFile::readLine() method.
+	* Use the SerialFile::readLine() method in the example.
 
 2011-03-06  Bernhard Walle <bernhard@bwalle.de>
 

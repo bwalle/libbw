@@ -41,8 +41,10 @@ void dummy_signalhandler(int signal)
 /* ---------------------------------------------------------------------------------------------- */
 int main(int argc, char *argv[])
 {
-    if (argc != 3) {
-        std::cerr << "Usage: " << argv[0] << " <port> <baudrate>" << std::endl;
+    bool lineMode;
+
+    if (argc != 4) {
+        std::cerr << "Usage: " << argv[0] << " <port> <baudrate> <'line'|'block'>" << std::endl;
         return EXIT_FAILURE;
     }
 
@@ -55,6 +57,15 @@ int main(int argc, char *argv[])
 
     std::string device = argv[1];
     int baudrate = std::atoi(argv[2]);
+    std::string mode = std::string(argv[3]);
+    if (mode == "line")
+        lineMode = true;
+    else if (mode == "block")
+        lineMode = false;
+    else {
+        std::cerr << "Invalid mode. Must be 'line' or 'block'." << std::endl;
+        return EXIT_FAILURE;
+    }
 
     bw::io::SerialFile serialFile(argv[1]);
     if (!serialFile.openPort()) {
@@ -70,9 +81,14 @@ int main(int argc, char *argv[])
     }
 
     while (true) {
-        std::string s;
-        serialFile >> s;
-        std::cout << s << std::flush;
+        if (lineMode) { 
+            std::string line = serialFile.readLine();
+            std::cout << "Line: =" << line << "=" << std::endl;
+        } else {
+            std::string s;
+            serialFile >> s;
+            std::cout << s << std::flush;
+        }
     }
 
     return EXIT_SUCCESS;
