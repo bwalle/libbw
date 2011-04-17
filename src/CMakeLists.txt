@@ -65,6 +65,7 @@ check_function_exists("strcasecmp" HAVE_STRCASECMP)
 include(CheckIncludeFile)
 check_include_file("unistd.h" HAVE_UNISTD_H)
 
+include_directories( ${CMAKE_CURRENT_SOURCE_DIR} )
 # for bwconfig.h
 include_directories( ${CMAKE_CURRENT_BINARY_DIR} )
 

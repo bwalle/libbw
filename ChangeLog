@@ -1,5 +1,9 @@
 2011-04-17  Bernhard Walle <bernhard@bwalle.de>
 
+	* Fix include path when using in an project.
+
+2011-04-17  Bernhard Walle <bernhard@bwalle.de>
+
 	* Add CMake build open 'BUILD_EXAMPLES' that allows to build the
 	  library only.
 	* Add SerialFile::readLine() method.
