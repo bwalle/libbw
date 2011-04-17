@@ -142,7 +142,7 @@ std::string SerialFile::readLine()
         if (lastCharacter != '\r' && lastCharacter != '\n')
             result += lastCharacter;
 
-    } while (lastCharacter != '\r' && lastCharacter != '\n');
+    } while (lastCharacter != '\n');
 
     return result;
 }

@@ -4,6 +4,7 @@
 	  library only.
 	* Add SerialFile::readLine() method.
 	* Use the SerialFile::readLine() method in the example.
+	* SerialFile: Don't return empty strings for each line.
 
 2011-03-06  Bernhard Walle <bernhard@bwalle.de>
 
