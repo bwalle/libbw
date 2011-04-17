@@ -243,8 +243,7 @@ bool SerialFile::reconfigure(int            baudrate,
     options.c_cflag |= (CLOCAL | CREAD);
 
     // raw mode
-    if (rawMode)
-    {
+    if (rawMode) {
         options.c_lflag &= ~(ICANON | ECHO | ECHOE | ISIG);
         options.c_oflag &= ~OPOST;
     }
