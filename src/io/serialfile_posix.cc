@@ -126,6 +126,28 @@ SerialFile &SerialFile::operator>>(std::string& str)
 }
 
 /* ---------------------------------------------------------------------------------------------- */
+std::string SerialFile::readLine()
+    throw (IOError)
+{
+    std::string result;
+    char lastCharacter;
+
+    do {
+        int ret = read(d->fd, &lastCharacter, 1);
+        if (ret < 0) {
+            d->lastError = std::string(std::strerror(errno));
+            throw IOError(getLastError());
+        }
+
+        if (lastCharacter != '\r' && lastCharacter != '\n')
+            result += lastCharacter;
+
+    } while (lastCharacter != '\r' && lastCharacter != '\n');
+
+    return result;
+}
+
+/* ---------------------------------------------------------------------------------------------- */
 std::string SerialFile::getLastError() const
 {
     return d->lastError;

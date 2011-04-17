@@ -172,6 +172,18 @@ class SerialFile {
         throw (IOError);
 
         /**
+         * \brief Reads a line
+         *
+         * This function is not as efficient as operator>>, but it guarantees that a single line is
+         * read. Both <tt>'\\r'</tt> and <tt>'\\r\\n'</tt> are understood as line separators and the
+         * result is returned without any line termination characters.
+         *
+         * \return the line that has been read without line terminators
+         */
+        std::string readLine()
+        throw (IOError);
+
+        /**
          * \brief Returns the last error as string.
          *
          * \return the last error as string
