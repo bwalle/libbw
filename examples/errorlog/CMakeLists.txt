@@ -1,5 +1,5 @@
 # {{{
-# Copyright (c) 2009-2010, Bernhard Walle <bernhard@bwalle.de>
+# Copyright (c) 2011, Bernhard Walle <bernhard@bwalle.de>
 # All rights reserved.
 #
 # Redistribution and use in source and binary forms, with or without
@@ -24,10 +24,7 @@
 # (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
 # SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE. }}}
 
-if (CMAKE_HOST_UNIX)
-    add_subdirectory(serialread)
-    add_subdirectory(thread)
-    add_subdirectory(errorlog)
-endif (CMAKE_HOST_UNIX)
+add_executable(errorlog errorlog.cc)
+target_link_libraries(errorlog bw)
 
 # vim: set sw=4 ts=4 et fdm=marker:

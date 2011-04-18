@@ -1,3 +1,7 @@
+2011-04-18  Bernhard Walle <bernhard@bwalle.de>
+
+	* Add error logging.
+
 2011-04-17  Bernhard Walle <bernhard@bwalle.de>
 
 	* Fix include path when using in an project.

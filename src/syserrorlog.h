@@ -1,5 +1,5 @@
 /* {{{
- * Copyright (c) 2008-2010, Bernhard Walle <bernhard@bwalle.de>
+ * Copyright (c) 2011, Bernhard Walle <bernhard@bwalle.de>
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -24,8 +24,72 @@
  * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE. }}}
  */
+#ifndef SYSERRORLOG_H
+#define SYSERRORLOG_H
 
-#cmakedefine HAVE_LIBREADLINE
-#cmakedefine HAVE_STRCASECMP
-#cmakedefine HAVE_SYSLOG
+#include <cstdio>
+#include <string>
 
+#include "errorlog.h"
+
+/**
+ * \file
+ * \brief Error logging functions
+ *
+ * This file contains a simple error logging framework
+ *
+ * \author Bernhard Walle <bernhard@bwalle.de>
+ */
+
+namespace bw {
+
+/* SysErrorlog {{{ */
+
+/**
+ * \brief Error log implementation for syslog
+ *
+ * \author Bernhard Walle <bernhard@bwalle.de>
+ */
+class SysErrorlog : public Errorlog {
+
+    public:
+        /// Let Errorlog create instances of SysErrorlog, and only Errorlog.
+        friend class Errorlog;
+
+    protected:
+        /**
+         * \brief Creates a new SysErrorlog.
+         *
+         * Don't use that function directly. Instead, use Errorlog::configure().
+         *
+         * \param[in] ident the syslog ident string
+         */
+        SysErrorlog(const char *ident="");
+
+        /**
+         * \brief Destructor
+         */
+        ~SysErrorlog();
+
+        /**
+         * \copydoc Errorlog::vlog()
+         */
+        void vlog(Errorlog::Level level, const char *msg, std::va_list args);
+
+    private:
+        /**
+         * \brief Converts a bw loglevel to syslog
+         *
+         * \param[in] level the log level
+         * \return the syslog constant
+         */
+        int logToSyslog(Errorlog::Level level);
+};
+
+/* }}} */
+
+} // end namespace bw
+
+#endif /* SYSERRORLOG_H */
+
+// vim: set sw=4 ts=4 et fdm=marker:

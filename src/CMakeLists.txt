@@ -61,9 +61,10 @@ unset(CMAKE_REQUIRED_INCLUDES)
 # check for strcasecmp() -> WIN32
 check_function_exists("strcasecmp" HAVE_STRCASECMP)
 
-# check for unistd.h
+# check for unistd.h and syslog.h
 include(CheckIncludeFile)
 check_include_file("unistd.h" HAVE_UNISTD_H)
+check_include_file("syslog.h" HAVE_SYSLOG)
 
 include_directories( ${CMAKE_CURRENT_SOURCE_DIR} )
 # for bwconfig.h
@@ -79,6 +80,8 @@ set(LIBBW_SRCS
     bwerror.h
     optionparser.h
     optionparser.cc
+    errorlog.cc
+    fileerrorlog.cc
 )
 if (CMAKE_HOST_UNIX)
     set(LIBBW_SRCS
@@ -86,6 +89,10 @@ if (CMAKE_HOST_UNIX)
         os_posix.cc
     )
 endif (CMAKE_HOST_UNIX)
+
+if (HAVE_SYSLOG)
+    set(LIBBW_SRCS ${LIBBW_SRCS} syserrorlog.cc)
+endif (HAVE_SYSLOG)
 
 include(io/CMakeLists.txt)
 set(LIBBW_SRCS ${LIBBW_SRCS} ${LIBBW_IO_SRCS})

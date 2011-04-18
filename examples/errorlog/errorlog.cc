@@ -1,5 +1,5 @@
 /* {{{
- * Copyright (c) 2008-2010, Bernhard Walle <bernhard@bwalle.de>
+ * Copyright (c) 2011, Bernhard Walle <bernhard@bwalle.de>
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -24,8 +24,30 @@
  * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE. }}}
  */
+#include <iostream>
+#include <cstdlib>
 
-#cmakedefine HAVE_LIBREADLINE
-#cmakedefine HAVE_STRCASECMP
-#cmakedefine HAVE_SYSLOG
+#include <errorlog.h>
 
+/* ---------------------------------------------------------------------------------------------- */
+int main(int argc, char *argv[])
+{
+    if (argc != 2) {
+        std::cerr << "Usage: errorlog <filename | 'syslog'>" << std::endl;
+        return EXIT_FAILURE;
+    }
+
+    if (std::strcmp(argv[1], "syslog") == 0)
+        bw::Errorlog::configure(bw::Errorlog::LM_SYSLOG, "errorlog");
+    else
+        bw::Errorlog::configure(bw::Errorlog::LM_FILE, argv[1]);
+
+    BW_ERROR(bw::Errorlog::LS_ALERT, "Alert message: %d", 5);
+    BW_ERROR_EMERG("Emerg message: %d", 5);
+    BW_ERROR_ALERT("Alert message: %d", 5);
+    BW_ERROR_CRIT("Critical message: %d", 5);
+    BW_ERROR_WARNING("Emerg message: %d", 5);
+    BW_ERROR_EMERG("Emerg message: %d", 5);
+
+    return EXIT_SUCCESS;
+}
