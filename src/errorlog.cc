@@ -38,7 +38,7 @@ namespace bw {
 /* Errorlog {{{ */
 
 /* ---------------------------------------------------------------------------------------------- */
-Errorlog::Errorlog *Errorlog::m_instance;
+Errorlog *Errorlog::m_instance;
 
 /* ---------------------------------------------------------------------------------------------- */
 const char *Errorlog::levelToString(enum Errorlog::Level level)

@@ -28,6 +28,7 @@
 #define ERRORLOG_H
 
 #include <cstdarg>
+#include <cstdlib>
 
 /**
  * \file
