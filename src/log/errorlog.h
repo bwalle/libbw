@@ -161,6 +161,15 @@ namespace bw {
  * The real logging is provided by subclasses of Errorlog. A subclass only need to provide a
  * constructor, a destructor (optional) and an implementation of Errorlog::vlog().
  *
+ * To perform the actual logging in the application, use the macros
+ *
+ *  - BW_ERROR() for generic logs
+ *  - BW_ERROR_EMERG() for panic conditions
+ *  - BW_ERROR_ALERT() for conditions that should be corrected immediately
+ *  - BW_ERROR_CRIT() for critical conditions
+ *  - BW_ERROR_ERR() for errors
+ *  - BW_ERROR_WARNING() for warning messages
+ *
  * \author Bernhard Walle <bernhard@bwalle.de>
  * \ingroup log
  */
