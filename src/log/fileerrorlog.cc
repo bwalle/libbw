@@ -29,6 +29,7 @@
 #include <cstring>
 
 #include "fileerrorlog.h"
+#include "bwconfig.h"
 
 namespace bw {
 
@@ -73,14 +74,18 @@ void FileErrorlog::vlog(Errorlog::Level level, const char *msg, std::va_list arg
 std::string FileErrorlog::timestamp() const
 {
     char buffer[80];
-    struct tm *t;
+    struct tm t;
     time_t now;
 
     std::time(&now);
-    t = std::localtime(&now);
+#ifdef HAVE_LOCALTIME_R
+    localtime_r(&now, &t);
+#else
+    t = *(std::localtime(&now));
+#endif
     snprintf(buffer, sizeof(buffer), "%04d-%02d-%02d %02d:%02d:%02d",
-             1900+t->tm_year, t->tm_mon+1, t->tm_mday,
-             t->tm_hour, t->tm_min, t->tm_sec);
+             1900+t.tm_year, t.tm_mon+1, t.tm_mday,
+             t.tm_hour, t.tm_min, t.tm_sec);
 
     return std::string(buffer);
 }

@@ -60,6 +60,8 @@ unset(CMAKE_REQUIRED_INCLUDES)
 
 # check for strcasecmp() -> WIN32
 check_function_exists("strcasecmp" HAVE_STRCASECMP)
+# check for localtime_r() -> thread-safe version of localtime
+check_function_exists("localtime_r" HAVE_LOCALTIME_R)
 
 # check for unistd.h and syslog.h
 include(CheckIncludeFile)
