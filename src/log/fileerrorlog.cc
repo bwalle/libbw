@@ -89,7 +89,7 @@ std::string FileErrorlog::timestamp() const
 #else
     t = *(std::localtime(&now));
 #endif
-    snprintf(buffer, sizeof(buffer), "%04d-%02d-%02d %02d:%02d:%02d",
+    std::sprintf(buffer, "%04d-%02d-%02d %02d:%02d:%02d",
              1900+t.tm_year, t.tm_mon+1, t.tm_mday,
              t.tm_hour, t.tm_min, t.tm_sec);
 
