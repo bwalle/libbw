@@ -31,6 +31,8 @@ if (CMAKE_HOST_UNIX)
         thread/mutex_posix.cc
         thread/waitcond_posix.cc
         thread/semaphore_posix.cc
+        # independent of the operating system, but requires mutex.
+        thread/mutexlocker.cc
     )
 endif (CMAKE_HOST_UNIX)
 

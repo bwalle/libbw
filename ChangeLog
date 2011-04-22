@@ -2,6 +2,7 @@
 
 	* Move logging (both debug log and error log) in own subdirectory.
 	* Add Doxygen group 'log'.
+	* Add bw::thread::MutexLocker.
 
 2011-04-18  Bernhard Walle <bernhard@bwalle.de>
 
