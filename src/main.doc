@@ -100,6 +100,7 @@ Then you can include the header files for example with
 
 \defgroup thread Threading functions
 \defgroup io     I/O classes
+\defgroup log    Logging
 
 */
 

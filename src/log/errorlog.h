@@ -52,7 +52,7 @@
  *
  * \param[in] level the error log level
  * \param[in] ... the format string and an arbitrary number of arguments.
- * \ingroup core
+ * \ingroup log
  * \see BW_ERROR_EMERG(), BW_ERROR_ALERT(), BW_ERROR_CRIT(), BW_ERROR_ERR(), BW_ERROR_WARNING()
  */
 #define BW_ERROR(level, ...)                                        \
@@ -72,7 +72,7 @@
  * \endcode
  *
  * \param[in] ... the format string and an arbitrary number of arguments.
- * \ingroup core
+ * \ingroup log
  * \see BW_ERROR(), BW_ERROR_ALERT(), BW_ERROR_CRIT(), BW_ERROR_ERR(), BW_ERROR_WARNING()
  */
 #define BW_ERROR_EMERG(...) \
@@ -88,7 +88,7 @@
  * \endcode
  *
  * \param[in] ... the format string and an arbitrary number of arguments.
- * \ingroup core
+ * \ingroup log
  * \see BW_ERROR(), BW_ERROR_EMERG(), BW_ERROR_CRIT(), BW_ERROR_ERR(), BW_ERROR_WARNING()
  */
 #define BW_ERROR_ALERT(...) \
@@ -104,7 +104,7 @@
  * \endcode
  *
  * \param[in] ... the format string and an arbitrary number of arguments.
- * \ingroup core
+ * \ingroup log
  * \see BW_ERROR(), BW_ERROR_ALERT(), BW_ERROR_EMERG(), BW_ERROR_ERR(), BW_ERROR_WARNING()
  */
 #define BW_ERROR_CRIT(...) \
@@ -120,7 +120,7 @@
  * \endcode
  *
  * \param[in] ... the format string and an arbitrary number of arguments.
- * \ingroup core
+ * \ingroup log
  * \see BW_ERROR(), BW_ERROR_ALERT(), BW_ERROR_CRIT(), BW_ERROR_CRIT(), BW_ERROR_WARNING()
  */
 #define BW_ERROR_ERR(...) \
@@ -136,7 +136,7 @@
  * \endcode
  *
  * \param[in] ... the format string and an arbitrary number of arguments.
- * \ingroup core
+ * \ingroup log
  * \see BW_ERROR(), BW_ERROR_ALERT(), BW_ERROR_CRIT(), BW_ERROR_ERR(), BW_ERROR_EMERG()
  */
 #define BW_ERROR_WARNING(...) \
@@ -162,6 +162,7 @@ namespace bw {
  * constructor, a destructor (optional) and an implementation of Errorlog::vlog().
  *
  * \author Bernhard Walle <bernhard@bwalle.de>
+ * \ingroup log
  */
 class Errorlog {
 

@@ -49,6 +49,7 @@ namespace bw {
  * \brief Error log implementation for std::FILE
  *
  * \author Bernhard Walle <bernhard@bwalle.de>
+ * \ingroup log
  */
 class FileErrorlog : public Errorlog {
 

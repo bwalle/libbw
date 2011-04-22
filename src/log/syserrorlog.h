@@ -49,6 +49,7 @@ namespace bw {
  * \brief Error log implementation for syslog
  *
  * \author Bernhard Walle <bernhard@bwalle.de>
+ * \ingroup log
  */
 class SysErrorlog : public Errorlog {
 
