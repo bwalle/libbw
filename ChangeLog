@@ -1,3 +1,7 @@
+2011-04-22  Bernhard Walle <bernhard@bwalle.de>
+
+	* Move logging (both debug log and error log) in own subdirectory.
+
 2011-04-18  Bernhard Walle <bernhard@bwalle.de>
 
 	* Add error logging.

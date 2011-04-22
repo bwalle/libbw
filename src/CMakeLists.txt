@@ -71,8 +71,6 @@ include_directories( ${CMAKE_CURRENT_SOURCE_DIR} )
 include_directories( ${CMAKE_CURRENT_BINARY_DIR} )
 
 set(LIBBW_SRCS
-    debug.h
-    debug.cc
     stringutil.h
     stringutil.cc
     completion.h
@@ -80,8 +78,6 @@ set(LIBBW_SRCS
     bwerror.h
     optionparser.h
     optionparser.cc
-    errorlog.cc
-    fileerrorlog.cc
 )
 if (CMAKE_HOST_UNIX)
     set(LIBBW_SRCS
@@ -90,12 +86,11 @@ if (CMAKE_HOST_UNIX)
     )
 endif (CMAKE_HOST_UNIX)
 
-if (HAVE_SYSLOG)
-    set(LIBBW_SRCS ${LIBBW_SRCS} syserrorlog.cc)
-endif (HAVE_SYSLOG)
-
 include(io/CMakeLists.txt)
 set(LIBBW_SRCS ${LIBBW_SRCS} ${LIBBW_IO_SRCS})
+
+include(log/CMakeLists.txt)
+set(LIBBW_SRCS ${LIBBW_SRCS} ${LIBBW_LOG_SRCS})
 
 include(thread/CMakeLists.txt)
 set(LIBBW_SRCS ${LIBBW_SRCS} ${LIBBW_THREAD_SRCS})
