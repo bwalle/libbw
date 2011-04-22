@@ -139,3 +139,5 @@ class Mutex : private ::bw::Noncopyable {
 } // end namespace bw
 
 #endif // MUTEX_H
+
+// vim: set sw=4 ts=4 et fdm=marker:

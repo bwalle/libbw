@@ -150,3 +150,5 @@ class Thread : private ::bw::Noncopyable {
 } // end namespace bw
 
 #endif // BWERROR_H
+
+// vim: set sw=4 ts=4 et fdm=marker:

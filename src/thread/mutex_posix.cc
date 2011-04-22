@@ -87,3 +87,5 @@ void Mutex::unlock()
 
 } // end namespace thread
 } // end namespace bw
+
+// vim: set sw=4 ts=4 et fdm=marker:
