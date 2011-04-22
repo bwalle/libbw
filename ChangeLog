@@ -4,6 +4,7 @@
 	* Add Doxygen group 'log'.
 	* Add bw::thread::MutexLocker.
 	* Use localtime_r() if available.
+	* Make error logging thread safe.
 
 2011-04-18  Bernhard Walle <bernhard@bwalle.de>
 

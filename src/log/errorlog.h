@@ -170,6 +170,10 @@ namespace bw {
  *  - BW_ERROR_ERR() for errors
  *  - BW_ERROR_WARNING() for warning messages
  *
+ * On platforms where libbw provides a thread implementation (currently that applies to all
+ * platforms that have a pthread implementation which includes Linux, Mac OS and BSDs)
+ * the error logging is thread safe, i.e. lines don't get mixed.
+ *
  * \author Bernhard Walle <bernhard@bwalle.de>
  * \ingroup log
  */

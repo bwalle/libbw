@@ -28,5 +28,6 @@
 #cmakedefine HAVE_LIBREADLINE
 #cmakedefine HAVE_STRCASECMP
 #cmakedefine HAVE_SYSLOG
+#cmakedefine HAVE_THREADS
 #cmakedefine HAVE_LOCALTIME_R
 

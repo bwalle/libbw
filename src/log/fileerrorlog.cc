@@ -30,6 +30,9 @@
 
 #include "fileerrorlog.h"
 #include "bwconfig.h"
+#ifdef HAVE_THREADS
+#  include <thread/mutexlocker.h>
+#endif
 
 namespace bw {
 
@@ -64,6 +67,9 @@ FileErrorlog::~FileErrorlog()
 /* ---------------------------------------------------------------------------------------------- */
 void FileErrorlog::vlog(Errorlog::Level level, const char *msg, std::va_list args)
 {
+#ifdef HAVE_THREADS
+    thread::MutexLocker locker(&m_mutex);
+#endif
     fprintf(m_file, "%s [%-10.10s] ", timestamp().c_str(), levelToString(level));
     vfprintf(m_file, msg, args);
     fprintf(m_file, "\n");

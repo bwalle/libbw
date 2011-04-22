@@ -25,6 +25,6 @@
 # SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE. }}}
 
 add_executable(errorlog errorlog.cc)
-target_link_libraries(errorlog bw)
+target_link_libraries(errorlog bw pthread)
 
 # vim: set sw=4 ts=4 et fdm=marker:

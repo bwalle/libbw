@@ -31,6 +31,10 @@
 #include <string>
 
 #include "errorlog.h"
+#include "bwconfig.h"
+#ifdef HAVE_THREADS
+#  include <thread/mutex.h>
+#endif
 
 /**
  * \file
@@ -89,6 +93,9 @@ class FileErrorlog : public Errorlog {
     private:
         std::FILE *m_file;
         bool m_closeInDtor;
+#ifdef HAVE_THREADS
+        thread::Mutex m_mutex;
+#endif
 };
 
 /* }}} */

@@ -34,6 +34,9 @@ if (CMAKE_HOST_UNIX)
         # independent of the operating system, but requires mutex.
         thread/mutexlocker.cc
     )
+    set(HAVE_THREADS TRUE)
+else (CMAKE_HOST_UNIX)
+    set(HAVE_THREADS FALSE)
 endif (CMAKE_HOST_UNIX)
 
 # vim: set sw=4 ts=4 et fdm=marker:
