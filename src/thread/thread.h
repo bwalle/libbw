@@ -50,7 +50,7 @@ struct ThreadPrivate;
 /* Thread {{{ */
 
 /**
- * \class Thread
+ * \class Thread thread/thread.h
  * \brief Portable thread class
  *
  * This thread class follows the Java and Qt approach to implement a thread:

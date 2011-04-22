@@ -52,7 +52,7 @@ struct SemaphorePrivate;
 /* Semaphore {{{ */
 
 /**
- * \class Semaphore
+ * \class Semaphore thread/semaphore.h
  * \brief Portable semaphore class
  *
  * A semaphore is a generalization of a mutex. While a mutex can only be

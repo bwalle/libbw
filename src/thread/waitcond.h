@@ -52,7 +52,7 @@ class Mutex;
 /* WaitCond {{{ */
 
 /**
- * \class WaitCond
+ * \class WaitCond thread/waitcond.h
  * \brief Portable wait condition class
  *
  * The WaitCond class provides a condition variable for synchronizing threads.

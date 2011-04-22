@@ -51,7 +51,7 @@ class WaitCond;
 /* Mutex {{{ */
 
 /**
- * \class Mutex
+ * \class Mutex thread/mutex.h
  * \brief Portable mutex class
  *
  * A simple mutex to be used to protect data. Only one thread of execution can
