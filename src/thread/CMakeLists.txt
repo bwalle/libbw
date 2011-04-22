@@ -33,3 +33,5 @@ if (CMAKE_HOST_UNIX)
         thread/semaphore_posix.cc
     )
 endif (CMAKE_HOST_UNIX)
+
+# vim: set sw=4 ts=4 et fdm=marker:

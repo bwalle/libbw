@@ -41,3 +41,5 @@ if (CMAKE_HOST_UNIX)
         )
     endif ()
 endif (CMAKE_HOST_UNIX)
+
+# vim: set sw=4 ts=4 et fdm=marker:
