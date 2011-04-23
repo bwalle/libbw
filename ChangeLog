@@ -1,6 +1,7 @@
 2011-04-23  Bernhard Walle <bernhard@bwalle.de>
 
 	* Add Debug to the 'log' doxygen group.
+	* Include <string> in <libbw/log/debug.h>.
 
 2011-04-22  Bernhard Walle <bernhard@bwalle.de>
 

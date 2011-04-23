@@ -38,6 +38,7 @@
 
 #include <cstdio>
 #include <cstdarg>
+#include <string>
 
 /* Macros {{{ */
 
