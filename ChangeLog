@@ -1,3 +1,7 @@
+2011-04-23  Bernhard Walle <bernhard@bwalle.de>
+
+	* Add Debug to the 'log' doxygen group.
+
 2011-04-22  Bernhard Walle <bernhard@bwalle.de>
 
 	* Move logging (both debug log and error log) in own subdirectory.

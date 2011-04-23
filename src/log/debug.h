@@ -52,7 +52,7 @@
  *
  * \param[in] level the debugging level
  * \param[in] ... the format string and an arbitrary number of arguments.
- * \ingroup core
+ * \ingroup log
  * \see BW_DEBUG_DBG(), BW_DEBUG_INFO(), BW_DEBUG_TRACE()
  */
 #define BW_DEBUG(level, ...) \
@@ -68,7 +68,7 @@
  * \endcode
  *
  * \param[in] ... the format string and an arbitrary number of arguments.
- * \ingroup core
+ * \ingroup log
  * \see BW_DEBUG_INFO(), BW_DEBUG_TRACE()
  */
 #define BW_DEBUG_DBG(...) \
@@ -84,7 +84,7 @@
  * \endcode
  *
  * \param[in] ... the format string and an arbitrary number of arguments.
- * \ingroup core
+ * \ingroup log
  * \see BW_DEBUG_DBG(), BW_DEBUG_TRACE()
  */
 #define BW_DEBUG_INFO(...) \
@@ -100,14 +100,13 @@
  * \endcode
  *
  * \param[in] ... the format string and an arbitrary number of arguments.
- * \ingroup core
+ * \ingroup log
  * \see BW_DEBUG_INFO(), BW_DEBUG_DBG()
  */
 #define BW_DEBUG_TRACE(...) \
     bw::Debug::debug()->trace(__VA_ARGS__)
 
 /* }}} */
-
 
 namespace bw {
 
@@ -142,6 +141,7 @@ namespace bw {
  * standard error console but that can also be a file. See setFileHandle().
  *
  * \author Bernhard Walle <bernhard@bwalle.de>
+ * \ingroup log
  */
 class Debug {
     public:
