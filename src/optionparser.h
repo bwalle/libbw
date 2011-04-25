@@ -43,6 +43,7 @@
  * needs a union type like OptionValue because C++ is not Python.
  *
  * \author Bernhard Walle <bernhard@bwalle.de>
+ * \ingroup optparse
  */
 
 #include <list>
@@ -58,6 +59,8 @@ namespace bw {
  * \brief Option type
  *
  * This enumeration represents the type of an option.
+ *
+ * \ingroup optparse
  */
 enum OptionType {
     OT_INVALID,         /**< invalid option type */
@@ -77,6 +80,7 @@ enum OptionType {
  * return value in OptionParser.
  *
  * \author Bernhard Walle <bernhard@bwalle.de>
+ * \ingroup optparse
  */
 class OptionValue {
 
@@ -192,6 +196,7 @@ class OptionValue {
  * parse arguments.
  *
  * \author Bernhard Walle <bernhard@bwalle.de>
+ * \ingroup optparse
  */
 class Option {
     public:
@@ -360,6 +365,7 @@ class Option {
 
 /**
  * \class OptionGroup
+ * \brief Group of options with a common title
  *
  * A option group represents a number of options that belongs together, like "debugging options" or
  * "input configuration". The only task of the option group is to group the listing of options in
@@ -370,6 +376,7 @@ class Option {
  * option parser without caring about option groups at all.
  *
  * \author Bernhard Walle
+ * \ingroup optparse
  */
 class OptionGroup {
 
@@ -500,6 +507,7 @@ class OptionGroup {
  * \endcode
  *
  * \author Bernhard Walle <bernhard@bwalle.de>
+ * \ingroup optparse
  */
 class OptionParser {
 
