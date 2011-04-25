@@ -364,7 +364,7 @@ class Option {
 /* OptionGroup {{{ */
 
 /**
- * \class OptionGroup
+ * \class OptionGroup optionparser.h libbw/optionparser.h
  * \brief Group of options with a common title
  *
  * A option group represents a number of options that belongs together, like "debugging options" or
@@ -472,16 +472,23 @@ class OptionGroup {
  * \class OptionParser optionparser.h libbw/optionparser.h
  * \brief Command line argument parser
  *
- * Class to parse command line arguments. The API is inspired by Python (\c
- * optparse package), but modified for C++.
+ * Class to parse command line arguments. The API is inspired by Python (\c optparse package), but
+ * modified for C++.
  *
- * Example:
+ * The option parser can be used with or without \b grouping. Grouping has no effect on the parsing
+ * logic (which means that an option can exist only once in the application even in different option
+ * groups) but only to the help output.
+ *
+ * Simple Example (without using grouped options):
  *
  * \code
- * bw::OptionParser op;
- * op.addOption("debug", 'D', bw::OT_FLAG, "Enable debugging output");
- * op.addOption("help", 'h', bw::OT_FLAG, "Shows this help output");
- * op.addOption("label", 'l', bw::OT_STRING, "Boot the specified label without prompting");
+ * bw::OptionParser op("Program Options");
+ * op.addOption("debug", 'D', bw::OT_FLAG,
+ *              "Enable debugging output");
+ * op.addOption("help",  'h', bw::OT_FLAG,
+ *              "Shows this help output");
+ * op.addOption("label", 'l', bw::OT_STRING,
+ *              "Boot the specified label without prompting");
  *
  * // do the parsing
  * bool ret = op.parse(argc, argv);
@@ -490,7 +497,7 @@ class OptionGroup {
  *
  * // evaluate options
  * if (op.getValue("help").getFlag()) {
- *     op.printHelp(std::cerr, PACKAGE_STRING " " PACKAGE_VERSION);
+ *     op.printHelp(std::cerr, "program 0.1.0");
  *     return false;
  * }
  *
@@ -505,6 +512,100 @@ class OptionGroup {
  * if (args.size() == 1)
  *      m_argument = args[0];
  * \endcode
+ *
+ * This parsing code generates following help output:
+<pre>
+program 0.1.0
+
+Program options:
+    --debug | -D
+        Enable debugging output
+    --help | -h
+        Shows this help output
+    --label=&lt;STRING&gt; | -l &lt;STRING&gt;
+        Boot the specified label without prompting
+</pre>
+ *
+ * Advanced example (with using grouped options):
+ * 
+ * \code
+ * int main(int argc, char *argv[])
+ * {
+ *      bw::OptionGroup generalGroup("General options");
+ *      generalGroup.addOption("help", 'h', bw::OT_FLAG, "Shows this help output");
+ *      generalGroup.addOption("version", 'v', bw::OT_FLAG, "Prints the program version");
+ *      
+ *      bw::OptionGroup debugGroup("Debug options");
+ *      debugGroup.addOption("debug", 'D', bw::OT_FLAG, "Enable debugging output");
+ *      debugGroup.addOption("debug-file", 'd', bw::OT_STRING, "Redirect debugging output to a file");
+ *      
+ *      bw::OptionParser op;
+ *      op.addOptions(generalGroup);
+ *      op.addOptions(debugGroup);
+ *      
+ *      // do the parsing
+ *      bool ret = op.parse(argc, argv);
+ *      if (!ret)
+ *          return EXIT_FAILURE;
+ *      
+ *      //
+ *      // general options
+ *      //
+ *      
+ *      // help
+ *      if (op.getValue("help").getFlag()) {
+ *          op.printHelp(std::cerr, PACKAGE_STRING + " " + PACKAGE_VERSION);
+ *          return EXIT_SUCCESS;
+ *      }
+ *      
+ *      // version
+ *      if (op.getValue("version").getType() != bw::OT_INVALID) {
+ *          std::cout << PACKAGE_STRING + " " + PACKAGE_VERSION << std::endl;
+ *          return EXIT_SUCCESS;
+ *      }
+ *      
+ *      //
+ *      // debug options
+ *      //
+ *      
+ *      // debug
+ *      if (op.getValue("debug").getFlag())
+ *          std::cout << "Debug enabled." << std::endl;
+ *      
+ *      // debug-file
+ *      if (op.getValue("debug-file").getType() != bw::OT_INVALID)
+ *          std::cout << "Redirection of debug output to file: "
+ *                    << op.getValue("debug-file").getString() << std::endl;
+ *      
+ *      std::vector<std::string> args = op.getArgs();
+ *      
+ *      if (!args.empty()) {
+ *          std::cout << "Arguments: " << std::endl;
+ *          for (int i = 0; i < args.size(); ++i)
+ *              std::cout << i << ":\t" << args[i] << std::endl;
+ *      }
+ *      
+ *      return EXIT_SUCCESS;
+ * }
+ * \endcode
+ *
+ * And this one would generate following help output:
+ *
+<pre>
+program 0.1.0
+
+General options:
+    --help | -h
+        Shows this help output
+    --version | -v
+        Prints the program version
+
+Debug options:
+    --debug | -D
+        Enable debugging output
+    --debug-file=&lt;STRING&gt; | -d &lt;STRING&gt;
+        Redirect debugging output to a file
+</pre>
  *
  * \author Bernhard Walle <bernhard@bwalle.de>
  * \ingroup optparse
