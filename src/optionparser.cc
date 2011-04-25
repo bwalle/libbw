@@ -146,9 +146,6 @@ void Option::setType(OptionType type)
     m_type = type;
 }
 
-/* }}} */
-/* Option {{{ */
-
 /* ---------------------------------------------------------------------------------------------- */
 OptionType Option::getType() const
 {
@@ -199,6 +196,9 @@ std::string Option::getPlaceholder() const
             return "";
     }
 }
+
+/* }}} */
+/* Option {{{ */
 
 /* ---------------------------------------------------------------------------------------------- */
 void OptionParser::addOption(Option option)
