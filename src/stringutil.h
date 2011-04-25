@@ -51,6 +51,7 @@ namespace bw {
  * \param[in] chars_to_strip the characters that should be removed, defaults
  *            to whitespace
  * \return the stripped string
+ * \ingroup string
  */
 std::string strip(std::string a, const std::string &chars_to_strip="\t \n");
 
@@ -61,6 +62,7 @@ std::string strip(std::string a, const std::string &chars_to_strip="\t \n");
  *
  * \param[in] a the string to strip (this string is not modified)
  * \return the stripped string
+ * \ingroup string
  */
 std::string stripr(std::string a);
 
@@ -71,6 +73,7 @@ std::string stripr(std::string a);
  *
  * \param[in] a the string to strip  (this string is not modified)
  * \return the stripped string
+ * \ingroup string
  */
 std::string stripl(std::string a);
 
@@ -85,6 +88,7 @@ std::string stripl(std::string a);
  *            \p start
  * \param[in] casesensitive if \c true, the comparison is done case-sensitive
  * \return \c true if \p str starts with \p start, \c false otherwise
+ * \ingroup string
  */
 bool startsWith(const std::string &str, const std::string &start, bool casesensitive = true);
 
@@ -98,6 +102,7 @@ bool startsWith(const std::string &str, const std::string &start, bool casesensi
  * \param[in] str the base string
  * \param[in] prefix the prefix which is stripped
  * \return the rest string as described above
+ * \ingroup string
  */
 std::string getRest(const std::string &str, const std::string &prefix);
 
@@ -110,6 +115,7 @@ std::string getRest(const std::string &str, const std::string &prefix);
  * \param[in] vec the vector to convert
  * \return the C array. The memory needs to be freed with free() after using
  *         the return value.
+ * \ingroup string
  */
 char **stringvector_to_array(const std::vector<std::string> &vec);
 
@@ -125,6 +131,7 @@ char **stringvector_to_array(const std::vector<std::string> &vec);
  * \param[in] pattern the pattern which is used as separator
  * \return the result of the string split. If \p str does not contain \p
  *         pattern, the result is just \p str.
+ * \ingroup string
  */
 std::vector<std::string> stringsplit(const std::string &str, const std::string &pattern);
 
@@ -137,6 +144,7 @@ std::vector<std::string> stringsplit(const std::string &str, const std::string &
  * \param[in] old_char the old character
  * \param[in] new_string the new string
  * \return the replaced string
+ * \ingroup string
  */
 std::string replace_char(const std::string  &input,
                          char               old_char,

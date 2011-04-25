@@ -102,6 +102,7 @@ Then you can include the header files for example with
 \defgroup io        I/O classes
 \defgroup log       Logging
 \defgroup optparse  Option Parsing
+\defgroup string    String functions
 
 */
 

@@ -52,9 +52,13 @@ namespace bw {
  * or greater than zero if s1 is found, respectively, to be less than, to
  * match, or be greater than s2.
  *
+ * \note This function is only provided if the system has no strcasecmp() function.
+ *       You may import the function into your application's namespace for more compatibility.
+ *
  * @param[in] s1 the first string to compare
  * @param[in] s2 the second string to compare
  * @return see above
+ * \ingroup string
  */
 int strcasecmp(const char *s1, const char *s2)
 {

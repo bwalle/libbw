@@ -2,6 +2,7 @@
 
 	* Add option grouping to the OptionParser.
 	* Fix include of bwerror.h in <io/serialfile.h>.
+	* Add 'string' group to the doxygen documentation.
 
 2011-04-23  Bernhard Walle <bernhard@bwalle.de>
 
