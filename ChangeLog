@@ -1,6 +1,7 @@
 2011-04-25  Bernhard Walle <bernhard@bwalle.de>
 
 	* Add option grouping to the OptionParser.
+	* Fix include of bwerror.h in <io/serialfile.h>.
 
 2011-04-23  Bernhard Walle <bernhard@bwalle.de>
 

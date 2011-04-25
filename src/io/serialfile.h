@@ -31,7 +31,7 @@
 #include <vector>
 #include <iostream>
 
-#include "bwerror.h"
+#include "../bwerror.h"
 
 /**
  * \file serialfile.h libbw/serialfile.h
