@@ -1,3 +1,7 @@
+2011-04-25  Bernhard Walle <bernhard@bwalle.de>
+
+	* Add option grouping to the OptionParser.
+
 2011-04-23  Bernhard Walle <bernhard@bwalle.de>
 
 	* Add Debug to the 'log' doxygen group.
