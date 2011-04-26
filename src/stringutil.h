@@ -38,6 +38,7 @@
 
 #include <string>
 #include <vector>
+#include <sstream>
 
 namespace bw {
 
@@ -150,6 +151,31 @@ std::string replace_char(const std::string  &input,
                          char               old_char,
                          const std::string  &new_string);
 
+/**
+ * \brief Converts \p t to string
+ *
+ * Uses the standard C++ I/O stream functionality to convert \p t to its string representation.
+ *
+ * Example:
+ *
+ * \code
+ * if (something < 0) {
+ *      throw MyException("something is " + bw::str(something) + " but should be "+
+ *                        "below 10.");
+ * }
+ * \endcode
+ *
+ * \param[in] t the object to convert
+ * \return the string representation of \p t.
+ * \ingroup string
+ */
+template <typename T>
+std::string str(const T &t)
+{
+    std::stringstream ss;
+    ss << t;
+    return ss.str();
+}
 
 #endif /* STRINGUTIL_H */
 
