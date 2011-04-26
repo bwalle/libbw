@@ -93,11 +93,15 @@ static void delete_files_at_exit()
  */
 static std::string computeLockFileName(const std::string &portName)
 {
-    std::string absolutePort = ::realpath(portName.c_str(), NULL);
+    const char *absolutePort = ::realpath(portName.c_str(), NULL);
+    if (!absolutePort)
+        return std::string();
+
+    std::string absolutePortString(absolutePort);
     std::string ret;
 
-    if (absolutePort.size() > 5 && absolutePort.substr(0, 5) == "/dev/")
-        ret = "/var/lock/LCK.." + absolutePort.substr(5, absolutePort.size());
+    if (absolutePortString.size() > 5 && absolutePortString.substr(0, 5) == "/dev/")
+        ret = "/var/lock/LCK.." + absolutePortString.substr(5, absolutePortString.size());
 
     return ret;
 }

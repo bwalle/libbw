@@ -3,6 +3,7 @@
 	* Add bw::str().
 	* Fix replace_char(): Don't delete everything after the first
 	  character that should be replaced.
+	* serialfile: Don't crash when the devices doesn't exist.
 
 2011-04-25  Bernhard Walle <bernhard@bwalle.de>
 
