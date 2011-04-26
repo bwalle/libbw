@@ -1,6 +1,8 @@
 2011-04-26  Bernhard Walle <bernhard@bwalle.de>
 
 	* Add bw::str().
+	* Fix replace_char(): Don't delete everything after the first
+	  character that should be replaced.
 
 2011-04-25  Bernhard Walle <bernhard@bwalle.de>
 
