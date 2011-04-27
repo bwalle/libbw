@@ -132,7 +132,7 @@ std::string replace_char(const std::string  &input,
     std::string ret = input;
     size_t pos = 0;
 
-    while ((pos = input.find(old_char, pos)) != std::string::npos) {
+    while ((pos = ret.find(old_char, pos)) != std::string::npos) {
         ret.erase(pos, 1);
         ret.insert(pos, new_string);
 

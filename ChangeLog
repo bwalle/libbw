@@ -3,6 +3,8 @@
 	* Add Datetime class.
 	* Use Datetime for the logging timestamp.
 	* Add default constructor for Datetime.
+	* Fix bug in replace_char when multiple replacements have to
+	  be made.
 
 2011-04-26  Bernhard Walle <bernhard@bwalle.de>
 
