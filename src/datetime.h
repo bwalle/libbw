@@ -44,7 +44,7 @@ namespace bw {
 /* Datetime {{{ */
 
 /**
- * \class Datetime libbw/datetime.h
+ * \class Datetime datetime.h libbw/datetime.h
  *
  * This class represents an absolute point of time. Therefore, no <tt>+</tt> or <tt>-</tt> operators
  * are provided because it doesn't make sense to add two absolute time points.
@@ -55,6 +55,13 @@ namespace bw {
 class Datetime {
 
     public:
+        /**
+         * \brief Default constructor
+         *
+         * Creates an invalid datetime object with a timestamp of 0.
+         */
+        Datetime();
+
         /**
          * \brief Creates a new Datetime object from a Unix time
          *

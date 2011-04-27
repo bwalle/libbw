@@ -2,6 +2,7 @@
 
 	* Add Datetime class.
 	* Use Datetime for the logging timestamp.
+	* Add default constructor for Datetime.
 
 2011-04-26  Bernhard Walle <bernhard@bwalle.de>
 

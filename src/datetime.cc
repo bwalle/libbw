@@ -63,6 +63,12 @@ struct tm *localtime_r(const time_t *timep, struct tm *result)
 /* Datetime {{{ */
 
 // -------------------------------------------------------------------------------------------------
+Datetime::Datetime()
+    : m_time(0)
+    , m_useUtc(false)
+{}
+
+// -------------------------------------------------------------------------------------------------
 Datetime::Datetime(const time_t &time)
     : m_time(time)
     , m_useUtc(false)
