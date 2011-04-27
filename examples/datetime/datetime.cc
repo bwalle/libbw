@@ -44,5 +44,7 @@ int main(int argc, char *argv[])
     std::cout << "Current time: " << time2 << std::endl;
     std::cout << "Difference: " << time.secsTo(time2) << " s" << std::endl;
 
+    std::cout << "One day later: " << time2.addDays(1) << std::endl;
+
     return EXIT_SUCCESS;
 }

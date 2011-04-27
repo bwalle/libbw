@@ -132,6 +132,33 @@ int Datetime::second() const
 }
 
 // -------------------------------------------------------------------------------------------------
+Datetime &Datetime::addDays(int days)
+{
+    return addSeconds(days * 24 * 60 * 60);
+}
+
+// -------------------------------------------------------------------------------------------------
+Datetime &Datetime::addHours(int hours)
+{
+    return addSeconds(hours * 60 * 60);
+}
+
+// -------------------------------------------------------------------------------------------------
+Datetime &Datetime::addMinutes(int minutes)
+{
+    return addSeconds(minutes * 60);
+}
+
+// -------------------------------------------------------------------------------------------------
+Datetime &Datetime::addSeconds(int secs)
+{
+    m_time += secs;
+    fillTime();
+
+    return *this;
+}
+
+// -------------------------------------------------------------------------------------------------
 std::string Datetime::str() const
 {
     char buffer[80];

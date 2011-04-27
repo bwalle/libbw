@@ -46,6 +46,9 @@ namespace bw {
 /**
  * \class Datetime libbw/datetime.h
  *
+ * This class represents an absolute point of time. Therefore, no <tt>+</tt> or <tt>-</tt> operators
+ * are provided because it doesn't make sense to add two absolute time points.
+ *
  * \author Bernhard Walle <bernhard@bwalle.de>
  * \ingroup datetime
  */
@@ -140,6 +143,38 @@ class Datetime {
          * \return the second, from 0 to 59, e.g. 50.
          */
         int second() const;
+
+        /**
+         * \brief Adds the given amount of days to the time value
+         *
+         * \param[in] days the number of days which may be negative
+         * \return a self reference
+         */
+        Datetime &addDays(int days);
+
+        /**
+         * \brief Adds the given amount of hours to the time value
+         *
+         * \param[in] hours the number of hours which may be negative
+         * \return a self reference
+         */
+        Datetime &addHours(int hours);
+
+        /**
+         * \brief Adds the given amount of minutes to the time value
+         *
+         * \param[in] minutes the number of minutes which may be negative
+         * \return a self reference
+         */
+        Datetime &addMinutes(int minutes);
+
+        /**
+         * \brief Adds the given amount of seconds to the time value
+         *
+         * \param[in] secs the number of seconds which may be negative
+         * \return a self reference
+         */
+        Datetime &addSeconds(int secs);
 
         /**
          * \brief Converts the datetime object to a human readable string
