@@ -30,6 +30,7 @@
 
 #include "fileerrorlog.h"
 #include "bwconfig.h"
+#include "datetime.h"
 #ifdef HAVE_THREADS
 #  include <thread/mutexlocker.h>
 #endif
@@ -70,30 +71,10 @@ void FileErrorlog::vlog(Errorlog::Level level, const char *msg, std::va_list arg
 #ifdef HAVE_THREADS
     thread::MutexLocker locker(&m_mutex);
 #endif
-    fprintf(m_file, "%s [%-10.10s] ", timestamp().c_str(), levelToString(level));
+    fprintf(m_file, "%s [%-10.10s] ", bw::Datetime::now().str().c_str(), levelToString(level));
     vfprintf(m_file, msg, args);
     fprintf(m_file, "\n");
     fflush(m_file);
-}
-
-/* ---------------------------------------------------------------------------------------------- */
-std::string FileErrorlog::timestamp() const
-{
-    char buffer[80];
-    struct tm t;
-    time_t now;
-
-    std::time(&now);
-#ifdef HAVE_LOCALTIME_R
-    localtime_r(&now, &t);
-#else
-    t = *(std::localtime(&now));
-#endif
-    std::sprintf(buffer, "%04d-%02d-%02d %02d:%02d:%02d",
-             1900+t.tm_year, t.tm_mon+1, t.tm_mday,
-             t.tm_hour, t.tm_min, t.tm_sec);
-
-    return std::string(buffer);
 }
 
 /* }}} */

@@ -1,6 +1,7 @@
 2011-04-27  Bernhard Walle <bernhard@bwalle.de>
 
 	* Add Datetime class.
+	* Use Datetime for the logging timestamp.
 
 2011-04-26  Bernhard Walle <bernhard@bwalle.de>
 

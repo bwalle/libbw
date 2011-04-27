@@ -83,14 +83,6 @@ class FileErrorlog : public Errorlog {
         void vlog(Errorlog::Level level, const char *msg, std::va_list args);
 
     private:
-        /**
-         * \brief Returns a current timestamp
-         *
-         * \return the time stamp
-         */
-        std::string timestamp() const;
-
-    private:
         std::FILE *m_file;
         bool m_closeInDtor;
 #ifdef HAVE_THREADS
