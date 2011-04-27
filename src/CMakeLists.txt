@@ -62,6 +62,8 @@ unset(CMAKE_REQUIRED_INCLUDES)
 check_function_exists("strcasecmp" HAVE_STRCASECMP)
 # check for localtime_r() -> thread-safe version of localtime
 check_function_exists("localtime_r" HAVE_LOCALTIME_R)
+# check for gmtime_r() -> thread-safe version of gmtime
+check_function_exists("gmtime_r" HAVE_GMTIME_R)
 
 # check for unistd.h and syslog.h
 include(CheckIncludeFile)
@@ -80,6 +82,8 @@ set(LIBBW_SRCS
     bwerror.h
     optionparser.h
     optionparser.cc
+    datetime.h
+    datetime.cc
 )
 if (CMAKE_HOST_UNIX)
     set(LIBBW_SRCS

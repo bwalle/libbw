@@ -1,5 +1,5 @@
 /* {{{
- * Copyright (c) 2008-2010, Bernhard Walle <bernhard@bwalle.de>
+ * Copyright (c) 2011, Bernhard Walle <bernhard@bwalle.de>
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -24,11 +24,25 @@
  * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE. }}}
  */
+#include <iostream>
+#include <cstdlib>
 
-#cmakedefine HAVE_LIBREADLINE
-#cmakedefine HAVE_STRCASECMP
-#cmakedefine HAVE_SYSLOG
-#cmakedefine HAVE_THREADS
-#cmakedefine HAVE_LOCALTIME_R
-#cmakedefine HAVE_GMTIME_R
+#include <unistd.h>
 
+#include "datetime.h"
+
+/* ---------------------------------------------------------------------------------------------- */
+int main(int argc, char *argv[])
+{
+    bw::Datetime time = bw::Datetime::now();
+    std::cout << "Current time (localtime): " << time << std::endl;
+    time.setUseUtc(true);
+    std::cout << "Current time (UTC): " << time << std::endl;
+    time.setUseUtc(true);
+    sleep(1);
+    bw::Datetime time2 = bw::Datetime::now();
+    std::cout << "Current time: " << time2 << std::endl;
+    std::cout << "Difference: " << time.secsTo(time2) << " s" << std::endl;
+
+    return EXIT_SUCCESS;
+}
