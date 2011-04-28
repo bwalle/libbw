@@ -39,6 +39,7 @@
 #include <string>
 #include <vector>
 #include <sstream>
+#include <iomanip>
 
 namespace bw {
 
@@ -155,6 +156,7 @@ std::string replace_char(const std::string  &input,
  * \brief Converts \p t to string
  *
  * Uses the standard C++ I/O stream functionality to convert \p t to its string representation.
+ * Boolean values are converted to <tt>"false"</tt> or <tt>"true"</tt>.
  *
  * Example:
  *
@@ -173,7 +175,7 @@ template <typename T>
 std::string str(const T &t)
 {
     std::stringstream ss;
-    ss << t;
+    ss << std::boolalpha << t;
     return ss.str();
 }
 
