@@ -40,4 +40,23 @@ if (BUILD_EXAMPLES)
     add_subdirectory(examples)
 endif (BUILD_EXAMPLES)
 
+#
+# doxygen target
+#
+add_custom_target(
+    apidoc
+    doxygen ${CMAKE_SOURCE_DIR}/Doxyfile
+    WORKING_DIRECTORY ${CMAKE_SOURCE_DIR}
+    COMMENT "Generating API documentation"
+)
+#
+# tags target
+#
+add_custom_target(
+    tags
+    ctags -R .
+    WORKING_DIRECTORY ${CMAKE_SOURCE_DIR}
+    COMMENT "Generating tags database"
+)
+
 # vim: set sw=4 ts=4 et fdm=marker:
