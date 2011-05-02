@@ -90,6 +90,11 @@ if (CMAKE_HOST_UNIX)
         ${LIBBW_SRCS}
         os_posix.cc
     )
+else (CMAKE_HOST_UNIX)
+    set(LIBBW_SRCS
+        ${LIBBW_SRCS}
+        os_generic.cc
+    )
 endif (CMAKE_HOST_UNIX)
 
 include(io/CMakeLists.txt)

@@ -1,3 +1,7 @@
+2011-05-02  Bernhard Walle <bernhard@bwalle.de>
+
+	* Implement bw::system().
+
 2011-04-28  Bernhard Walle <bernhard@bwalle.de>
 
 	* stringutil: Convert boolean values to "false"/"true".

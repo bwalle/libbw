@@ -1,5 +1,5 @@
 /* {{{
- * Copyright (c) 2007-2010, Bernhard Walle <bernhard@bwalle.de>
+ * Copyright (c) 2011, Bernhard Walle <bernhard@bwalle.de>
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -24,47 +24,35 @@
  * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE. }}}
  */
-#include <cstdlib>
+#include <cerrno>
+#include <iostream>
 
-#include <unistd.h>
-#include <sys/wait.h>
-
-#include "os.h"
-
-namespace bw {
+#include <os.h>
 
 /* ---------------------------------------------------------------------------------------------- */
-int daemonize()
+int main(int argc, char *argv[])
 {
-    return daemon(false, false);
+    std::vector<std::string> args;
+    args.push_back("ls");
+    args.push_back("-l");
+
+    std::cout << "Starting 'ls -l'" << std::endl;
+    int rc = bw::system(args[0], args);
+    if (rc < 0)
+        std::cout << "Failed to run 'ls -l': " << std::strerror(errno) << std::endl;
+    else
+        std::cout << "End of 'ls -l', rc=" << rc << std::endl;
+
+    args.clear();
+    args.push_back("ls");
+    args.push_back("--doesnotexist");
+
+    std::cout << "Starting 'ls --doesnotexist'" << std::endl;
+    rc = bw::system(args[0], args);
+    if (rc < 0)
+        std::cout << "Failed to run 'ls --doesnotexist': " << std::strerror(errno) << std::endl;
+    else
+        std::cout << "End of 'ls --doesnotexist', rc=" << rc << std::endl;
+
+    return EXIT_SUCCESS;
 }
-
-/* ---------------------------------------------------------------------------------------------- */
-int system(const std::string &process, const std::vector<std::string> &args)
-{
-    pid_t child = fork();
-    if (child == 0) {
-        const char *argVector[args.size() + 1];
-
-        for (size_t i = 0; i < args.size(); ++i)
-            argVector[i] = args[i].c_str();
-        argVector[args.size()] = NULL;
-
-        int ret = execvp(process.c_str(), const_cast<char **>(argVector));
-        // exit the child
-        if (ret < 0)
-            std::exit(-1);
-    } else if (child > 0) {
-        int rc;
-        int ret = waitpid(child, &rc, 0);
-        if (ret < 0)
-            return -1;
-        else
-            return WEXITSTATUS(rc);
-    } else
-        return -1;
-}
-
-} // end namespace bw
-
-// vim: set sw=4 ts=4 et fdm=marker:

@@ -27,6 +27,9 @@
 #ifndef OS_H
 #define OS_H
 
+#include <vector>
+#include <string>
+
 /**
  * \file
  * \brief Operating system abstraction functions
@@ -49,6 +52,32 @@ namespace bw {
  * \return 0 on success, any standard error code on failure.
  */
 int daemonize();
+
+/**
+ * \brief Replacement for system() without a shell
+ *
+ * This function does the same as system but tries to avoid using a shell, so
+ * it's not necessary to quote the arguments.
+ *
+ * \code
+ * std::vector<std::string> args;
+ * args.push_back("ls");
+ * args.push_back("-l");
+ * int rc = bw::system(args[0], args);
+ * if (rc < 0) {
+ *      std::cerr << "Unable to execute 'ls -l':" << std::strerror(errno) << std::endl;
+ *      return -1;
+ * }
+ * \endcode
+ *
+ * \param[in] process the name of the program that should be executed, either the full path or just
+ *            the name of the binary which assumes that the program is in <tt>$PATH</tt>.
+ * \param[in] args the arguments including the 0th argument which usually is the name of the
+ *            exeutable proceded in \p process
+ * \return the return status of the process (between 0 and 255) on success, a negative value on
+ *         failure in which case the global value errno is set accordingly.
+ */
+int system(const std::string &process, const std::vector<std::string> &args);
 
 } // end namespace bw
 

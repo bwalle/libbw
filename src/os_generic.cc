@@ -26,43 +26,22 @@
  */
 #include <cstdlib>
 
-#include <unistd.h>
-#include <sys/wait.h>
-
 #include "os.h"
 
 namespace bw {
 
 /* ---------------------------------------------------------------------------------------------- */
-int daemonize()
-{
-    return daemon(false, false);
-}
+#warning "The generic version of system uses a shell, thus no special characters are allowed in args."
 
-/* ---------------------------------------------------------------------------------------------- */
 int system(const std::string &process, const std::vector<std::string> &args)
 {
-    pid_t child = fork();
-    if (child == 0) {
-        const char *argVector[args.size() + 1];
+    std::string arg_string;
 
-        for (size_t i = 0; i < args.size(); ++i)
-            argVector[i] = args[i].c_str();
-        argVector[args.size()] = NULL;
+    arg_string += process;
+    for (size_t i = 1; i < args.size(); ++i)
+        arg_string += " '" + args[i] + "'";
 
-        int ret = execvp(process.c_str(), const_cast<char **>(argVector));
-        // exit the child
-        if (ret < 0)
-            std::exit(-1);
-    } else if (child > 0) {
-        int rc;
-        int ret = waitpid(child, &rc, 0);
-        if (ret < 0)
-            return -1;
-        else
-            return WEXITSTATUS(rc);
-    } else
-        return -1;
+    return ::system(arg_string.c_str());
 }
 
 } // end namespace bw
