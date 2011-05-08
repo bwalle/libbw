@@ -65,12 +65,29 @@ Thread::~Thread()
 }
 
 /* ---------------------------------------------------------------------------------------------- */
-void Thread::start()
+void Thread::start(int flags)
     throw (Error)
 {
-    int err = pthread_create(&m_d->thread, NULL, ThreadPrivate::run, m_d);
+    pthread_attr_t attr;
+    int err = pthread_attr_init(&attr);
     if (err != 0)
+        throw SystemError("Unable to call pthread_attr_init()", err);
+
+    if (flags & DETACHED) {
+        err = pthread_attr_setdetachstate(&attr, PTHREAD_CREATE_DETACHED);
+        if (err != 0)
+            throw SystemError("Unable to call pthread_attr_setdetachstate()", err);
+    }
+
+    err = pthread_create(&m_d->thread, NULL, ThreadPrivate::run, m_d);
+    if (err != 0) {
+        pthread_attr_destroy(&attr);
         throw SystemError("Unable to call pthread_create()", err);
+    }
+
+    err = pthread_attr_destroy(&attr);
+    if (err != 0)
+        throw SystemError("Unable to call pthread_attr_destroy()", err);
 }
 
 /* ---------------------------------------------------------------------------------------------- */

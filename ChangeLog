@@ -1,3 +1,7 @@
+2011-05-08  Bernhard Walle <bernhard@bwalle.de>
+
+	* Allow the creation of detached threads.
+
 2011-05-02  Bernhard Walle <bernhard@bwalle.de>
 
 	* Implement bw::system().

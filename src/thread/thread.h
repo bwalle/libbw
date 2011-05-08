@@ -80,13 +80,25 @@ class Thread : private ::bw::Noncopyable {
 
     public:
         /**
+         * \brief Flags for the start() function
+         */
+        enum ThreadFlags {
+            DETACHED = (1<<0),      /**< Don't care about the exit status of a thread. The
+                                         operating system does the cleanup automatically and
+                                         join() isn't possible. */
+        };
+
+    public:
+        /**
          * \brief Starts the thread
          *
          * This executes the run() method in another, newly created thread.
          *
+         * \param[in] flags a or'd combination of ThreadFlags.
+         *
          * \exception bw::Error if starting the thread failed.
          */
-        void start()
+        void start(int flags=0)
         throw (Error);
 
         /**
@@ -101,12 +113,13 @@ class Thread : private ::bw::Noncopyable {
         /**
          * \brief Waits for the thread to finish
          *
-         * If the thread has already finished, the function just returns.
-         * Otherwise it waits until the thread has finished.
+         * If the thread has already finished, the function just returns.  Otherwise it waits until
+         * the thread has finished.
          *
-         * Note that the join() method \b has to be called to cleanup
-         * system resources. Without calling join(), a zombie will exist
-         * in the system until the thread has been joined.
+         * \note The join() method \b has to be called to cleanup system resources. Without calling
+         * join(), a zombie will exist in the system until the thread has been joined. The only
+         * exception exists if start() has been called with bw::Thread::DETACHED. Then calling
+         * join() is illegal.
          *
          * \exception bw::Error if waiting for the thread failed.
          */
