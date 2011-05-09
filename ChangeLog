@@ -2,6 +2,7 @@
 
 	* Fix build on Linux with gcc 4.6.
 	* Also build the thread example.
+	* Cleanup the memory of the thread when running as DETACHED thread.
 
 2011-05-08  Bernhard Walle <bernhard@bwalle.de>
 

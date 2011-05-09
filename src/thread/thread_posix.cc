@@ -42,6 +42,10 @@ struct ThreadPrivate {
         ThreadPrivate *self = static_cast<ThreadPrivate *>(cookie);
 
         self->containing_thread->run();
+
+        if (self->containing_thread->m_flags & Thread::DETACHED)
+            delete self->containing_thread;
+
         return NULL;
     }
 
@@ -53,9 +57,10 @@ struct ThreadPrivate {
 /* Thread {{{ */
 
 /* ---------------------------------------------------------------------------------------------- */
-Thread::Thread()
+Thread::Thread(int flags)
     : m_d(new ThreadPrivate(this) )
     , m_shouldStop(false)
+    , m_flags(flags)
 {}
 
 /* ---------------------------------------------------------------------------------------------- */
@@ -65,7 +70,7 @@ Thread::~Thread()
 }
 
 /* ---------------------------------------------------------------------------------------------- */
-void Thread::start(int flags)
+void Thread::start()
     throw (Error)
 {
     pthread_attr_t attr;
@@ -73,7 +78,7 @@ void Thread::start(int flags)
     if (err != 0)
         throw SystemError("Unable to call pthread_attr_init()", err);
 
-    if (flags & DETACHED) {
+    if (m_flags & DETACHED) {
         err = pthread_attr_setdetachstate(&attr, PTHREAD_CREATE_DETACHED);
         if (err != 0)
             throw SystemError("Unable to call pthread_attr_setdetachstate()", err);

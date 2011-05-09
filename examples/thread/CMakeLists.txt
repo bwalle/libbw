@@ -27,6 +27,9 @@
 add_executable(thread thread.cc)
 target_link_libraries(thread bw pthread)
 
+add_executable(thread_detached thread_detached.cc)
+target_link_libraries(thread_detached bw pthread)
+
 add_executable(mutex mutex.cc)
 target_link_libraries(mutex bw pthread)
 

@@ -67,11 +67,26 @@ class Thread : private ::bw::Noncopyable {
     public:
         friend class ThreadPrivate;
 
+    public:
+        /**
+         * \brief Flags for the start() function
+         */
+        enum ThreadFlags {
+            DETACHED        = (1<<0),          /**< Don't care about the exit status of a thread.
+                                                 The operating system does the cleanup
+                                                 automatically and join() isn't possible. This
+                                                 also deletes the thread object automatically after
+                                                 the run() method has been finished. The memory
+                                                 of the thread must have been allocated with new. */
+        };
+
     protected:
         /**
          * \brief Constructor
+         *
+         * \param[in] flags a or'd combination of ThreadFlags.
          */
-        Thread();
+        Thread(int flags=0);
 
         /**
          * \brief Destructor
@@ -80,25 +95,13 @@ class Thread : private ::bw::Noncopyable {
 
     public:
         /**
-         * \brief Flags for the start() function
-         */
-        enum ThreadFlags {
-            DETACHED = (1<<0),      /**< Don't care about the exit status of a thread. The
-                                         operating system does the cleanup automatically and
-                                         join() isn't possible. */
-        };
-
-    public:
-        /**
          * \brief Starts the thread
          *
          * This executes the run() method in another, newly created thread.
          *
-         * \param[in] flags a or'd combination of ThreadFlags.
-         *
          * \exception bw::Error if starting the thread failed.
          */
-        void start(int flags=0)
+        void start()
         throw (Error);
 
         /**
@@ -155,6 +158,7 @@ class Thread : private ::bw::Noncopyable {
     private:
         ThreadPrivate *m_d;
         bool m_shouldStop;
+        int m_flags;
 };
 
 /* }}} */
