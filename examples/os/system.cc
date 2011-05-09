@@ -26,6 +26,8 @@
  */
 #include <cerrno>
 #include <iostream>
+#include <cstring>
+#include <cstdlib>
 
 #include <os.h>
 
