@@ -1,6 +1,7 @@
 2011-05-09  Bernhard Walle <bernhard@bwalle.de>
 
 	* Fix build on Linux with gcc 4.6.
+	* Also build the thread example.
 
 2011-05-08  Bernhard Walle <bernhard@bwalle.de>
 

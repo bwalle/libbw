@@ -24,7 +24,7 @@
 # (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
 # SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE. }}}
 
-add_executable(thread mutex.cc)
+add_executable(thread thread.cc)
 target_link_libraries(thread bw pthread)
 
 add_executable(mutex mutex.cc)
