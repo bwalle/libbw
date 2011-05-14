@@ -84,7 +84,7 @@ void Thread::start()
             throw SystemError("Unable to call pthread_attr_setdetachstate()", err);
     }
 
-    err = pthread_create(&m_d->thread, NULL, ThreadPrivate::run, m_d);
+    err = pthread_create(&m_d->thread, &attr, ThreadPrivate::run, m_d);
     if (err != 0) {
         pthread_attr_destroy(&attr);
         throw SystemError("Unable to call pthread_create()", err);
