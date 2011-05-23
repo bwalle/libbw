@@ -175,6 +175,14 @@ std::string Datetime::str() const
 }
 
 // -------------------------------------------------------------------------------------------------
+std::string Datetime::dateStr() const
+{
+    char buffer[11];
+    std::sprintf(buffer, "%04d-%02d-%02d", year(), month(), day());
+    return std::string(buffer);
+}
+
+// -------------------------------------------------------------------------------------------------
 long long Datetime::secsTo(const Datetime &time) const
 {
     double diff = difftime(time.m_time, m_time);

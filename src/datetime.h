@@ -191,6 +191,13 @@ class Datetime {
         std::string str() const;
 
         /**
+         * \brief Converts the datetime object to a human readable date string
+         *
+         * \return the date string in the ISO format, i.e. <tt>"%Y-%m-%d"</tt>.
+         */
+        std::string dateStr() const;
+
+        /**
          * \brief Calculates the seconds from \c this to \c time.
          *
          * To get a positive number, \p time must be behind \c this.
