@@ -73,6 +73,19 @@ class Datetime {
             December  = 12
         };
 
+        /**
+         * @brief Enumeration for the weekday
+         */
+        enum Weekday {
+            Monday      = 1,//!< Monday
+            Tuesday     = 2,//!< Tuesday
+            Wednesday   = 3,//!< Wednesday
+            Thursday    = 4,//!< Thursday
+            Friday      = 5,//!< Friday
+            Saturday    = 6,//!< Saturday
+            Sunday      = 7 //!< Sunday
+        };
+
     public:
         /**
          * \brief Default constructor
@@ -185,6 +198,13 @@ class Datetime {
          * \return the second, from 0 to 59, e.g. 50.
          */
         int second() const;
+
+        /**
+         * \brief Returns the weekday
+         *
+         * \return the weekday
+         */
+        Weekday weekday() const;
 
         /**
          * \brief Adds the given amount of days to the time value

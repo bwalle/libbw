@@ -4,6 +4,7 @@
 	  parser.
 	* Add Datetime C'tor that accepts broken-out dates.
 	* Add Datetime::strftime().
+	* Add Datetime::weekday().
 
 2011-05-23  Bernhard Walle <bernhard@bwalle.de>
 

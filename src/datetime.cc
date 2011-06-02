@@ -161,6 +161,13 @@ int Datetime::second() const
 }
 
 // -------------------------------------------------------------------------------------------------
+Datetime::Weekday Datetime::weekday() const
+{
+    // we use 7 for Sunday, not 0
+    return (m_tm.tm_wday == 0) ? Sunday : static_cast<Weekday>(m_tm.tm_wday);
+}
+
+// -------------------------------------------------------------------------------------------------
 Datetime &Datetime::addDays(int days)
 {
     return addSeconds(days * 24 * 60 * 60);
