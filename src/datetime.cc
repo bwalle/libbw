@@ -77,6 +77,29 @@ Datetime::Datetime(const time_t &time)
 }
 
 // -------------------------------------------------------------------------------------------------
+Datetime::Datetime(int year, int month, int day, int hour, int minute, int second, bool utc)
+    : m_useUtc(false)
+{
+    struct tm time;
+
+    memset(&time, 0, sizeof(struct tm));
+    time.tm_year = year - 1900;
+    time.tm_mon = month - 1;
+    time.tm_mday = day;
+    time.tm_hour = hour;
+    time.tm_min = minute;
+    time.tm_sec = second;
+    time.tm_isdst = -1;
+
+    if (utc)
+        m_time = timegm(&time);
+    else
+        m_time = mktime(&time);
+
+    fillTime();
+}
+
+// -------------------------------------------------------------------------------------------------
 Datetime Datetime::now()
 {
     return Datetime( std::time(NULL) );

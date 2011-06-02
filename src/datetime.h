@@ -56,6 +56,25 @@ class Datetime {
 
     public:
         /**
+         * \brief Symbolic month names
+         */
+        enum MonthNames {
+            January   = 1,
+            February  = 2,
+            March     = 3,
+            April     = 4,
+            May       = 5,
+            June      = 6,
+            July      = 7,
+            August    = 8,
+            September = 9,
+            October   = 10,
+            November  = 11,
+            December  = 12
+        };
+
+    public:
+        /**
          * \brief Default constructor
          *
          * Creates an invalid datetime object with a timestamp of 0.
@@ -68,6 +87,22 @@ class Datetime {
          * \param[in] time seconds since the epoch
          */
         explicit Datetime(const time_t &time);
+
+        /**
+         * \brief Creates a new Datetime object from broken-up time
+         *
+         * The UTC flag determines if the specified date is UTC. It doesn't affect the functionality
+         * useUtc() and setUseUtc() which determine the result of the query function.
+         *
+         * \param[in] year the year, e.g. 2011
+         * \param[in] month the month from 1 to 12. Values from enum MonthNames may be used.
+         * \param[in] day the day of the month, e.g. 1 or 31.
+         * \param[in] hour the hour from 0 to 23.
+         * \param[in] minute the minute from 0 to 59.
+         * \param[in] second the second from 0 to 60 (60 means leap second).
+         * \param[in] utc \c true if the broken-up time is UTC, \c false if it's localtime.
+         */
+        Datetime(int year, int month, int day, int hour, int minute, int second, bool utc);
 
         /**
          * \brief Destructor

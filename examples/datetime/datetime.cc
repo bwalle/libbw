@@ -46,5 +46,16 @@ int main(int argc, char *argv[])
 
     std::cout << "One day later: " << time2.addDays(1) << std::endl;
 
+    time = bw::Datetime(2011, bw::Datetime::January, 5, 18, 30, 0, false);
+    std::cout << "2011-01-05 18:30 is " << time << std::endl;
+    time.setUseUtc(true);
+    std::cout << "2011-01-05 18:30 is UTC " << time << std::endl;
+
+    time = bw::Datetime(2011, bw::Datetime::January, 5, 18, 30, 0, true);
+    std::cout << "2011-01-05 18:30 UTC is " << time << std::endl;
+
+    time = bw::Datetime(2011, bw::Datetime::July, 5, 18, 30, 0, true);
+    std::cout << "2011-07-05 18:30 UTC is " << time << std::endl;
+
     return EXIT_SUCCESS;
 }
