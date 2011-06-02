@@ -219,6 +219,22 @@ class Datetime {
         Datetime &addSeconds(int secs);
 
         /**
+         * \brief Formats the time according to \p format
+         *
+         * See the documentation of your system's strftime() implementation for details.
+         * If the locale of the program has been set, the output is locale dependent.
+         *
+         * \note The function is only available if the system has a strftime() implementation.
+         *       Otherwise, the emtpy string is returned. The functions str() and dateStr()
+         *       are always availabe.
+         *
+         * \param[in] format the format string, e.g. <tt>"%Y-%m-%d"</tt> for the
+         *            ISO display.
+         * \return the formated string.
+         */
+        std::string strftime(const char *format) const;
+
+        /**
          * \brief Converts the datetime object to a human readable string
          *
          * \return the string in the ISO format, i.e. <tt>"%Y-%m-%d %H:%M:%s"</tt>.

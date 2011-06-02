@@ -188,6 +188,16 @@ Datetime &Datetime::addSeconds(int secs)
 }
 
 // -------------------------------------------------------------------------------------------------
+#ifdef HAVE_STRFTIME
+std::string Datetime::strftime(const char *format) const
+{
+    char buffer[BUFSIZ];
+    ::strftime(buffer, BUFSIZ, format, &m_tm);
+    return std::string(buffer);
+}
+#endif
+
+// -------------------------------------------------------------------------------------------------
 std::string Datetime::str() const
 {
     char buffer[80];

@@ -64,6 +64,8 @@ check_function_exists("strcasecmp" HAVE_STRCASECMP)
 check_function_exists("localtime_r" HAVE_LOCALTIME_R)
 # check for gmtime_r() -> thread-safe version of gmtime
 check_function_exists("gmtime_r" HAVE_GMTIME_R)
+# check for strftime()
+check_function_exists("strftime" HAVE_STRFTIME)
 
 # check for unistd.h and syslog.h
 include(CheckIncludeFile)
