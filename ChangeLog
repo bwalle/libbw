@@ -1,3 +1,8 @@
+2011-06-02  Bernhard Walle <bernhard@bwalle.de>
+
+	* Add operator bool to OptionValue to simplify usage of the option
+	  parser.
+
 2011-05-23  Bernhard Walle <bernhard@bwalle.de>
 
 	* Add Datetime::dateStr().

@@ -64,7 +64,7 @@ int main(int argc, char *argv[])
     }
 
     // version
-    if (op.getValue("version").getType() != bw::OT_INVALID) {
+    if (op.getValue("version")) {
         std::cout << PACKAGE_STRING + " " + PACKAGE_VERSION << std::endl;
         return EXIT_SUCCESS;
     }
@@ -78,7 +78,7 @@ int main(int argc, char *argv[])
         std::cout << "Debug enabled." << std::endl;
 
     // debug-file
-    if (op.getValue("debug-file").getType() != bw::OT_INVALID)
+    if (op.getValue("debug-file"))
         std::cout << "Redirection of debug output to file: "
                   << op.getValue("debug-file").getString() << std::endl;
 

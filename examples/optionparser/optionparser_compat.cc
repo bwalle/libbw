@@ -55,7 +55,7 @@ int main(int argc, char *argv[])
 
     if (op.getValue("debug").getFlag())
         std::cout << "Debug enabled." << std::endl;
-    if (op.getValue("label").getType() != bw::OT_INVALID)
+    if (op.getValue("label"))
         std::cout << "Label: " << op.getValue("label").getString() << std::endl;
 
     std::vector<std::string> args = op.getArgs();

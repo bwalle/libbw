@@ -170,6 +170,13 @@ class OptionValue {
          */
         int getInteger() const;
 
+        /**
+         * \brief Checks if the type contains valid data
+         *
+         * \return \c true if getValue() returns not OptionType::OT_INVALID.
+         */
+        operator bool() const;
+
     private:
         OptionType      m_type;
         int             m_integer;
@@ -503,7 +510,7 @@ class OptionGroup {
  *
  * if (op.getValue("debug").getFlag())
  *     m_debug = true;
- * if (op.getValue("label").getType() != bw::OT_INVALID)
+ * if (op.getValue("label"))
  *     m_label = op.getValue("label").getString();
  *
  * std::vector<std::string> args = op.getArgs();
@@ -559,7 +566,7 @@ Program options:
  *      }
  *      
  *      // version
- *      if (op.getValue("version").getType() != bw::OT_INVALID) {
+ *      if (op.getValue("version"))
  *          std::cout << PACKAGE_STRING + " " + PACKAGE_VERSION << std::endl;
  *          return EXIT_SUCCESS;
  *      }
@@ -573,7 +580,7 @@ Program options:
  *          std::cout << "Debug enabled." << std::endl;
  *      
  *      // debug-file
- *      if (op.getValue("debug-file").getType() != bw::OT_INVALID)
+ *      if (op.getValue("debug-file"))
  *          std::cout << "Redirection of debug output to file: "
  *                    << op.getValue("debug-file").getString() << std::endl;
  *      

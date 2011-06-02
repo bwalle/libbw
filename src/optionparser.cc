@@ -1,5 +1,5 @@
 /* {{{
- * Copyright (c) 2007-2010, Bernhard Walle <bernhard@bwalle.de>
+ * Copyright (c) 2007-2011, Bernhard Walle <bernhard@bwalle.de>
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -97,6 +97,12 @@ void OptionValue::setInteger(int value)
 int OptionValue::getInteger() const
 {
     return m_integer;
+}
+
+/* ---------------------------------------------------------------------------------------------- */
+OptionValue::operator bool() const
+{
+    return m_type != OT_INVALID;
 }
 
 /* }}} */
