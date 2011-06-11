@@ -179,6 +179,44 @@ std::string str(const T &t)
     return ss.str();
 }
 
+/**
+ * \brief Converts the range between \p begin and \p end to string
+ *
+ * Uses the standard C++ I/O stream functionality to convert the range to its string representation.
+ * Boolean values are converted to <tt>"false"</tt> or <tt>"true"</tt>.
+ *
+ * Example:
+ *
+ * \code
+ * std::vector<std::string> vec;
+ * vec.push_back("a");
+ * vec.push_back("b");
+ * vec.push_back("c");
+ *
+ * std::cout << bw::str(vec.begin(), vec.end()) << std::endl;
+ * \endcode
+ *
+ * \param[in] begin the beginning of the range of objects to convert
+ * \param[in] end the end of the range of objects to convert
+ * \return the string representation separated with commas (<tt>", "</tt>)
+ * \ingroup string
+ */
+template <typename ForwardIterator>
+std::string str(const ForwardIterator &begin, const ForwardIterator &end)
+{
+    std::stringstream ss;
+    bool first = true;
+    for (ForwardIterator it = begin; it != end; ++it) {
+        if (first)
+            first = false;
+        else
+            ss << ", ";
+        ss << std::boolalpha << *it;
+    }
+
+    return ss.str();
+}
+
 #endif /* STRINGUTIL_H */
 
 } // end namespace bw
