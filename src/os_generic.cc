@@ -31,8 +31,6 @@
 namespace bw {
 
 /* ---------------------------------------------------------------------------------------------- */
-#warning "The generic version of system uses a shell, thus no special characters are allowed in args."
-
 int system(const std::string &process, const std::vector<std::string> &args)
 {
     std::string arg_string;

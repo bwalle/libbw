@@ -39,8 +39,8 @@ namespace bw {
 #ifndef HAVE_GMTIME_R
 struct tm *gmtime_r(const time_t *timep, struct tm *result)
 {
-    std::assert(timep != NULL);
-    std::assert(result != NULL);
+    assert(timep != NULL);
+    assert(result != NULL);
 
     *result = *(gmtime(timep));
     return result;
@@ -51,8 +51,8 @@ struct tm *gmtime_r(const time_t *timep, struct tm *result)
 #ifndef HAVE_LOCALTIME_R
 struct tm *localtime_r(const time_t *timep, struct tm *result)
 {
-    std::assert(timep != NULL);
-    std::assert(result != NULL);
+    assert(timep != NULL);
+    assert(result != NULL);
 
     *result = *(localtime(timep));
     return result;
