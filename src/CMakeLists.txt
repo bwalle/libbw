@@ -105,9 +105,6 @@ set(LIBBW_SRCS ${LIBBW_SRCS} ${LIBBW_IO_SRCS})
 include(log/CMakeLists.txt)
 set(LIBBW_SRCS ${LIBBW_SRCS} ${LIBBW_LOG_SRCS})
 
-include(thread/CMakeLists.txt)
-set(LIBBW_SRCS ${LIBBW_SRCS} ${LIBBW_THREAD_SRCS})
-
 # link our own version of getopt_long() if the system doesn't provide a
 # suitable one
 if (NOT HAVE_GETOPT_LONG)
