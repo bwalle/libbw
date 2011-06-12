@@ -1,4 +1,6 @@
+syntax: glob
 build
 doc/api/html
 CMakeLists.txt.user
 tags
+*.un~
