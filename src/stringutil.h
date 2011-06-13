@@ -236,6 +236,42 @@ std::string str(const ForwardIterator &begin,
     return ss.str();
 }
 
+/**
+ * \brief Converts \p str into a basic C++ type
+ *
+ * The type must have a std::operator>> for std::istream defined.
+ * 
+ * \warning Error checking is currently not implemented.
+ *
+ * Example:
+ *
+ * \code
+ * std::string bla("3.3");
+ * double x = bw::from_str<double>(bla);
+ * \endcode
+ *
+ * \param[in] str the string
+ * \param[in] locale the locale to use. The default is to use the global locale which can be
+ *            changed with std::locale::global(). If the traditional C locale should be used,
+ *            std::locale::classic() can be specified. If the system default locale should
+ *            be used, std::locale("") can be specified -- it's not necessary to change
+ *            the global locale. Note that anything beyond std::locale::classic() (which is
+ *            the default also for the global locale, so std::locale() is okay) is broken
+ *            on Mac OS.
+ * \return the converted value
+ */
+template <typename T>
+T from_str(const std::string &str, const std::locale &loc=std::locale())
+{
+    std::stringstream ss;
+    ss.imbue(loc);
+    ss << str;
+    T ret;
+    ss >> ret;
+
+    return ret;
+}
+
 #endif /* STRINGUTIL_H */
 
 } // end namespace bw
