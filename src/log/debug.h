@@ -207,36 +207,6 @@ class Debug {
         COMPILER_PRINTF_FORMAT(2, 3);
 
         /**
-         * \brief Print a debug string
-         *
-         * This is a convenience method for dbg(const char *) that takes a
-         * std::string.
-         *
-         * \param[in] s the string that should be printed
-         */
-        void dbg(const std::string &s);
-
-        /**
-         * \brief Print a info string
-         *
-         * This is a convenience method for info(const char *) that takes a
-         * std::string.
-         *
-         * \param[in] s the string that should be printed
-         */
-        void info(const std::string &s);
-
-        /**
-         * \brief Print a tracing string
-         *
-         * This is a convenience method for trace(const char *) that takes a
-         * std::string.
-         *
-         * \param[in] s the string that should be printed
-         */
-        void trace(const std::string &s);
-
-        /**
          * \brief Prints a general debug message
          *
          * This is the general function that can be called instead of dbg(),

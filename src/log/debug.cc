@@ -103,25 +103,6 @@ void Debug::trace(const char *msg, ...)
 }
 
 /* ---------------------------------------------------------------------------------------------- */
-void Debug::dbg(const std::string &string)
-{
-    return dbg(string.c_str());
-}
-
-/* ---------------------------------------------------------------------------------------------- */
-void Debug::info(const std::string &string)
-{
-    return info(string.c_str());
-}
-
-/* ---------------------------------------------------------------------------------------------- */
-void Debug::trace(const std::string &string)
-{
-    return trace(string.c_str());
-}
-
-
-/* ---------------------------------------------------------------------------------------------- */
 void Debug::msg(Debug::Level level, const char *msg, ...)
 {
     va_list valist;
