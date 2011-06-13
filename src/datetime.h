@@ -31,6 +31,8 @@
 #include <string>
 #include <ctime>
 
+#include "compiler.h"
+
 /**
  * \file
  * \brief C++ date and time functions
@@ -252,7 +254,8 @@ class Datetime {
          *            ISO display.
          * \return the formated string.
          */
-        std::string strftime(const char *format) const;
+        std::string strftime(const char *format) const
+        COMPILER_STRFTIME_FORMAT(2, 0);
 
         /**
          * \brief Converts the datetime object to a human readable string

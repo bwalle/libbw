@@ -58,4 +58,23 @@
 #define COMPILER_PRINTF_FORMAT(string_index, first_to_check)
 #endif
 
+/**
+ * \brief Enables syntax checking for strftime()
+ *
+ * Used for strftime() wrappers. Currently available for GCC only.
+ *
+ * \param[in] string_index specifies which argument is the format string
+ *            argument (starting from 1) should be checked
+ * \param[in] first_to_check the number of the first argument
+ *            to check against the format string. For functions where the
+ *            arguments are not available to be checked (such as \c vprintf),
+ *            specify as zero.
+ */
+#ifdef __GNUC__
+#define COMPILER_STRFTIME_FORMAT(string_index, first_to_check) \
+    __attribute__(( format(strftime, string_index, first_to_check) ))
+#else
+#define COMPILER_PRINTF_FORMAT(string_index, first_to_check)
+#endif
+
 #endif /* COMPILER_H */
