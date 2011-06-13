@@ -26,7 +26,6 @@
 
 if (CMAKE_HOST_UNIX)
     add_subdirectory(serialread)
-    add_subdirectory(thread)
     add_subdirectory(errorlog)
     add_subdirectory(optionparser)
     add_subdirectory(datetime)
