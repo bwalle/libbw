@@ -61,8 +61,8 @@ int system(const std::string &process, const std::vector<std::string> &args)
             return -1;
         else
             return WEXITSTATUS(rc);
-    } else
-        return -1;
+    }
+    return -1;
 }
 
 } // end namespace bw

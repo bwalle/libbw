@@ -364,7 +364,7 @@ bool OptionParser::parse(int argc, char *argv[])
 
     // free stuff
     cur = opt;
-    for (unsigned int i = 0; i < totalNumber; i++) {
+    for (int i = 0; i < totalNumber; i++) {
         free((void *)cur->name);
         cur++;
     }
