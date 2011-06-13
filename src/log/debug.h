@@ -40,6 +40,8 @@
 #include <cstdarg>
 #include <string>
 
+#include "../compiler.h"
+
 /* Macros {{{ */
 
 /**
@@ -179,7 +181,8 @@ class Debug {
          *
          * \param[in] msg the message format string in printf() style
          */
-        void dbg(const char *msg, ...);
+        void dbg(const char *msg, ...)
+        COMPILER_PRINTF_FORMAT(2, 3);
 
         /**
          * \brief Print a info message
@@ -189,7 +192,8 @@ class Debug {
          *
          * \param[in] msg the message format string in printf() style
          */
-        void info(const char *msg, ...);
+        void info(const char *msg, ...)
+        COMPILER_PRINTF_FORMAT(2, 3);
 
         /**
          * \brief Print a trace message
@@ -199,7 +203,8 @@ class Debug {
          *
          * \param[in] msg the message format string in printf() style
          */
-        void trace(const char *msg, ...);
+        void trace(const char *msg, ...)
+        COMPILER_PRINTF_FORMAT(2, 3);
 
         /**
          * \brief Print a debug string
@@ -240,7 +245,8 @@ class Debug {
          * \param[in] level the debug level (see Debug::Level)
          * \param[in] msg the printf()-like format string for the message
          */
-        void msg(Debug::Level level, const char *msg, ...);
+        void msg(Debug::Level level, const char *msg, ...)
+        COMPILER_PRINTF_FORMAT(3, 4);
 
         /**
          * \brief Prints a general debug message (vfprintf()-style)
@@ -253,7 +259,8 @@ class Debug {
          * \param[in] args the arguments to \p msg, consult a C book if you
          *            don't know how to deal with that
          */
-        void vmsg(Debug::Level level, const char *msg, std::va_list args);
+        void vmsg(Debug::Level level, const char *msg, std::va_list args)
+        COMPILER_PRINTF_FORMAT(3, 0);
 
         /**
          * \brief Set the debug level

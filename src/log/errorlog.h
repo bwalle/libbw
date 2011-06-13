@@ -30,6 +30,8 @@
 #include <cstdarg>
 #include <cstdlib>
 
+#include "../compiler.h"
+
 /**
  * \file
  * \brief Error logging functions
@@ -254,35 +256,40 @@ class Errorlog {
          *
          * \param[in] msg the printf()-like format string for the message
          */
-        void emerg(const char *msg, ...);
+        void emerg(const char *msg, ...)
+        COMPILER_PRINTF_FORMAT(2, 3);
 
         /**
          * \brief Logs an alert error
          *
          * \param[in] msg the printf()-like format string for the message
          */
-        void alert(const char *msg, ...);
+        void alert(const char *msg, ...)
+        COMPILER_PRINTF_FORMAT(2, 3);
 
         /**
          * \brief Logs a critical error
          *
          * \param[in] msg the printf()-like format string for the message
          */
-        void crit(const char *msg, ...);
+        void crit(const char *msg, ...)
+        COMPILER_PRINTF_FORMAT(2, 3);
 
         /**
          * \brief Logs an normal error
          *
          * \param[in] msg the printf()-like format string for the message
          */
-        void err(const char *msg, ...);
+        void err(const char *msg, ...)
+        COMPILER_PRINTF_FORMAT(2, 3);
 
         /**
          * \brief Logs an warning error
          *
          * \param[in] msg the printf()-like format string for the message
          */
-        void warning(const char *msg, ...);
+        void warning(const char *msg, ...)
+        COMPILER_PRINTF_FORMAT(2, 3);
 
         /**
          * \brief Prints a general error log message
@@ -293,7 +300,8 @@ class Errorlog {
          * \param[in] level the error level (see Errorlog::Level)
          * \param[in] msg the printf()-like format string for the message
          */
-        void log(Errorlog::Level level, const char *msg, ...);
+        void log(Errorlog::Level level, const char *msg, ...)
+        COMPILER_PRINTF_FORMAT(3, 4);
 
         /**
          * \brief Prints a general error log message (vfprintf()-style)
@@ -305,7 +313,8 @@ class Errorlog {
          * \param[in] args the arguments to \p msg, consult a C book if you
          *            don't know how to deal with that
          */
-        virtual void vlog(Errorlog::Level level, const char *msg, std::va_list args) = 0;
+        virtual void vlog(Errorlog::Level level, const char *msg, std::va_list args)
+        COMPILER_PRINTF_FORMAT(3, 0) = 0;
 
     private:
         static Errorlog *m_instance;
