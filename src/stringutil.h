@@ -40,6 +40,7 @@
 #include <vector>
 #include <sstream>
 #include <iomanip>
+#include <locale>
 
 namespace bw {
 
@@ -168,13 +169,21 @@ std::string replace_char(const std::string  &input,
  * \endcode
  *
  * \param[in] t the object to convert
+ * \param[in] locale the locale to use. The default is to use the global locale which can be
+ *            changed with std::locale::global(). If the traditional C locale should be used,
+ *            std::locale::classic() can be specified. If the system default locale should
+ *            be used, std::locale("") can be specified -- it's not necessary to change
+ *            the global locale. Note that anything beyond std::locale::classic() (which is
+ *            the default also for the global locale, so std::locale() is okay) is broken
+ *            on Mac OS.
  * \return the string representation of \p t.
  * \ingroup string
  */
 template <typename T>
-std::string str(const T &t)
+std::string str(const T &t, const std::locale &locale=std::locale())
 {
     std::stringstream ss;
+    ss.imbue(locale);
     ss << std::boolalpha << t;
     return ss.str();
 }
@@ -198,13 +207,23 @@ std::string str(const T &t)
  *
  * \param[in] begin the beginning of the range of objects to convert
  * \param[in] end the end of the range of objects to convert
+ * \param[in] locale the locale to use. The default is to use the global locale which can be
+ *            changed with std::locale::global(). If the traditional C locale should be used,
+ *            std::locale::classic() can be specified. If the system default locale should
+ *            be used, std::locale("") can be specified -- it's not necessary to change
+ *            the global locale. Note that anything beyond std::locale::classic() (which is
+ *            the default also for the global locale, so std::locale() is okay) is broken
+ *            on Mac OS.
  * \return the string representation separated with commas (<tt>", "</tt>)
  * \ingroup string
  */
 template <typename ForwardIterator>
-std::string str(const ForwardIterator &begin, const ForwardIterator &end)
+std::string str(const ForwardIterator &begin,
+                const ForwardIterator &end,
+                const std::locale     &locale=std::locale())
 {
     std::stringstream ss;
+    ss.imbue(locale);
     bool first = true;
     for (ForwardIterator it = begin; it != end; ++it) {
         if (first)
