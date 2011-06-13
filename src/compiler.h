@@ -52,10 +52,10 @@
  *            specify as zero.
  */
 #ifdef __GNUC__
-#define COMPILER_PRINTF_FORMAT(string_index, first_to_check) \
+#define BW_COMPILER_PRINTF_FORMAT(string_index, first_to_check) \
     __attribute__(( format(printf, string_index, first_to_check) ))
 #else
-#define COMPILER_PRINTF_FORMAT(string_index, first_to_check)
+#define BW_COMPILER_PRINTF_FORMAT(string_index, first_to_check)
 #endif
 
 /**
@@ -71,10 +71,10 @@
  *            specify as zero.
  */
 #ifdef __GNUC__
-#define COMPILER_STRFTIME_FORMAT(string_index, first_to_check) \
+#define BW_COMPILER_STRFTIME_FORMAT(string_index, first_to_check) \
     __attribute__(( format(strftime, string_index, first_to_check) ))
 #else
-#define COMPILER_PRINTF_FORMAT(string_index, first_to_check)
+#define BW_COMPILER_PRINTF_FORMAT(string_index, first_to_check)
 #endif
 
 #endif /* COMPILER_H */

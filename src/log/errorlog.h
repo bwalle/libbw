@@ -257,7 +257,7 @@ class Errorlog {
          * \param[in] msg the printf()-like format string for the message
          */
         void emerg(const char *msg, ...)
-        COMPILER_PRINTF_FORMAT(2, 3);
+        BW_COMPILER_PRINTF_FORMAT(2, 3);
 
         /**
          * \brief Logs an alert error
@@ -265,7 +265,7 @@ class Errorlog {
          * \param[in] msg the printf()-like format string for the message
          */
         void alert(const char *msg, ...)
-        COMPILER_PRINTF_FORMAT(2, 3);
+        BW_COMPILER_PRINTF_FORMAT(2, 3);
 
         /**
          * \brief Logs a critical error
@@ -273,7 +273,7 @@ class Errorlog {
          * \param[in] msg the printf()-like format string for the message
          */
         void crit(const char *msg, ...)
-        COMPILER_PRINTF_FORMAT(2, 3);
+        BW_COMPILER_PRINTF_FORMAT(2, 3);
 
         /**
          * \brief Logs an normal error
@@ -281,7 +281,7 @@ class Errorlog {
          * \param[in] msg the printf()-like format string for the message
          */
         void err(const char *msg, ...)
-        COMPILER_PRINTF_FORMAT(2, 3);
+        BW_COMPILER_PRINTF_FORMAT(2, 3);
 
         /**
          * \brief Logs an warning error
@@ -289,7 +289,7 @@ class Errorlog {
          * \param[in] msg the printf()-like format string for the message
          */
         void warning(const char *msg, ...)
-        COMPILER_PRINTF_FORMAT(2, 3);
+        BW_COMPILER_PRINTF_FORMAT(2, 3);
 
         /**
          * \brief Prints a general error log message
@@ -301,7 +301,7 @@ class Errorlog {
          * \param[in] msg the printf()-like format string for the message
          */
         void log(Errorlog::Level level, const char *msg, ...)
-        COMPILER_PRINTF_FORMAT(3, 4);
+        BW_COMPILER_PRINTF_FORMAT(3, 4);
 
         /**
          * \brief Prints a general error log message (vfprintf()-style)
@@ -314,7 +314,7 @@ class Errorlog {
          *            don't know how to deal with that
          */
         virtual void vlog(Errorlog::Level level, const char *msg, std::va_list args)
-        COMPILER_PRINTF_FORMAT(3, 0) = 0;
+        BW_COMPILER_PRINTF_FORMAT(3, 0) = 0;
 
     private:
         static Errorlog *m_instance;

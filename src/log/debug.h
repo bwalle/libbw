@@ -182,7 +182,7 @@ class Debug {
          * \param[in] msg the message format string in printf() style
          */
         void dbg(const char *msg, ...)
-        COMPILER_PRINTF_FORMAT(2, 3);
+        BW_COMPILER_PRINTF_FORMAT(2, 3);
 
         /**
          * \brief Print a info message
@@ -193,7 +193,7 @@ class Debug {
          * \param[in] msg the message format string in printf() style
          */
         void info(const char *msg, ...)
-        COMPILER_PRINTF_FORMAT(2, 3);
+        BW_COMPILER_PRINTF_FORMAT(2, 3);
 
         /**
          * \brief Print a trace message
@@ -204,7 +204,7 @@ class Debug {
          * \param[in] msg the message format string in printf() style
          */
         void trace(const char *msg, ...)
-        COMPILER_PRINTF_FORMAT(2, 3);
+        BW_COMPILER_PRINTF_FORMAT(2, 3);
 
         /**
          * \brief Prints a general debug message
@@ -216,7 +216,7 @@ class Debug {
          * \param[in] msg the printf()-like format string for the message
          */
         void msg(Debug::Level level, const char *msg, ...)
-        COMPILER_PRINTF_FORMAT(3, 4);
+        BW_COMPILER_PRINTF_FORMAT(3, 4);
 
         /**
          * \brief Prints a general debug message (vfprintf()-style)
@@ -230,7 +230,7 @@ class Debug {
          *            don't know how to deal with that
          */
         void vmsg(Debug::Level level, const char *msg, std::va_list args)
-        COMPILER_PRINTF_FORMAT(3, 0);
+        BW_COMPILER_PRINTF_FORMAT(3, 0);
 
         /**
          * \brief Set the debug level

@@ -255,7 +255,7 @@ class Datetime {
          * \return the formated string.
          */
         std::string strftime(const char *format) const
-        COMPILER_STRFTIME_FORMAT(2, 0);
+        BW_COMPILER_STRFTIME_FORMAT(2, 0);
 
         /**
          * \brief Converts the datetime object to a human readable string
