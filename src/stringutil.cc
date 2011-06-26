@@ -131,12 +131,11 @@ std::string replace_char(const std::string  &input,
 {
     std::string ret = input;
     size_t pos = 0;
+    size_t correction = new_string.size() - 1;
 
     while ((pos = ret.find(old_char, pos)) != std::string::npos) {
-        ret.erase(pos, 1);
-        ret.insert(pos, new_string);
-
-        pos++;
+        ret.replace(pos, 1, new_string);
+        pos += 1 + correction;
     }
 
     return ret;
