@@ -56,6 +56,7 @@ SerialFile::SerialFile(const std::string &portName)
 SerialFile::~SerialFile()
 {
     closePort();
+    delete d;
 }
 
 /* ---------------------------------------------------------------------------------------------- */
