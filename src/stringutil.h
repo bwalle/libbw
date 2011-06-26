@@ -272,8 +272,8 @@ T from_str(const std::string &str, const std::locale &loc=std::locale())
     return ret;
 }
 
-#endif /* STRINGUTIL_H */
-
 } // end namespace bw
+
+#endif /* STRINGUTIL_H */
 
 // :tabSize=4:indentSize=4:noTabs=true:mode=c++:folding=explicit:collapseFolds=1:maxLineLen=100:
