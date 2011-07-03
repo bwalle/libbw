@@ -28,6 +28,8 @@ if (CMAKE_HOST_UNIX)
     set(LIBBW_IO_SRCS
         io/serialfile.h
         io/serialfile_posix.cc
+        io/tempfile.cc
+        io/tempfile_posix.cc
     )
     if (CMAKE_SYSTEM_NAME STREQUAL "Linux")
         set(LIBBW_IO_SRCS

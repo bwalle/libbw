@@ -132,6 +132,49 @@ class SystemError : public Error {
 };
 
 /* }}} */
+/* SystemIOError {{{ */
+
+/**
+ * \brief Error class for I/O system errors that have a valid errno information.
+ *
+ * \author Bernhard Walle <bernhard@bwalle.de>
+ */
+class SystemIOError : public IOError {
+    public:
+        /**
+         * \brief Creates a new object of SystemError with string as error message.
+         *
+         * \param[in] string the error message
+         * \param[in] errorcode the system error code (errno)
+         */
+        SystemIOError(const std::string &string, int errorcode)
+            : IOError(string)
+            , m_errorcode(errorcode)
+        {
+            m_errorstring = string + " (" + std::strerror(m_errorcode) + ")";
+        }
+
+        /**
+         * \brief Returns a readable error message from the string and the error code.
+         *
+         * \return Error message in the format 'string (strerror(errorcode))'.
+         */
+        virtual const char *what() const throw ()
+        {
+            return m_errorstring.c_str();
+        }
+
+        /**
+         * Don't know why that is necessary to avoid compiler errors.
+         */
+        virtual ~SystemIOError() throw () {}
+
+    private:
+        int m_errorcode;
+        std::string m_errorstring;
+};
+
+/* }}} */
 
 } // end namespace usb
 

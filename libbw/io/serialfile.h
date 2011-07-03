@@ -31,10 +31,10 @@
 #include <vector>
 #include <iostream>
 
-#include "../bwerror.h"
+#include <libbw/bwerror.h>
 
 /**
- * \file serialfile.h libbw/serialfile.h
+ * \file serialfile.h libbw/io/serialfile.h
  * \brief Simplify communication with serial ports
  *
  * This file provides functionality to communicate with serial ports.

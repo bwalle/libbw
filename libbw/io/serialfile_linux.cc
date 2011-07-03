@@ -95,6 +95,7 @@ bool SerialFile::createLock()
     if (lock)
         lock << ::getpid() << std::endl;
     d->exithandler = new FileDeleteExitHandler(d->lockfile);
+    registerExitHandler(d->exithandler);
 
     return true;
 }
@@ -107,7 +108,7 @@ void SerialFile::removeLock()
 
     std::remove(d->lockfile.c_str());
     d->lockfile = "";
-    delete d->exithandler;
+    unregisterExitHandler(d->exithandler);
     d->exithandler = NULL;
 }
 

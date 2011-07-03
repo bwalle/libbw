@@ -121,7 +121,7 @@ class FileDeleteExitHandler : public ExitHandler
 };
 
 /* }}} */
-/* registerExitHandler {{{ */
+/* registerExitHandler and unregisterExitHandler {{{ */
 
 /**
  * \brief Registers an exit handler
@@ -143,6 +143,8 @@ void registerExitHandler(ExitHandler *exitHandler);
  * You can only unregister an exit handler if you have the address of the exit handler
  * registered, i.e. you have to call registerExitHandler() and unregisterExitHandler() with
  * the same address.
+ *
+ * <b>The function also deletes the \p exitHandler automatically</b>
  *
  * \param[in] exitHandler the exit handler address to unregister
  */
