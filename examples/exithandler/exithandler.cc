@@ -26,6 +26,7 @@
  */
 #include <iostream>
 #include <fstream>
+#include <cstdlib>
 
 #include "exithandler.h"
 
@@ -36,7 +37,6 @@ int main(int argc, char *argv[])
         std::cout << "Usage: exithandler <filename>" << std::endl;
         return EXIT_FAILURE;
     }
-
 
     std::ofstream fout(argv[1]);
     fout << "test" << std::endl;
