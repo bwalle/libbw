@@ -5,3 +5,4 @@ doc/api/latex
 CMakeLists.txt.user
 tags
 *.un~
+.clang_complete
