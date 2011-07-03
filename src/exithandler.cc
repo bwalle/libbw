@@ -26,6 +26,7 @@
  */
 
 #include <list>
+#include <algorithm>
 #include <cstdio>
 #include <cerrno>
 
@@ -75,6 +76,15 @@ void registerExitHandler(ExitHandler *exitHandler)
     }
 
     s_exitHandlers.push_back(exitHandler);
+}
+
+/* ---------------------------------------------------------------------------------------------- */
+void unregisterExitHandler(ExitHandler *exitHandler)
+{
+    std::list<ExitHandler *>::iterator it;
+    it = std::find(s_exitHandlers.begin(), s_exitHandlers.end(), exitHandler);
+    if (it != s_exitHandlers.end())
+        s_exitHandlers.erase(it);
 }
 
 /* }}} */

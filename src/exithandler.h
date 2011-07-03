@@ -137,6 +137,17 @@ class FileDeleteExitHandler : public ExitHandler
  */
 void registerExitHandler(ExitHandler *exitHandler);
 
+/**
+ * \brief Unregisters an exit handler
+ *
+ * You can only unregister an exit handler if you have the address of the exit handler
+ * registered, i.e. you have to call registerExitHandler() and unregisterExitHandler() with
+ * the same address.
+ *
+ * \param[in] exitHandler the exit handler address to unregister
+ */
+void unregisterExitHandler(ExitHandler *exitHandler);
+
 /* }}} */
 
 } // namespace bw
