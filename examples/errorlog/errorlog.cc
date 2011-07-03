@@ -28,7 +28,7 @@
 #include <cstdlib>
 #include <cstring>
 
-#include <log/errorlog.h>
+#include <libbw/log/errorlog.h>
 
 /* ---------------------------------------------------------------------------------------------- */
 int main(int argc, char *argv[])

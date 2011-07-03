@@ -28,7 +28,7 @@
 #include <cstdlib>
 #include <csignal>
 
-#include <io/serialfile.h>
+#include <libbw/io/serialfile.h>
 
 /* ---------------------------------------------------------------------------------------------- */
 void dummy_signalhandler(int signal)

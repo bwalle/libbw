@@ -28,7 +28,7 @@
 #include <cstdlib>
 #include <csignal>
 
-#include <optionparser.h>
+#include <libbw/optionparser.h>
 
 const std::string PACKAGE_STRING("program");
 const std::string PACKAGE_VERSION("0.1.0");

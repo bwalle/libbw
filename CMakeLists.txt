@@ -32,9 +32,9 @@ project(libbw CXX C)
 cmake_minimum_required(VERSION 2.6)
 
 option(BUILD_EXAMPLES "Build the example programs" ON)
-include_directories(${CMAKE_CURRENT_SOURCE_DIR}/src)
+include_directories(${CMAKE_CURRENT_SOURCE_DIR})
 
-add_subdirectory(src)
+add_subdirectory(libbw)
 
 if (BUILD_EXAMPLES)
     add_subdirectory(examples)

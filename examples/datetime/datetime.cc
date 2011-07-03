@@ -29,7 +29,7 @@
 
 #include <unistd.h>
 
-#include "datetime.h"
+#include <libbw/datetime.h>
 
 /* ---------------------------------------------------------------------------------------------- */
 int main(int argc, char *argv[])

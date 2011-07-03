@@ -28,7 +28,7 @@
 #include <fstream>
 #include <cstdlib>
 
-#include "exithandler.h"
+#include <libbw/exithandler.h>
 
 /* ---------------------------------------------------------------------------------------------- */
 int main(int argc, char *argv[])
