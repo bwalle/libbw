@@ -86,6 +86,7 @@ set(LIBBW_SRCS
     optionparser.cc
     datetime.h
     datetime.cc
+    exithandler.cc
 )
 if (CMAKE_HOST_UNIX)
     set(LIBBW_SRCS
