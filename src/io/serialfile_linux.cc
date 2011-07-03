@@ -24,7 +24,6 @@
  * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE. }}}
  */
-#include <vector>
 #include <iostream>
 #include <string>
 #include <algorithm>
@@ -46,42 +45,6 @@ namespace bw {
 namespace io {
 
 /* Module-static stuff (lock file deletion) {{{ */
-
-/// Set to \c true after deleteFilesAtExit() has been registered as delete
-/// handler.
-static bool s_delete_handler_registered = false;
-
-/// Vector of files which should be deleted at exit.
-static std::vector<std::string> s_files_to_delete;
-
-/**
- * \brief Helper function which deletes a file
- *
- * This helper function just converts \p fileName to a const char * string and then calls
- * std::remove().
- *
- * \param[in] fileName the file name to delete
- */
-static void delete_file(const std::string &file)
-{
-    std::remove(file.c_str());
-}
-
-/**
- * \brief Deletes the lock file at exit
- *
- * This function should be registered as exit handler. It deletes all files which have been
- * added to the module-global s_filesToDelete vector. After the delete handler has been registered,
- * set s_deleteHandlerRegistered to true.
- */
-static void delete_files_at_exit()
-{
-    std::for_each(
-        s_files_to_delete.begin(),
-        s_files_to_delete.end(),
-        delete_file
-    );
-}
 
 /**
  * \brief Computes the name of the lock file from the portName
@@ -113,19 +76,14 @@ static std::string computeLockFileName(const std::string &portName)
 /* ---------------------------------------------------------------------------------------------- */
 bool SerialFile::createLock()
 {
-    if (!s_delete_handler_registered) {
-        std::atexit(delete_files_at_exit);
-        s_delete_handler_registered = true;
-    }
-
-    std::string lockfile = computeLockFileName(d->fileName);
+    d->lockfile = computeLockFileName(d->fileName);
 
     // if we don't need locking, everything is sane
-    if (lockfile.empty())
+    if (d->lockfile.empty())
         return true;
 
     // if the lock file is present, we failed to lock
-    if (::access(lockfile.c_str(), F_OK) == 0)
+    if (::access(d->lockfile.c_str(), F_OK) == 0)
         return false;
 
     // the race condition here is not important because the lock file is just
@@ -133,10 +91,10 @@ bool SerialFile::createLock()
     // about security
 
     // now we can create the lock
-    std::ofstream lock(lockfile.c_str());
+    std::ofstream lock(d->lockfile.c_str());
     if (lock)
         lock << ::getpid() << std::endl;
-    s_files_to_delete.push_back(lockfile);
+    d->exithandler = new FileDeleteExitHandler(d->lockfile);
 
     return true;
 }
@@ -144,19 +102,13 @@ bool SerialFile::createLock()
 /* ---------------------------------------------------------------------------------------------- */
 void SerialFile::removeLock()
 {
-    std::string lockfile = computeLockFileName(d->fileName);
-
-    if (lockfile.empty())
+    if (d->lockfile.empty())
         return;
 
-    std::remove(lockfile.c_str());
-
-    std::vector<std::string>::iterator result = std::find(
-        s_files_to_delete.begin(),
-        s_files_to_delete.end(),
-        lockfile);
-    if (result != s_files_to_delete.end())
-        s_files_to_delete.erase(result);
+    std::remove(d->lockfile.c_str());
+    d->lockfile = "";
+    delete d->exithandler;
+    d->exithandler = NULL;
 }
 
 /* }}} */

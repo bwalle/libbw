@@ -30,6 +30,8 @@
 
 #include <string>
 
+#include "exithandler.h"
+
 namespace bw {
 namespace io {
 
@@ -41,16 +43,22 @@ namespace io {
  * The reason why that data objects are not members of SerialFile is just that we can provide
  * the same interface for different platforms and have the concrete (typed) members as private
  * data of the platform implementation.
+ *
+ * The lock file name and exit handlers are only used on Linux.
  */
 struct SerialFilePrivate
 {
     SerialFilePrivate(const std::string &portName)
         : fileName(portName)
-        , fd(-1) {}
+        , fd(-1)
+        , exithandler(NULL)
+    {}
 
     std::string fileName;
     std::string lastError;
     int         fd;
+    std::string lockfile;
+    ExitHandler *exithandler;
 };
 
 /* }}} */
