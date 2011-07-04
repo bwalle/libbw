@@ -80,5 +80,3 @@ void FileErrorlog::vlog(Errorlog::Level level, const char *msg, std::va_list arg
 /* }}} */
 
 } // end namespace bw
-
-// vim: set sw=4 ts=4 et fdm=marker:

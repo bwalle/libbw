@@ -24,17 +24,8 @@
  * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE. }}}
  */
-#ifndef STRINGUTIL_H
-#define STRINGUTIL_H
-
-/**
- * \file stringutil.h
- * \brief String helper functions
- *
- * This file contains global functions for working with strings.
- *
- * \author Bernhard Walle <bernhard@bwalle.de>
- */
+#ifndef LIBBW_STRINGUTIL_H_
+#define LIBBW_STRINGUTIL_H_
 
 #include <string>
 #include <vector>
@@ -251,7 +242,7 @@ std::string str(const ForwardIterator &begin,
  * \endcode
  *
  * \param[in] str the string
- * \param[in] locale the locale to use. The default is to use the global locale which can be
+ * \param[in] loc the locale to use. The default is to use the global locale which can be
  *            changed with std::locale::global(). If the traditional C locale should be used,
  *            std::locale::classic() can be specified. If the system default locale should
  *            be used, std::locale("") can be specified -- it's not necessary to change
@@ -259,6 +250,7 @@ std::string str(const ForwardIterator &begin,
  *            the default also for the global locale, so std::locale() is okay) is broken
  *            on Mac OS.
  * \return the converted value
+ * \ingroup string
  */
 template <typename T>
 T from_str(const std::string &str, const std::locale &loc=std::locale())
@@ -274,6 +266,6 @@ T from_str(const std::string &str, const std::locale &loc=std::locale())
 
 } // end namespace bw
 
-#endif /* STRINGUTIL_H */
+#endif /* LIBBW_STRINGUTIL_H_ */
 
 // :tabSize=4:indentSize=4:noTabs=true:mode=c++:folding=explicit:collapseFolds=1:maxLineLen=100:

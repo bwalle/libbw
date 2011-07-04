@@ -25,6 +25,9 @@
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE. }}}
  */
 
+#ifndef LIBBW_BWCONFIG_H_
+#define LIBBW_BWCONFIG_H_
+
 #cmakedefine HAVE_LIBREADLINE
 #cmakedefine HAVE_STRCASECMP
 #cmakedefine HAVE_SYSLOG
@@ -33,3 +36,4 @@
 #cmakedefine HAVE_GMTIME_R
 #cmakedefine HAVE_STRFTIME
 
+#endif // LIBBW_BWCONFIG_H_

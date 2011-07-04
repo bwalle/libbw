@@ -25,17 +25,17 @@
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE. }}}
  */
 
+#ifndef LIBBW_COMPLETION_H_
+#define LIBBW_COMPLETION_H_
+
 /**
- * \file completion.h
+ * \defgroup completion Command-line completion
  * \brief Shell-like command line reader with completion
  *
- * This file contains a shell-like command reader with completion.
+ * This modules contains a shell-like command reader with completion.
  *
  * \author Bernhard Walle <bernhard@bwalle.de>
  */
-
-#ifndef COMPLETION_H
-#define COMPLETION_H
 
 #include "bwerror.h"
 #include <vector>
@@ -52,6 +52,7 @@ namespace bw {
  * auto-completion.
  *
  * \author Bernhard Walle <bernhard@bwalle.de>
+ * \ingroup completion
  */
 class Completor {
     public:
@@ -93,6 +94,7 @@ class Completor {
  * is optional.
  *
  * \author Bernhard Walle <bernhard@bwalle.de>
+ * \ingroup completion
  */
 class LineReader {
     public:
@@ -241,6 +243,7 @@ class LineReader {
  * This is a abstract base class for line reader implementations.
  *
  * \author Bernhard Walle <bernhard@bwalle.de>
+ * \ingroup completion
  */
 class AbstractLineReader : public LineReader {
     public:
@@ -339,6 +342,4 @@ class AbstractLineReader : public LineReader {
 
 } // end namespace bw
 
-#endif /* COMPLETION_H */
-
-// :tabSize=4:indentSize=4:noTabs=true:mode=c++:folding=explicit:collapseFolds=1:maxLineLen=100:
+#endif /* LIBBW_COMPLETION_H_ */

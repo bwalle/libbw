@@ -24,23 +24,14 @@
  * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE. }}}
  */
-#ifndef DEBUG_H
-#define DEBUG_H
-
-/**
- * \file debug.h
- * \brief Debug functionality
- *
- * This file contains debug functionality.
- *
- * \author Bernhard Walle <bernhard@bwalle.de>
- */
+#ifndef LIBBW_LOG_DEBUG_H_
+#define LIBBW_LOG_DEBUG_H_
 
 #include <cstdio>
 #include <cstdarg>
 #include <string>
 
-#include "../compiler.h"
+#include <libbw/compiler.h>
 
 /* Macros {{{ */
 
@@ -50,6 +41,8 @@
  * Example:
  *
  * \code
+ * #include <libbw/log/debug.h>
+ *
  * BW_DEBUG(bw::Debug::DL_INFO, "Message: %d", 5);
  * \endcode
  *
@@ -67,6 +60,8 @@
  * Example:
  *
  * \code
+ * #include <libbw/log/debug.h>
+ *
  * BW_DEBUG_DBG("Message: %d", 5);
  * \endcode
  *
@@ -83,6 +78,8 @@
  * Example:
  *
  * \code
+ * #include <libbw/log/debug.h>
+ *
  * BW_DEBUG_INFO("Message: %d", 5);
  * \endcode
  *
@@ -99,6 +96,8 @@
  * Example:
  *
  * \code
+ * #include <libbw/log/debug.h>
+ *
  * BW_DEBUG_DBG("Message: %d", 5);
  * \endcode
  *
@@ -307,6 +306,4 @@ class Debug {
 
 } // end namespace bw
 
-#endif /* DEBUG_H */
-
-// :tabSize=4:indentSize=4:noTabs=true:mode=c++:folding=explicit:collapseFolds=1:maxLineLen=100:
+#endif /* LIBBW_LOG_DEBUG_H_ */

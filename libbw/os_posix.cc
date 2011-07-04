@@ -66,5 +66,3 @@ int system(const std::string &process, const std::vector<std::string> &args)
 }
 
 } // end namespace bw
-
-// vim: set sw=4 ts=4 et fdm=marker:

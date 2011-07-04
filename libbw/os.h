@@ -30,19 +30,11 @@
 #include <vector>
 #include <string>
 
-/**
- * \file
- * \brief Operating system abstraction functions
- *
- * This file contains operating system specific functions.
- *
- * \author Bernhard Walle <bernhard@bwalle.de>
- */
-
 namespace bw {
 
 /**
  * \brief Puts the current process to background.
+ * \ingroup os
  *
  * Currently the function is implemented in POSIX only.
  *
@@ -55,6 +47,7 @@ int daemonize();
 
 /**
  * \brief Replacement for system() without a shell
+ * \ingroup os
  *
  * This function does the same as system but tries to avoid using a shell, so
  * it's not necessary to quote the arguments.

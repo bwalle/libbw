@@ -24,22 +24,13 @@
  * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE. }}}
  */
-#ifndef ERRORLOG_H
-#define ERRORLOG_H
+#ifndef LIBBW_LOG_ERRORLOG_H_
+#define LIBBW_LOG_ERRORLOG_H_
 
 #include <cstdarg>
 #include <cstdlib>
 
-#include "../compiler.h"
-
-/**
- * \file
- * \brief Error logging functions
- *
- * This file contains a simple error logging framework
- *
- * \author Bernhard Walle <bernhard@bwalle.de>
- */
+#include <libbw/compiler.h>
 
 /* Macros {{{ */
 
@@ -49,6 +40,8 @@
  * Example:
  *
  * \code
+ * #include <libbw/log/errorlog.h>
+ *
  * BW_ERROR(bw::Errorlog::LS_EMERG, "Message: %d", 5);
  * \endcode
  *
@@ -70,6 +63,8 @@
  * Example:
  *
  * \code
+ * #include <libbw/log/errorlog.h>
+ *
  * BW_ERROR_EMERG("Message: %d", 5);
  * \endcode
  *
@@ -86,6 +81,8 @@
  * Example:
  *
  * \code
+ * #include <libbw/log/errorlog.h>
+ *
  * BW_ERROR_ALERT("Message: %d", 5);
  * \endcode
  *
@@ -102,6 +99,8 @@
  * Example:
  *
  * \code
+ * #include <libbw/log/errorlog.h>
+ *
  * BW_ERROR_CRIT("Message: %d", 5);
  * \endcode
  *
@@ -118,6 +117,8 @@
  * Example:
  *
  * \code
+ * #include <libbw/log/errorlog.h>
+ *
  * BW_ERROR_ERR("Message: %d", 5);
  * \endcode
  *
@@ -134,6 +135,8 @@
  * Example:
  *
  * \code
+ * #include <libbw/log/errorlog.h>
+ *
  * BW_ERROR_WARNING("Message: %d", 5);
  * \endcode
  *
@@ -324,6 +327,4 @@ class Errorlog {
 
 } // end namespace bw
 
-#endif /* ERRORLOG_H */
-
-// vim: set sw=4 ts=4 et fdm=marker:
+#endif /* LIBBW_LOG_ERRORLOG_H_ */

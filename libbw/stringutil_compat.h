@@ -27,15 +27,6 @@
 #ifndef STRINGUTIL_COMPAT_H
 #define STRINGUTIL_COMPAT_H
 
-/**
- * @file stringutil_compat.h
- * @brief Compatibility functions for operating systems that lack some functions
- *
- * This file currently contains compatibility functions for Win32.
- *
- * @author Bernhard Walle <bernhard@bwalle.de>
- */
-
 #include <string.h>
 
 #include "bwconfig.h"

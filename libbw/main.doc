@@ -100,10 +100,11 @@ Then you can include the header files for example with
 \defgroup thread    Threading functions
 \defgroup io        I/O classes
 \defgroup log       Logging
-\defgroup optparse  Option Parsing
 \defgroup string    String functions
 \defgroup datetime  Date/time functions
+\defgroup os        Operating system functions
+\defgroup misc      Miscellaneous utilities
 
 */
 
-// vim: set ft=doxygen:
+// vim: set ft=doxygen fdm=marker:

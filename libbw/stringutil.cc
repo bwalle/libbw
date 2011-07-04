@@ -141,7 +141,4 @@ std::string replace_char(const std::string  &input,
     return ret;
 }
 
-
 } // end namespace bw
-
-// :tabSize=4:indentSize=4:noTabs=true:mode=c++:folding=explicit:collapseFolds=1:maxLineLen=100:

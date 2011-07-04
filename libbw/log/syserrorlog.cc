@@ -76,5 +76,3 @@ int SysErrorlog::logToSyslog(Errorlog::Level level)
 /* }}} */
 
 } // end namespace bw
-
-// vim: set sw=4 ts=4 et fdm=marker:

@@ -33,14 +33,6 @@
 
 #include "compiler.h"
 
-/**
- * \file
- * \brief C++ date and time functions
- *
- * \author Bernhard Walle <bernhard@bwalle.de>
- * \ingroup datetime
- */
-
 namespace bw {
 
 /* Datetime {{{ */

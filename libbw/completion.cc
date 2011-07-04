@@ -348,5 +348,3 @@ void ReadlineLineReader::setCompletor(Completor *comp)
 #endif /* HAVE_LIBREADLINE */
 
 } // end namespace bw
-
-// :tabSize=4:indentSize=4:noTabs=true:mode=c++:folding=explicit:collapseFolds=1:maxLineLen=100:

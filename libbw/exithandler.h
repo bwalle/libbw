@@ -29,13 +29,6 @@
 
 #include <string>
 
-/**
- * \file exithandler.h libbw/exithandler.h
- * \brief Object-oriented exit handler
- *
- * See the documentation of the ExitHandler interface and the registerExitHandler() function.
- */
-
 namespace bw {
 
 /* ExitHandler {{{ */
@@ -79,6 +72,7 @@ namespace bw {
  * the same as our example is already implemented in this library.
  *
  * \author Bernhard Walle <bernhard@bwalle.de>
+ * \ingroup misc
  */
 class ExitHandler
 {
@@ -97,6 +91,7 @@ class ExitHandler
  * \brief Exit handler that deletes a file
  *
  * \author Bernhard Walle <bernhard@bwalle.de>
+ * \ingroup misc
  */
 class FileDeleteExitHandler : public ExitHandler
 {
@@ -134,6 +129,7 @@ class FileDeleteExitHandler : public ExitHandler
  *
  * \param[in] exitHandler an pointer to an exit handler object that must have been allocated
  *            on the heap
+ * \ingroup misc
  */
 void registerExitHandler(ExitHandler *exitHandler);
 
@@ -147,6 +143,7 @@ void registerExitHandler(ExitHandler *exitHandler);
  * <b>The function also deletes the \p exitHandler automatically</b>
  *
  * \param[in] exitHandler the exit handler address to unregister
+ * \ingroup misc
  */
 void unregisterExitHandler(ExitHandler *exitHandler);
 

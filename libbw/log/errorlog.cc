@@ -151,5 +151,3 @@ void Errorlog::log(Errorlog::Level level, const char *msg, ...)
 /* }}} */
 
 } // end namespace bw
-
-// vim: set sw=4 ts=4 et fdm=marker:

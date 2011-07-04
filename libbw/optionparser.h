@@ -24,14 +24,14 @@
  * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE. }}}
  */
-#ifndef OPTIONPARSER_H
-#define OPTIONPARSER_H
+#ifndef LIBBW_OPTIONPARSER_H_
+#define LIBBW_OPTIONPARSER_H_
 
 /**
- * \file
+ * \defgroup optparse  Option Parsing
  * \brief Generic option parser implementation
  *
- * This file contains a generic implementation of a command line parser.
+ * This module contains a generic implementation of a command line parser.
  *
  * The parser itself only works on Unix since it users getopt_long()
  * internally.  However, libbw provides an own copy of getopt_long() which is
@@ -43,7 +43,6 @@
  * needs a union type like OptionValue because C++ is not Python.
  *
  * \author Bernhard Walle <bernhard@bwalle.de>
- * \ingroup optparse
  */
 
 #include <list>
@@ -797,6 +796,6 @@ class OptionParser {
 
 } // end namespace bw
 
-#endif /* OPTIONPARSER_H */
+#endif /* LIBBW_OPTIONPARSER_H_ */
 
 // vim: set sw=4 ts=4 et fdm=marker:

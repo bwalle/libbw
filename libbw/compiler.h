@@ -25,15 +25,8 @@
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE. }}}
  */
 
-/**
- * \file compiler.h
- * \brief Wrappers around compiler-specific functionality
- *
- * \author Bernhard Walle <bernhard@bwalle.de>
- */
-
-#ifndef COMPILER_H
-#define COMPILER_H
+#ifndef LIBBW_COMPILER_H_
+#define LIBBW_COMPILER_H_
 
 #include "bwerror.h"
 #include <vector>
@@ -50,6 +43,7 @@
  *            to check against the format string. For functions where the
  *            arguments are not available to be checked (such as \c vprintf),
  *            specify as zero.
+ * \ingroup misc
  */
 #ifdef __GNUC__
 #define BW_COMPILER_PRINTF_FORMAT(string_index, first_to_check) \
@@ -69,6 +63,7 @@
  *            to check against the format string. For functions where the
  *            arguments are not available to be checked (such as \c vprintf),
  *            specify as zero.
+ * \ingroup misc
  */
 #ifdef __GNUC__
 #define BW_COMPILER_STRFTIME_FORMAT(string_index, first_to_check) \
@@ -77,4 +72,4 @@
 #define BW_COMPILER_PRINTF_FORMAT(string_index, first_to_check)
 #endif
 
-#endif /* COMPILER_H */
+#endif /* LIBBW_COMPILER_H_ */

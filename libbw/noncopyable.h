@@ -24,15 +24,8 @@
  * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE. }}}
  */
-#ifndef NONCOPYABLE_H
-#define NONCOPYABLE_H
-
-/**
- * \file
- * \brief Mark a class as noncopyable
- *
- * \author Bernhard Walle <bernhard@bwalle.de>
- */
+#ifndef LIBBW_NONCOPYABLE_H_
+#define LIBBW_NONCOPYABLE_H_
 
 namespace bw {
 
@@ -55,6 +48,7 @@ namespace bw {
  * from Boost.
  *
  * \author Bernhard Walle <bernhard@bwalle.de>
+ * \ingroup misc
  */
 class Noncopyable
 {
@@ -70,6 +64,6 @@ class Noncopyable
 
 } // end namespace bw
 
-#endif /* NONCOPYABLE_H */
+#endif /* LIBBW_NONCOPYABLE_H_ */
 
 // vim: set sw=4 ts=4 et fdm=marker:

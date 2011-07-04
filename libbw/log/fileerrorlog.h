@@ -24,8 +24,8 @@
  * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE. }}}
  */
-#ifndef FILEERRORLOG_H
-#define FILEERRORLOG_H
+#ifndef LIBBW_LOG_FILEERRORLOG_H_
+#define LIBBW_LOG_FILEERRORLOG_H_
 
 #include <cstdio>
 #include <string>
@@ -35,15 +35,6 @@
 #ifdef HAVE_THREADS
 #  include <thread/mutex.h>
 #endif
-
-/**
- * \file
- * \brief Error logging functions
- *
- * This file contains a simple error logging framework
- *
- * \author Bernhard Walle <bernhard@bwalle.de>
- */
 
 namespace bw {
 
@@ -94,6 +85,6 @@ class FileErrorlog : public Errorlog {
 
 } // end namespace bw
 
-#endif /* FILEERRORLOG_H */
+#endif /* LIBBW_LOG_FILEERRORLOG_H_ */
 
 // vim: set sw=4 ts=4 et fdm=marker:

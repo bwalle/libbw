@@ -24,14 +24,14 @@
  * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE. }}}
  */
-#ifndef BWERROR_H
-#define BWERROR_H
+#ifndef LIBBW_BWERROR_H_
+#define LIBBW_BWERROR_H_
 
 /**
- * \file bwerror.h
- * \brief Exception classes
+ * \defgroup error Error handling
+ * \brief Error handling classes
  *
- * This file contains classes for error/exception handling.
+ * This module contains classes for error/exception handling.
  *
  * \author Bernhard Walle <bernhard@bwalle.de>
  */
@@ -48,6 +48,7 @@ namespace bw {
  * \brief Base class for all exceptions in that library.
  *
  * \author Bernhard Walle <bernhard@bwalle.de>
+ * \ingroup error
  */
 class Error : public std::runtime_error {
     public:
@@ -74,6 +75,7 @@ class Error : public std::runtime_error {
  * exception handler.
  *
  * \author Bernhard Walle <bernhard@bwalle.de>
+ * \ingroup error
  */
 class IOError : public Error {
     public:
@@ -95,6 +97,7 @@ class IOError : public Error {
  * \brief Standard error class for system errors that have a valid errno information.
  *
  * \author Bernhard Walle <bernhard@bwalle.de>
+ * \ingroup error
  */
 class SystemError : public Error {
     public:
@@ -138,6 +141,7 @@ class SystemError : public Error {
  * \brief Error class for I/O system errors that have a valid errno information.
  *
  * \author Bernhard Walle <bernhard@bwalle.de>
+ * \ingroup error
  */
 class SystemIOError : public IOError {
     public:
@@ -178,4 +182,4 @@ class SystemIOError : public IOError {
 
 } // end namespace usb
 
-#endif // BWERROR_H
+#endif // LIBBW_BWERROR_H_
