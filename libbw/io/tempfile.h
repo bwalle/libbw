@@ -28,6 +28,7 @@
 #define LIBBW_IO_TEMPFILE_H_
 
 #include <string>
+#include <stdint.h>
 
 #include <libbw/bwerror.h>
 #include <libbw/exithandler.h>

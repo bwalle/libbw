@@ -26,6 +26,7 @@
  */
 
 #include <cerrno>
+#include <cstdio>
 
 #include <libbw/log/errorlog.h>
 #include "tempfile.h"
