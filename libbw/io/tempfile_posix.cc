@@ -66,7 +66,7 @@ std::string TempFile::_create(const std::string &namepart)
     }
 
     if (nametemplate[nametemplate.size()-1] != '/')
-        nametemplate += "/";
+        nametemplate += "/" + namepart;
     nametemplate += ".XXXXXX";
 
     char *nametemplateMod = strdup(nametemplate.c_str());
