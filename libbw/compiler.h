@@ -32,6 +32,15 @@
 #include <vector>
 
 /**
+ * \brief Returns the size of a statically defined array
+ *
+ * \param[in] array the array
+ * \ingroup misc
+ */
+#define BW_ARRAY_SIZE(array) \
+    (sizeof(array)/sizeof((array)[0]))
+
+/**
  * \brief Enables syntax checking for printf()
  *
  * Used for printf() wrappers like logging functions. Currently available for
