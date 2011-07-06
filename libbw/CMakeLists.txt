@@ -24,6 +24,15 @@
 # (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
 # SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE. }}}
 
+# large file support
+# http://people.redhat.com/berrange/notes/largefile.html
+execute_process(COMMAND getconf LFS_CFLAGS OUTPUT_VARIABLE LFS_CFLAGS)
+execute_process(COMMAND getconf LFS_LDFLAGS OUTPUT_VARIABLE LFS_LDFLAGS)
+add_definitions(${LFS_CFLAGS})
+if (${LFS_LDFLAGS})
+    set(EXTRA_LIBS ${EXTRA_LIBS} ${LFS_LDFLAGS})
+endif (${LFS_LDFLAGS})
+
 # Readline
 
 find_path(READLINE_INCLUDE_DIR readline/readline.h
@@ -66,6 +75,18 @@ check_function_exists("localtime_r" HAVE_LOCALTIME_R)
 check_function_exists("gmtime_r" HAVE_GMTIME_R)
 # check for strftime()
 check_function_exists("strftime" HAVE_STRFTIME)
+# check for ftello()
+check_function_exists("ftello" HAVE_FTELLO)
+# check for fseeko()
+check_function_exists("fseeko" HAVE_FSEEKO)
+# check for stat()
+check_function_exists("stat" HAVE_STAT)
+# check for _stat() which should be the stat() equivalent on Win32
+check_function_exists("_stat" HAVE__STAT)
+# check for mkdir()
+check_function_exists("mkdir" HAVE_MKDIR)
+# check for _mkdir() which should be the mkdir() equivalent on Win32
+check_function_exists("_mkdir" HAVE__MKDIR)
 
 # check for unistd.h and syslog.h
 include(CheckIncludeFile)
@@ -87,6 +108,7 @@ set(LIBBW_SRCS
     datetime.h
     datetime.cc
     exithandler.cc
+    fileutils.cc
 )
 if (CMAKE_HOST_UNIX)
     set(LIBBW_SRCS

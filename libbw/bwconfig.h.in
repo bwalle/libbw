@@ -35,5 +35,11 @@
 #cmakedefine HAVE_LOCALTIME_R
 #cmakedefine HAVE_GMTIME_R
 #cmakedefine HAVE_STRFTIME
+#cmakedefine HAVE_FTELLO
+#cmakedefine HAVE_FSEEKO
+#cmakedefine HAVE_STAT
+#cmakedefine HAVE__STAT
+#cmakedefine HAVE_MKDIR
+#cmakedefine HAVE__MKDIR
 
 #endif // LIBBW_BWCONFIG_H_
