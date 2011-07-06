@@ -26,8 +26,16 @@
 
 # large file support
 # http://people.redhat.com/berrange/notes/largefile.html
-execute_process(COMMAND getconf LFS_CFLAGS OUTPUT_VARIABLE LFS_CFLAGS)
-execute_process(COMMAND getconf LFS_LDFLAGS OUTPUT_VARIABLE LFS_LDFLAGS)
+execute_process(
+    COMMAND             getconf LFS_CFLAGS
+    OUTPUT_VARIABLE     LFS_CFLAGS
+    ERROR_QUIET
+)
+execute_process(
+    COMMAND             getconf LFS_LDFLAGS
+    OUTPUT_VARIABLE     LFS_LDFLAGS
+    ERROR_QUIET
+)
 add_definitions(${LFS_CFLAGS})
 if (${LFS_LDFLAGS})
     set(EXTRA_LIBS ${EXTRA_LIBS} ${LFS_LDFLAGS})
