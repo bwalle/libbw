@@ -90,7 +90,10 @@ class FileUtils {
         throw (Error);
 
         /**
-         * Creates a new directory.
+         * \brief Creates a new directory.
+         *
+         * It is not an error if the directory already exists. The function just ensures that
+         * the directory exists after calling the function if it doesn't throw.
          *
          * \warning While the function works on Win32, it accepts only path names separated
          *          by slashes, not backslashes.
@@ -126,6 +129,19 @@ class FileUtils {
          * \return the joined string
          */
         static std::string join(const std::string &a, const std::string &b, const std::string &c);
+
+        /**
+         * \brief Returns the file component of the \p path
+         *
+         * This is a C++ implementation of the POSIX basename() function.
+         *
+         * \warning While the function works on Win32, it accepts only path names separated
+         *          by slashes, not backslashes.
+         *
+         * \param[in] path the path for which the file name should be retrieved
+         * \return the basename
+         */
+        static std::string basename(const std::string &path);
 };
 
 /* }}} */

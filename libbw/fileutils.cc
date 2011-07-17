@@ -206,6 +206,16 @@ std::string FileUtils::join(const std::string &a,
     return a + "/" + b + "/" + c;
 }
 
+// -----------------------------------------------------------------------------
+std::string basename(const std::string &path)
+{
+    std::string::size_type slashPos = path.rfind('/');
+    if (slashPos == std::string::npos)
+        return path;
+    else
+        return path.substr(slashPos + 1);
+}
+
 /* }}} */
 
 } // end namespace bw
