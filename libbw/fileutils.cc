@@ -192,6 +192,20 @@ void FileUtils::mkdir(const std::string &dir, bool recursive)
     }
 }
 
+// -----------------------------------------------------------------------------
+std::string FileUtils::join(const std::string &a, const std::string &b)
+{
+    return a + "/" + b;
+}
+
+// -----------------------------------------------------------------------------
+std::string FileUtils::join(const std::string &a,
+                            const std::string &b,
+                            const std::string &c)
+{
+    return a + "/" + b + "/" + c;
+}
+
 /* }}} */
 
 } // end namespace bw

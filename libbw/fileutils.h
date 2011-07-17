@@ -103,6 +103,29 @@ class FileUtils {
          */
         static void mkdir(const std::string &dir, bool recursive=false)
         throw (Error);
+
+        /**
+         * \brief Joins two path components
+         *
+         * This function uses the generic path separator <tt>"/"</tt> on all operating systems.
+         *
+         * \param[in] a the first path component
+         * \param[in] b the second path component
+         * \return the joined string
+         */
+        static std::string join(const std::string &a, const std::string &b);
+
+        /**
+         * \brief Joins three path components
+         *
+         * This function uses the generic path separator <tt>"/"</tt> on all operating systems.
+         *
+         * \param[in] a the first path component
+         * \param[in] b the second path component
+         * \param[in] c the third path component
+         * \return the joined string
+         */
+        static std::string join(const std::string &a, const std::string &b, const std::string &c);
 };
 
 /* }}} */
