@@ -78,6 +78,11 @@ class ExitHandler
 {
     public:
         /**
+         * \brief Virtual destructor
+         */
+        virtual ~ExitHandler() {}
+
+        /**
          * \brief Callback that is executed on application termination.
          */
         virtual void exitCleanup() = 0;
