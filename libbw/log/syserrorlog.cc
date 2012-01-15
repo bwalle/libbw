@@ -32,19 +32,16 @@ namespace bw {
 
 /* SysErrorlog {{{ */
 
-/* ---------------------------------------------------------------------------------------------- */
 SysErrorlog::SysErrorlog(const char *ident)
 {
     openlog(ident, LOG_CONS, LOG_LOCAL0);
 }
 
-/* ---------------------------------------------------------------------------------------------- */
 SysErrorlog::~SysErrorlog()
 {
     closelog();
 }
 
-/* ---------------------------------------------------------------------------------------------- */
 void SysErrorlog::vlog(Errorlog::Level level, const char *msg, std::va_list args)
 {
     int syslogLevel = logToSyslog(level);
@@ -54,7 +51,6 @@ void SysErrorlog::vlog(Errorlog::Level level, const char *msg, std::va_list args
     vsyslog(syslogLevel, msg, args);
 }
 
-/* ---------------------------------------------------------------------------------------------- */
 int SysErrorlog::logToSyslog(Errorlog::Level level)
 {
     switch (level) {

@@ -105,7 +105,6 @@ namespace bw {
 
 /* FileUtils {{{ */
 
-// -------------------------------------------------------------------------------------------------
 int64_t FileUtils::size(const std::string &filename)
     throw (Error)
 {
@@ -142,14 +141,12 @@ int64_t FileUtils::size(const std::string &filename)
     return size;
 }
 
-// -------------------------------------------------------------------------------------------------
 bool FileUtils::exists(const std::string &filename)
 {
     stat_t statresult;
     return bw_stat(filename.c_str(), statresult) == 0;
 }
 
-// -------------------------------------------------------------------------------------------------
 bool FileUtils::isDirectory(const std::string &dirname)
     throw (Error)
 {
@@ -161,7 +158,6 @@ bool FileUtils::isDirectory(const std::string &dirname)
     return S_ISDIR(statresult.st_mode);
 }
 
-// -----------------------------------------------------------------------------
 void FileUtils::mkdir(const std::string &dir, bool recursive)
     throw (Error)
 {
@@ -192,13 +188,11 @@ void FileUtils::mkdir(const std::string &dir, bool recursive)
     }
 }
 
-// -----------------------------------------------------------------------------
 std::string FileUtils::join(const std::string &a, const std::string &b)
 {
     return a + "/" + b;
 }
 
-// -----------------------------------------------------------------------------
 std::string FileUtils::join(const std::string &a,
                             const std::string &b,
                             const std::string &c)
@@ -206,7 +200,6 @@ std::string FileUtils::join(const std::string &a,
     return a + "/" + b + "/" + c;
 }
 
-// -----------------------------------------------------------------------------
 std::string basename(const std::string &path)
 {
     std::string::size_type slashPos = path.rfind('/');

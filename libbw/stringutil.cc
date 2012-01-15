@@ -34,7 +34,6 @@
 
 namespace bw {
 
-/* ---------------------------------------------------------------------------------------------- */
 std::string strip(std::string a, const std::string &chars_to_strip)
 {
     if (a.length() == 0)
@@ -46,7 +45,6 @@ std::string strip(std::string a, const std::string &chars_to_strip)
     return a;
 }
 
-/* ---------------------------------------------------------------------------------------------- */
 std::string stripl(std::string a)
 {
     if (a.length() == 0)
@@ -57,7 +55,6 @@ std::string stripl(std::string a)
     return a;
 }
 
-/* ---------------------------------------------------------------------------------------------- */
 std::string stripr(std::string a)
 {
     if (a.length() == 0)
@@ -68,7 +65,6 @@ std::string stripr(std::string a)
     return a;
 }
 
-/* ---------------------------------------------------------------------------------------------- */
 bool startsWith(const std::string &str, const std::string &start, bool casesensitive)
 {
     size_t len = start.size();
@@ -81,13 +77,11 @@ bool startsWith(const std::string &str, const std::string &start, bool casesensi
         return strcasecmp(str.substr(0, len).c_str(), start.c_str()) == 0;
 }
 
-/* ---------------------------------------------------------------------------------------------- */
 std::string getRest(const std::string &str, const std::string &prefix)
 {
     return str.substr(prefix.size(), str.size() - prefix.size());
 }
 
-/* ---------------------------------------------------------------------------------------------- */
 char **stringvector_to_array(const std::vector<std::string> &vec)
 {
     if (vec.size() == 0)
@@ -104,7 +98,6 @@ char **stringvector_to_array(const std::vector<std::string> &vec)
     return ret;
 }
 
-/* ---------------------------------------------------------------------------------------------- */
 std::vector<std::string> stringsplit(const std::string &str, const std::string &pattern)
 {
     std::vector<std::string> retval;
@@ -124,7 +117,6 @@ std::vector<std::string> stringsplit(const std::string &str, const std::string &
     return retval;
 }
 
-/* ---------------------------------------------------------------------------------------------- */
 std::string replace_char(const std::string  &input,
                          char               old_char,
                          const std::string  &new_string)

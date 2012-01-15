@@ -43,7 +43,6 @@ namespace bw {
 
 /* OptionValue {{{ */
 
-/* ---------------------------------------------------------------------------------------------- */
 OptionValue::OptionValue()
     : m_type(OT_INVALID)
     , m_integer(0)
@@ -51,55 +50,46 @@ OptionValue::OptionValue()
     , m_flag(false)
 {}
 
-/* ---------------------------------------------------------------------------------------------- */
 void OptionValue::setType(OptionType type)
 {
     m_type = type;
 }
 
-/* ---------------------------------------------------------------------------------------------- */
 OptionType OptionValue::getType() const
 {
     return m_type;
 }
 
-/* ---------------------------------------------------------------------------------------------- */
 void OptionValue::setString(const std::string &string)
 {
     m_string = string;
 }
 
-/* ---------------------------------------------------------------------------------------------- */
 std::string OptionValue::getString() const
 {
     return m_string;
 }
 
-/* ---------------------------------------------------------------------------------------------- */
 void OptionValue::setFlag(bool flag)
 {
     m_flag = flag;
 }
 
-/* ---------------------------------------------------------------------------------------------- */
 bool OptionValue::getFlag() const
 {
     return m_flag;
 }
 
-/* ---------------------------------------------------------------------------------------------- */
 void OptionValue::setInteger(int value)
 {
     m_integer = value;
 }
 
-/* ---------------------------------------------------------------------------------------------- */
 int OptionValue::getInteger() const
 {
     return m_integer;
 }
 
-/* ---------------------------------------------------------------------------------------------- */
 OptionValue::operator bool() const
 {
     return m_type != OT_INVALID;
@@ -108,12 +98,10 @@ OptionValue::operator bool() const
 /* }}} */
 /* Option {{{ */
 
-/* ---------------------------------------------------------------------------------------------- */
 Option::Option()
     : m_type(OT_FLAG)
 {}
 
-/* ---------------------------------------------------------------------------------------------- */
 Option::Option(const std::string &name, char letter, OptionType type,
                const std::string &description)
     : m_longName(name)
@@ -122,73 +110,61 @@ Option::Option(const std::string &name, char letter, OptionType type,
     , m_type(type)
 {}
 
-/* ---------------------------------------------------------------------------------------------- */
 void Option::setLongName(const std::string &name)
 {
     m_longName = name;
 }
 
-/* ---------------------------------------------------------------------------------------------- */
 std::string Option::getLongName() const
 {
     return m_longName;
 }
 
-/* ---------------------------------------------------------------------------------------------- */
 void Option::setLetter(char letter)
 {
     m_letter = letter;
 }
 
-/* ---------------------------------------------------------------------------------------------- */
 char Option::getLetter() const
 {
     return m_letter;
 }
 
-/* ---------------------------------------------------------------------------------------------- */
 void Option::setType(OptionType type)
 {
     m_type = type;
 }
 
-/* ---------------------------------------------------------------------------------------------- */
 OptionType Option::getType() const
 {
     return m_type;
 }
 
-/* ---------------------------------------------------------------------------------------------- */
 void Option::setDescription(const std::string &description)
 {
     m_description = description;
 }
 
-/* ---------------------------------------------------------------------------------------------- */
 std::string Option::getDescription() const
 {
     return m_description;
 }
 
-/* ---------------------------------------------------------------------------------------------- */
 void Option::setValue(OptionValue value)
 {
     m_value = value;
 }
 
-/* ---------------------------------------------------------------------------------------------- */
 OptionValue Option::getValue() const
 {
     return m_value;
 }
 
-/* ---------------------------------------------------------------------------------------------- */
 bool Option::isValid() const
 {
     return m_longName.size() > 0 && m_letter != 0;
 }
 
-/* ---------------------------------------------------------------------------------------------- */
 std::string Option::getPlaceholder() const
 {
     switch (getType()) {
@@ -206,42 +182,35 @@ std::string Option::getPlaceholder() const
 /* }}} */
 /* OptionGroup {{{ */
 
-/* ---------------------------------------------------------------------------------------------- */
 OptionGroup::OptionGroup(const std::string &title)
     : m_title(title)
 {}
 
-/* ---------------------------------------------------------------------------------------------- */
 std::string OptionGroup::getTitle() const
 {
     return m_title;
 }
 
-/* ---------------------------------------------------------------------------------------------- */
 const std::vector<Option> &OptionGroup::options() const
 {
     return m_options;
 }
 
-/* ---------------------------------------------------------------------------------------------- */
 std::vector<Option> &OptionGroup::options()
 {
     return m_options;
 }
 
-/* ---------------------------------------------------------------------------------------------- */
 size_t OptionGroup::size() const
 {
     return m_options.size();
 }
 
-/* ---------------------------------------------------------------------------------------------- */
 void OptionGroup::addOption(const Option &option)
 {
     m_options.push_back(option);
 }
 
-/* ---------------------------------------------------------------------------------------------- */
 void OptionGroup::addOption(const std::string    &name,
                             char                 letter,
                             OptionType           type,
@@ -253,19 +222,16 @@ void OptionGroup::addOption(const std::string    &name,
 /* }}} */
 /* OptionParser {{{ */
 
-/* ---------------------------------------------------------------------------------------------- */
 OptionParser::OptionParser(const std::string &defaultGroupName)
 {
     m_options.push_back(OptionGroup(defaultGroupName));
 }
 
-/* ---------------------------------------------------------------------------------------------- */
 void OptionParser::addOption(Option option)
 {
     m_options[0].addOption(option);
 }
 
-/* ---------------------------------------------------------------------------------------------- */
 void OptionParser::addOption(const std::string &name, char letter,
         OptionType type, const std::string &description)
 {
@@ -273,13 +239,11 @@ void OptionParser::addOption(const std::string &name, char letter,
     addOption(op);
 }
 
-/* ---------------------------------------------------------------------------------------------- */
 void OptionParser::addOptions(const OptionGroup &group)
 {
     m_options.push_back(group);
 }
 
-/* ---------------------------------------------------------------------------------------------- */
 bool OptionParser::parse(int argc, char *argv[])
 {
     struct option *cur, *opt;
@@ -373,7 +337,6 @@ bool OptionParser::parse(int argc, char *argv[])
     return true;
 }
 
-/* ---------------------------------------------------------------------------------------------- */
 OptionValue OptionParser::getValue(const std::string &name)
 {
     for (std::vector<OptionGroup>::const_iterator it = m_options.begin();
@@ -394,7 +357,6 @@ OptionValue OptionParser::getValue(const std::string &name)
     return OptionValue();
 }
 
-/* ---------------------------------------------------------------------------------------------- */
 Option &OptionParser::findOption(char letter)
 {
     static Option invalid;
@@ -417,13 +379,11 @@ Option &OptionParser::findOption(char letter)
     return invalid;
 }
 
-/* ---------------------------------------------------------------------------------------------- */
 std::vector<std::string> OptionParser::getArgs()
 {
     return m_args;
 }
 
-/* ---------------------------------------------------------------------------------------------- */
 void OptionParser::printHelp(std::ostream &os, const std::string &name) const
 {
     os << name << std::endl << std::endl;
@@ -468,7 +428,6 @@ void OptionParser::printHelp(std::ostream &os, const std::string &name) const
     }
 }
 
-/* ---------------------------------------------------------------------------------------------- */
 int OptionParser::calcTotalNumberOfOptions() const
 {
     int total = 0;

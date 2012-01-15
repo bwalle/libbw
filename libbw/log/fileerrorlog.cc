@@ -39,7 +39,6 @@ namespace bw {
 
 /* FileErrorLog {{{ */
 
-/* ---------------------------------------------------------------------------------------------- */
 FileErrorlog::FileErrorlog(const char *filename)
     : m_file(NULL)
 {
@@ -58,14 +57,12 @@ FileErrorlog::FileErrorlog(const char *filename)
     }
 }
 
-/* ---------------------------------------------------------------------------------------------- */
 FileErrorlog::~FileErrorlog()
 {
     if (m_closeInDtor)
         std::fclose(m_file);
 }
 
-/* ---------------------------------------------------------------------------------------------- */
 void FileErrorlog::vlog(Errorlog::Level level, const char *msg, std::va_list args)
 {
 #ifdef HAVE_THREADS

@@ -38,12 +38,10 @@ namespace bw {
 
 /* FileDeleteExitHandler {{{ */
 
-/* ---------------------------------------------------------------------------------------------- */
 FileDeleteExitHandler::FileDeleteExitHandler(const std::string &filename)
     : m_filename(filename)
 {}
 
-/* ---------------------------------------------------------------------------------------------- */
 void FileDeleteExitHandler::exitCleanup()
 {
     std::remove(m_filename.c_str());
@@ -55,7 +53,6 @@ void FileDeleteExitHandler::exitCleanup()
 static std::list<ExitHandler *> s_exitHandlers;
 static bool s_globalExitHandlerRegistered = false;
 
-/* ---------------------------------------------------------------------------------------------- */
 static void libbw_exithandler()
 {
     std::list<ExitHandler *>::const_iterator it;
@@ -66,7 +63,6 @@ static void libbw_exithandler()
     }
 }
 
-/* ---------------------------------------------------------------------------------------------- */
 void registerExitHandler(ExitHandler *exitHandler)
 {
     if (!s_globalExitHandlerRegistered) {
@@ -78,7 +74,6 @@ void registerExitHandler(ExitHandler *exitHandler)
     s_exitHandlers.push_back(exitHandler);
 }
 
-/* ---------------------------------------------------------------------------------------------- */
 void unregisterExitHandler(ExitHandler *exitHandler)
 {
     std::list<ExitHandler *>::iterator it;

@@ -47,19 +47,16 @@ namespace io {
 
 /* SerialFile {{{ */
 
-/* ---------------------------------------------------------------------------------------------- */
 SerialFile::SerialFile(const std::string &portName)
     : d( new SerialFilePrivate(portName) )
 {}
 
-/* ---------------------------------------------------------------------------------------------- */
 SerialFile::~SerialFile()
 {
     closePort();
     delete d;
 }
 
-/* ---------------------------------------------------------------------------------------------- */
 bool SerialFile::openPort()
 {
     if (!createLock()) {
@@ -77,7 +74,6 @@ bool SerialFile::openPort()
     return true;
 }
 
-/* ---------------------------------------------------------------------------------------------- */
 void SerialFile::closePort()
 {
     if (d->fd == -1)
@@ -88,7 +84,6 @@ void SerialFile::closePort()
     removeLock();
 }
 
-/* ---------------------------------------------------------------------------------------------- */
 SerialFile &SerialFile::operator<<(const std::string& str)
     throw (IOError)
 {
@@ -102,14 +97,12 @@ SerialFile &SerialFile::operator<<(const std::string& str)
     return *this;
 }
 
-/* ---------------------------------------------------------------------------------------------- */
 SerialFile &SerialFile::operator<<(char c)
     throw (IOError)
 {
     return operator<<( std::string(1, c) );
 }
 
-/* ---------------------------------------------------------------------------------------------- */
 SerialFile &SerialFile::operator>>(std::string& str)
     throw (IOError)
 {
@@ -126,7 +119,6 @@ SerialFile &SerialFile::operator>>(std::string& str)
     return *this;
 }
 
-/* ---------------------------------------------------------------------------------------------- */
 std::string SerialFile::readLine()
     throw (IOError)
 {
@@ -148,13 +140,11 @@ std::string SerialFile::readLine()
     return result;
 }
 
-/* ---------------------------------------------------------------------------------------------- */
 std::string SerialFile::getLastError() const
 {
     return d->lastError;
 }
 
-/* ---------------------------------------------------------------------------------------------- */
 static bool int_to_speed(int baudrate, speed_t &speed)
 {
     switch (baudrate) {
@@ -222,7 +212,6 @@ static bool int_to_speed(int baudrate, speed_t &speed)
     return true;
 }
 
-/* ---------------------------------------------------------------------------------------------- */
 bool SerialFile::reconfigure(int            baudrate,
                              FlowControl    flowControl,
                              bool           rawMode)
@@ -305,7 +294,6 @@ bool SerialFile::reconfigure(int            baudrate,
     return true;
 }
 
-/* ---------------------------------------------------------------------------------------------- */
 std::ostream &operator<<(std::ostream &os, const SerialFile &serialFile)
 {
     os << serialFile.d->fileName;

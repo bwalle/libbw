@@ -37,10 +37,8 @@ namespace bw {
 
 /* Errorlog {{{ */
 
-/* ---------------------------------------------------------------------------------------------- */
 Errorlog *Errorlog::m_instance;
 
-/* ---------------------------------------------------------------------------------------------- */
 const char *Errorlog::levelToString(enum Errorlog::Level level)
 {
     switch (level) {
@@ -59,7 +57,6 @@ const char *Errorlog::levelToString(enum Errorlog::Level level)
     }
 }
 
-/* ---------------------------------------------------------------------------------------------- */
 bool Errorlog::configure(enum LogMethod method, const char *option)
 {
     if (m_instance) {
@@ -82,13 +79,11 @@ bool Errorlog::configure(enum LogMethod method, const char *option)
     return m_instance != NULL;
 }
 
-/* ---------------------------------------------------------------------------------------------- */
 Errorlog *Errorlog::instance()
 {
     return m_instance;
 }
 
-/* ---------------------------------------------------------------------------------------------- */
 void Errorlog::emerg(const char *msg, ...)
 {
     va_list valist;
@@ -98,7 +93,6 @@ void Errorlog::emerg(const char *msg, ...)
     va_end(valist);
 }
 
-/* ---------------------------------------------------------------------------------------------- */
 void Errorlog::alert(const char *msg, ...)
 {
     va_list valist;
@@ -108,7 +102,6 @@ void Errorlog::alert(const char *msg, ...)
     va_end(valist);
 }
 
-/* ---------------------------------------------------------------------------------------------- */
 void Errorlog::crit(const char *msg, ...)
 {
     va_list valist;
@@ -118,7 +111,6 @@ void Errorlog::crit(const char *msg, ...)
     va_end(valist);
 }
 
-/* ---------------------------------------------------------------------------------------------- */
 void Errorlog::err(const char *msg, ...)
 {
     va_list valist;
@@ -128,7 +120,6 @@ void Errorlog::err(const char *msg, ...)
     va_end(valist);
 }
 
-/* ---------------------------------------------------------------------------------------------- */
 void Errorlog::warning(const char *msg, ...)
 {
     va_list valist;
@@ -138,7 +129,6 @@ void Errorlog::warning(const char *msg, ...)
     va_end(valist);
 }
 
-/* ---------------------------------------------------------------------------------------------- */
 void Errorlog::log(Errorlog::Level level, const char *msg, ...)
 {
     va_list valist;

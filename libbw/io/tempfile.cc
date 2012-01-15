@@ -34,7 +34,6 @@
 namespace bw {
 namespace io {
 
-// -------------------------------------------------------------------------------------------------
 TempFile::TempFile(const std::string &namepart, Flags flags)
     throw (IOError)
     : m_flags(flags)
@@ -54,25 +53,21 @@ TempFile::TempFile(const std::string &namepart, Flags flags)
     }
 }
 
-// -------------------------------------------------------------------------------------------------
 TempFile::~TempFile()
 {
     close();
 }
 
-// -------------------------------------------------------------------------------------------------
 TempFile::Flags TempFile::flags() const
 {
     return m_flags;
 }
 
-// ------------------------------------------------------------------------------------------------- 
 std::string TempFile::name() const
 {
     return m_name;
 }
 
-// ------------------------------------------------------------------------------------------------- 
 void TempFile::close()
 {
     if (!m_open)

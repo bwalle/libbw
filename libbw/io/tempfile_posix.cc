@@ -37,7 +37,6 @@
 namespace bw {
 namespace io {
 
-// -------------------------------------------------------------------------------------------------
 struct TempFilePrivate {
     TempFilePrivate()
         : fd(-1)
@@ -46,7 +45,6 @@ struct TempFilePrivate {
     int fd;
 };
 
-// -------------------------------------------------------------------------------------------------
 std::string TempFile::_create(const std::string &namepart)
     throw (IOError)
 {
@@ -81,13 +79,11 @@ std::string TempFile::_create(const std::string &namepart)
     return nametemplate;
 }
 
-// -------------------------------------------------------------------------------------------------
 uint64_t TempFile::nativeHandle() const
 {
     return d ? d->fd : -1;
 }
 
-// -------------------------------------------------------------------------------------------------
 void TempFile::_close()
 {
     ::close(d->fd);

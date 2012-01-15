@@ -33,13 +33,11 @@
 
 namespace bw {
 
-/* ---------------------------------------------------------------------------------------------- */
 int daemonize()
 {
     return daemon(false, false);
 }
 
-/* ---------------------------------------------------------------------------------------------- */
 int system(const std::string &process, const std::vector<std::string> &args)
 {
     pid_t child = fork();

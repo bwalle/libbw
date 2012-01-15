@@ -35,7 +35,6 @@ namespace bw {
 
 /* gmtime_r() / localtime_r() {{{ */
 
-// -------------------------------------------------------------------------------------------------
 #ifndef HAVE_GMTIME_R
 struct tm *gmtime_r(const time_t *timep, struct tm *result)
 {
@@ -47,7 +46,6 @@ struct tm *gmtime_r(const time_t *timep, struct tm *result)
 }
 #endif // HAVE_GMTIME_R
 
-// -------------------------------------------------------------------------------------------------
 #ifndef HAVE_LOCALTIME_R
 struct tm *localtime_r(const time_t *timep, struct tm *result)
 {
@@ -62,13 +60,11 @@ struct tm *localtime_r(const time_t *timep, struct tm *result)
 /* }}} */
 /* Datetime {{{ */
 
-// -------------------------------------------------------------------------------------------------
 Datetime::Datetime()
     : m_time(0)
     , m_useUtc(false)
 {}
 
-// -------------------------------------------------------------------------------------------------
 Datetime::Datetime(const time_t &time)
     : m_time(time)
     , m_useUtc(false)
@@ -76,7 +72,6 @@ Datetime::Datetime(const time_t &time)
     fillTime();
 }
 
-// -------------------------------------------------------------------------------------------------
 Datetime::Datetime(int year, int month, int day, int hour, int minute, int second, bool utc)
     : m_useUtc(false)
 {
@@ -99,93 +94,78 @@ Datetime::Datetime(int year, int month, int day, int hour, int minute, int secon
     fillTime();
 }
 
-// -------------------------------------------------------------------------------------------------
 Datetime Datetime::now()
 {
     return Datetime( std::time(NULL) );
 }
 
-// -------------------------------------------------------------------------------------------------
 time_t Datetime::timestamp() const
 {
     return m_time;
 }
 
-// -------------------------------------------------------------------------------------------------
 bool Datetime::useUtc() const
 {
     return m_useUtc;
 }
 
-// -------------------------------------------------------------------------------------------------
 void Datetime::setUseUtc(bool use_utc)
 {
     m_useUtc = use_utc;
     fillTime();
 }
 
-// -------------------------------------------------------------------------------------------------
 int Datetime::day() const
 {
     return m_tm.tm_mday;
 }
 
-// -------------------------------------------------------------------------------------------------
 int Datetime::month() const
 {
     return m_tm.tm_mon + 1;
 }
 
-// -------------------------------------------------------------------------------------------------
 int Datetime::year() const
 {
     return m_tm.tm_year + 1900;
 }
 
-// -------------------------------------------------------------------------------------------------
 int Datetime::hour() const
 {
     return m_tm.tm_hour;
 }
 
-// -------------------------------------------------------------------------------------------------
 int Datetime::minute() const
 {
     return m_tm.tm_min;
 }
 
-// -------------------------------------------------------------------------------------------------
 int Datetime::second() const
 {
     return m_tm.tm_sec;
 }
 
-// -------------------------------------------------------------------------------------------------
 Datetime::Weekday Datetime::weekday() const
 {
     // we use 7 for Sunday, not 0
     return (m_tm.tm_wday == 0) ? Sunday : static_cast<Weekday>(m_tm.tm_wday);
 }
 
-// -------------------------------------------------------------------------------------------------
 Datetime &Datetime::addDays(int days)
 {
     return addSeconds(days * 24 * 60 * 60);
 }
 
-// -------------------------------------------------------------------------------------------------
 Datetime &Datetime::addHours(int hours)
 {
     return addSeconds(hours * 60 * 60);
 }
 
-// -------------------------------------------------------------------------------------------------
 Datetime &Datetime::addMinutes(int minutes)
 {
     return addSeconds(minutes * 60);
 }
 
-// -------------------------------------------------------------------------------------------------
 Datetime &Datetime::addSeconds(int secs)
 {
     m_time += secs;
@@ -194,7 +174,6 @@ Datetime &Datetime::addSeconds(int secs)
     return *this;
 }
 
-// -------------------------------------------------------------------------------------------------
 #ifdef HAVE_STRFTIME
 std::string Datetime::strftime(const char *format) const
 {
@@ -204,7 +183,6 @@ std::string Datetime::strftime(const char *format) const
 }
 #endif
 
-// -------------------------------------------------------------------------------------------------
 std::string Datetime::str() const
 {
     char buffer[80];
@@ -214,7 +192,6 @@ std::string Datetime::str() const
     return std::string(buffer);
 }
 
-// -------------------------------------------------------------------------------------------------
 std::string Datetime::dateStr() const
 {
     char buffer[11];
@@ -222,50 +199,42 @@ std::string Datetime::dateStr() const
     return std::string(buffer);
 }
 
-// -------------------------------------------------------------------------------------------------
 long long Datetime::secsTo(const Datetime &time) const
 {
     double diff = difftime(time.m_time, m_time);
     return static_cast<long long>(diff);
 }
 
-// -------------------------------------------------------------------------------------------------
 bool Datetime::operator==(const Datetime &other)
 {
     return m_time == other.m_time;
 }
 
-// -------------------------------------------------------------------------------------------------
 bool Datetime::operator!=(const Datetime &other)
 {
     return m_time != other.m_time;
 }
 
-// -------------------------------------------------------------------------------------------------
 bool Datetime::operator<(const Datetime &other)
 {
     return m_time < other.m_time;
 }
 
-// -------------------------------------------------------------------------------------------------
 bool Datetime::operator<=(const Datetime &other)
 {
     return m_time <= other.m_time;
 }
 
-// -------------------------------------------------------------------------------------------------
 bool Datetime::operator>(const Datetime &other)
 {
     return m_time > other.m_time;
 }
 
-// -------------------------------------------------------------------------------------------------
 bool Datetime::operator>=(const Datetime &other)
 {
     return m_time >= other.m_time;
 }
 
-// -------------------------------------------------------------------------------------------------
 void Datetime::fillTime()
 {
     if (m_useUtc)
@@ -274,7 +243,6 @@ void Datetime::fillTime()
         localtime_r(&m_time, &m_tm);
 }
 
-// -------------------------------------------------------------------------------------------------
 std::ostream &operator<<(std::ostream &os, const Datetime &datetime)
 {
     os << datetime.str();
