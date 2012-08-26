@@ -27,6 +27,7 @@
 #include <iostream>
 #include <cstdlib>
 #include <cstring>
+#include <unistd.h>
 
 #include <libbw/io/tempfile.h>
 
