@@ -26,16 +26,62 @@
  */
 #include <cstdlib>
 
+#include <sys/stat.h>
 #include <unistd.h>
 #include <sys/wait.h>
+#include <sys/fcntl.h>
 
 #include "os.h"
 
 namespace bw {
 
+
+#define BD_MAX_CLOSE  8192          /* Maximum file descriptors to close if
+                                       sysconf(_SC_OPEN_MAX) is indeterminate */
+
 int daemonize()
 {
-    return daemon(false, false);
+    switch (fork()) {
+    case -1:
+        return -1;
+    case 0:
+        break;
+    default:
+        _exit(EXIT_SUCCESS);
+    }
+
+    if (setsid() == -1)
+        return -1;
+
+    switch (fork()) {
+    case -1: return -1;
+    case 0:  break;
+    default: _exit(EXIT_SUCCESS);
+    }
+
+    umask(0);
+
+    chdir("/");
+
+    int maxfd = sysconf(_SC_OPEN_MAX);
+    if (maxfd == -1)
+        maxfd = BD_MAX_CLOSE;
+
+    for (int fd = 0; fd < maxfd; fd++)
+        close(fd);
+
+    close(STDIN_FILENO);
+
+    int fd = open("/dev/null", O_RDWR);
+
+    if (fd != STDIN_FILENO)         /* 'fd' should be 0 */
+        return -1;
+    if (dup2(STDIN_FILENO, STDOUT_FILENO) != STDOUT_FILENO)
+        return -1;
+    if (dup2(STDIN_FILENO, STDERR_FILENO) != STDERR_FILENO)
+        return -1;
+
+    return 0;
 }
 
 int system(const std::string &process, const std::vector<std::string> &args)
