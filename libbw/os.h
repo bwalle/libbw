@@ -33,6 +33,13 @@
 namespace bw {
 
 /**
+ * \brief Flags for daemonize
+ */
+enum DaemonizeFlags {
+    DAEMONIZE_NOCLOSE   /**< don't close file descriptors */
+};
+
+/**
  * \brief Puts the current process to background.
  * \ingroup os
  *
@@ -41,9 +48,13 @@ namespace bw {
  * The function is for programs wishing to detach themselves from the
  * controlling terminal and run in the background as system daemons.
  *
+ * If \p flags doesn't contain DAEMONIZE_NOCLOSE, then all file descriptors
+ * are closed. STDIN, STDOUT and STDERR are redirected to /dev/null, regardless
+ * of DAEMONIZE_NOCLOSE.
+ *
  * \return 0 on success, any standard error code on failure.
  */
-int daemonize();
+int daemonize(int flags=0);
 
 /**
  * \brief Replacement for system() without a shell

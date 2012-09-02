@@ -39,7 +39,7 @@ namespace bw {
 #define BD_MAX_CLOSE  8192          /* Maximum file descriptors to close if
                                        sysconf(_SC_OPEN_MAX) is indeterminate */
 
-int daemonize()
+int daemonize(int flags)
 {
     switch (fork()) {
     case -1:
@@ -66,11 +66,13 @@ int daemonize()
     int maxfd = sysconf(_SC_OPEN_MAX);
     if (maxfd == -1)
         maxfd = BD_MAX_CLOSE;
+    int minfd = STDIN_FILENO; // 0
 
-    for (int fd = 0; fd < maxfd; fd++)
+    if (flags & DAEMONIZE_NOCLOSE)
+        maxfd = STDERR_FILENO;
+
+    for (int fd = 0; fd <= maxfd; fd++)
         close(fd);
-
-    close(STDIN_FILENO);
 
     int fd = open("/dev/null", O_RDWR);
 

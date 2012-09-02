@@ -27,4 +27,7 @@
 add_executable(system system.cc)
 target_link_libraries(system bw pthread)
 
+add_executable(daemon daemon.cc)
+target_link_libraries(daemon bw pthread)
+
 # vim: set sw=4 ts=4 et fdm=marker:
