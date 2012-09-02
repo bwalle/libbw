@@ -36,7 +36,7 @@ namespace bw {
  * \brief Flags for daemonize
  */
 enum DaemonizeFlags {
-    DAEMONIZE_NOCLOSE   /**< don't close file descriptors */
+    DAEMONIZE_NOCLOSE = (1<<0)   /**< don't close file descriptors */
 };
 
 /**
