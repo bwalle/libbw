@@ -295,7 +295,7 @@ class Debug {
          * \brief Prints a general debug message without formating
          *
          * \param[in] level the debug level (see Debug::Level)
-         * \param[in] msg a string to print
+         * \param[in] buffer a string to print
          */
         void msg(Debug::Level level, const std::string &buffer);
 
