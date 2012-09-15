@@ -52,6 +52,7 @@ enum DaemonizeFlags {
  * are closed. STDIN, STDOUT and STDERR are redirected to /dev/null, regardless
  * of DAEMONIZE_NOCLOSE.
  *
+ * \param[in] flags a bitwise OR'd combination of flags as described above.
  * \return 0 on success, any standard error code on failure.
  */
 int daemonize(int flags=0);
