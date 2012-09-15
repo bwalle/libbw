@@ -30,6 +30,7 @@
 #include <cstdio>
 #include <cstdarg>
 #include <string>
+#include <sstream>
 
 #include <libbw/compiler.h>
 
@@ -55,6 +56,29 @@
     bw::Debug::debug()->msg(level, __VA_ARGS__)
 
 /**
+ * \brief Writes a debug message with a specified level using C++ streams
+ *
+ * Example:
+ *
+ * \code
+ * #include <libbw/log/debug.h>
+ *
+ * BW_DEBUG_STREAM(bw::Debug::DL_INFO, "Message: " << 5);
+ * \endcode
+ *
+ * \param[in] level the debugging level
+ * \param[in] output some stream operations like shown in the example.
+ * \ingroup log
+ * \see BW_DEBUG_STREAM_DBG(), BW_DEBUG_STREAM_INFO(), BW_DEBUG_STREAM_TRACE()
+ */
+#define BW_DEBUG_STREAM(level, output)                      \
+    do {                                                    \
+        std::ostringstream _oss;                            \
+        _oss << output;                                     \
+        bw::Debug::debug()->msg(level, _oss.str());         \
+    } while (0)
+
+/**
  * \brief Writes a debug message (debug level)
  *
  * Example:
@@ -71,6 +95,23 @@
  */
 #define BW_DEBUG_DBG(...) \
     bw::Debug::debug()->dbg(__VA_ARGS__)
+
+/**
+ * \brief Writes a debug message using C++ streams (debug level)
+ *
+ * Example:
+ *
+ * \code
+ * #include <libbw/log/debug.h>
+ *
+ * BW_DEBUG_STREAM_DBG("Message: " << 5);
+ * \endcode
+ *
+ * \param[in] output some stream operations like shown in the example.
+ * \ingroup log
+ */
+#define BW_DEBUG_STREAM_DBG(output) \
+    BW_DEBUG_STREAM(bw::Debug::DL_DEBUG, output)
 
 /**
  * \brief Writes a debug message (info level)
@@ -91,6 +132,23 @@
     bw::Debug::debug()->info(__VA_ARGS__)
 
 /**
+ * \brief Writes a debug message using C++ streams (info level)
+ *
+ * Example:
+ *
+ * \code
+ * #include <libbw/log/debug.h>
+ *
+ * BW_DEBUG_STREAM_INFO("Message: " << 5);
+ * \endcode
+ *
+ * \param[in] output some stream operations like shown in the example.
+ * \ingroup log
+ */
+#define BW_DEBUG_STREAM_INFO(output) \
+    BW_DEBUG_STREAM(bw::Debug::DL_INFO, output)
+
+/**
  * \brief Writes a debug message (trace level)
  *
  * Example:
@@ -108,6 +166,22 @@
 #define BW_DEBUG_TRACE(...) \
     bw::Debug::debug()->trace(__VA_ARGS__)
 
+/**
+ * \brief Writes a debug message using C++ streams (trace level)
+ *
+ * Example:
+ *
+ * \code
+ * #include <libbw/log/debug.h>
+ *
+ * BW_DEBUG_STREAM_TRACE("Message: " << 5);
+ * \endcode
+ *
+ * \param[in] output some stream operations like shown in the example.
+ * \ingroup log
+ */
+#define BW_DEBUG_STREAM_TRACE(output) \
+    BW_DEBUG_STREAM(bw::Debug::DL_TRACE, output)
 /* }}} */
 
 namespace bw {
@@ -216,6 +290,14 @@ class Debug {
          */
         void msg(Debug::Level level, const char *msg, ...)
         BW_COMPILER_PRINTF_FORMAT(3, 4);
+
+        /**
+         * \brief Prints a general debug message without formating
+         *
+         * \param[in] level the debug level (see Debug::Level)
+         * \param[in] msg a string to print
+         */
+        void msg(Debug::Level level, const std::string &buffer);
 
         /**
          * \brief Prints a general debug message (vfprintf()-style)

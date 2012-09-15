@@ -145,6 +145,11 @@ void Debug::vmsg(Debug::Level level, const char *msg, std::va_list args)
     delete[] newmsg;
 }
 
+void Debug::msg(Debug::Level level, const std::string &buffer)
+{
+    msg(level, "%s", buffer.c_str());
+}
+
 Debug::Level Debug::getLevel() const
 {
     return m_debuglevel;
