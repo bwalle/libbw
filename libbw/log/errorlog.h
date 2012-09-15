@@ -29,6 +29,8 @@
 
 #include <cstdarg>
 #include <cstdlib>
+#include <string>
+#include <sstream>
 
 #include <libbw/compiler.h>
 
@@ -58,6 +60,31 @@
     } while (0)
 
 /**
+ * \brief Writes an error log message with a specified level (C++ stream version)
+ *
+ * Example:
+ *
+ * \code
+ * #include <libbw/log/errorlog.h>
+ *
+ * BW_ERROR(bw::Errorlog::LS_EMERG, "Message: " << 5);
+ * \endcode
+ *
+ * \param[in] level the error log level
+ * \param[in] args a set of stream operations as shown in the example
+ * \ingroup log
+ * \see BW_ERROR_STREAM_EMERG(), BW_ERROR_STREAM_ALERT(), BW_ERROR_STREAM_CRIT(), BW_ERROR_STREAM_ERR(), BW_ERROR_STREAM_WARNING()
+ */
+#define BW_ERROR_STREAM(level, args)                                \
+    do {                                                            \
+        std::ostringstream _oss;                                    \
+        _oss << args;                                               \
+        bw::Errorlog *log = bw::Errorlog::instance();               \
+        if (log)                                                    \
+        log->log(level, "%s", _oss.str().c_str());                  \
+    } while (0)
+
+/**
  * \brief Writes error log level (emergency level)
  *
  * Example:
@@ -74,6 +101,23 @@
  */
 #define BW_ERROR_EMERG(...) \
     BW_ERROR(bw::Errorlog::LS_EMERG, __VA_ARGS__)
+
+/**
+ * \brief Writes error log level (emergency level) (C++ streams)
+ *
+ * Example:
+ *
+ * \code
+ * #include <libbw/log/errorlog.h>
+ *
+ * BW_ERROR_STREAM_EMERG("Message: %d" << 5);
+ * \endcode
+ *
+ * \param[in] args some stream operations as shown in the example
+ * \ingroup log
+ */
+#define BW_ERROR_STREAM_EMERG(args) \
+    BW_ERROR_STREAM(bw::Errorlog::LS_EMERG, args)
 
 /**
  * \brief Writes error log level (alert level)
@@ -94,6 +138,23 @@
     BW_ERROR(bw::Errorlog::LS_ALERT, __VA_ARGS__)
 
 /**
+ * \brief Writes error log level (alert level) (C++ streams)
+ *
+ * Example:
+ *
+ * \code
+ * #include <libbw/log/errorlog.h>
+ *
+ * BW_ERROR_STREAM_ALERT("Message: %d" << 5);
+ * \endcode
+ *
+ * \param[in] args some stream operations as shown in the example
+ * \ingroup log
+ */
+#define BW_ERROR_STREAM_ALERT(args) \
+    BW_ERROR_STREAM(bw::Errorlog::LS_ALERT, args)
+
+/**
  * \brief Writes error log level (critical level)
  *
  * Example:
@@ -110,6 +171,23 @@
  */
 #define BW_ERROR_CRIT(...) \
     BW_ERROR(bw::Errorlog::LS_CRIT, __VA_ARGS__)
+
+/**
+ * \brief Writes error log level (critical level) (C++ streams)
+ *
+ * Example:
+ *
+ * \code
+ * #include <libbw/log/errorlog.h>
+ *
+ * BW_ERROR_STREAM_CRIT("Message: %d" << 5);
+ * \endcode
+ *
+ * \param[in] args some stream operations as shown in the example
+ * \ingroup log
+ */
+#define BW_ERROR_STREAM_CRIT(args) \
+    BW_ERROR_STREAM(bw::Errorlog::LS_CRIT, args)
 
 /**
  * \brief Writes error log level (error level)
@@ -130,6 +208,23 @@
     BW_ERROR(bw::Errorlog::LS_ERR, __VA_ARGS__)
 
 /**
+ * \brief Writes error log level (error level) (C++ streams)
+ *
+ * Example:
+ *
+ * \code
+ * #include <libbw/log/errorlog.h>
+ *
+ * BW_ERROR_STREAM_ERR("Message: %d" << 5);
+ * \endcode
+ *
+ * \param[in] args some stream operations as shown in the example
+ * \ingroup log
+ */
+#define BW_ERROR_STREAM_ERR(args) \
+    BW_ERROR_STREAM(bw::Errorlog::LS_ERR, args)
+
+/**
  * \brief Writes error log level (warning level)
  *
  * Example:
@@ -146,6 +241,23 @@
  */
 #define BW_ERROR_WARNING(...) \
     BW_ERROR(bw::Errorlog::LS_WARNING, __VA_ARGS__)
+
+/**
+ * \brief Writes error log level (emergency level) (C++ streams)
+ *
+ * Example:
+ *
+ * \code
+ * #include <libbw/log/errorlog.h>
+ *
+ * BW_ERROR_STREAM_WARNING("Message: %d" << 5);
+ * \endcode
+ *
+ * \param[in] args some stream operations as shown in the example
+ * \ingroup log
+ */
+#define BW_ERROR_STREAM_WARNING(args) \
+    BW_ERROR_STREAM(bw::Errorlog::LS_WARNING, args)
 
 /* }}} */
 
@@ -240,7 +352,7 @@ class Errorlog {
             LS_ALERT,       /**< A condition that should be corrected immediately. */
             LS_CRIT,        /**< Critical conditions. */
             LS_ERR,         /**< Errors */
-            LS_WARNING,     /**< Warning messages. */
+            LS_WARNING      /**< Warning messages. */
         };
 
         /**
@@ -318,6 +430,17 @@ class Errorlog {
          */
         virtual void vlog(Errorlog::Level level, const char *msg, std::va_list args)
         BW_COMPILER_PRINTF_FORMAT(3, 0) = 0;
+
+        /**
+         * \brief Prints a general error log message (string version)
+         *
+         * This is the general function that can be called instead of emerg(), alert(),
+         * crit(), err() and warning().
+         *
+         * \param[in] level the error level (see Errorlog::Level)
+         * \param[in] msg a message to print
+         */
+        void log(Errorlog::Level level, const std::string msg);
 
     private:
         static Errorlog *m_instance;

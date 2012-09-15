@@ -44,11 +44,19 @@ int main(int argc, char *argv[])
         bw::Errorlog::configure(bw::Errorlog::LM_FILE, argv[1]);
 
     BW_ERROR(bw::Errorlog::LS_ALERT, "Alert message: %d", 5);
+    BW_ERROR_STREAM(bw::Errorlog::LS_ALERT, "Alert message: " << 5);
+
     BW_ERROR_EMERG("Emerg message: %d", 5);
+    BW_ERROR_STREAM_EMERG("Emerg message: " << 5);
+
     BW_ERROR_ALERT("Alert message: %d", 5);
+    BW_ERROR_STREAM_ALERT("Alert message: " << 5);
+
     BW_ERROR_CRIT("Critical message: %d", 5);
-    BW_ERROR_WARNING("Emerg message: %d", 5);
-    BW_ERROR_EMERG("Emerg message: %d", 5);
+    BW_ERROR_STREAM_CRIT("Critical message: " << 5);
+
+    BW_ERROR_WARNING("Warning message: %d", 5);
+    BW_ERROR_STREAM_WARNING("Warning message: " << 5);
 
     return EXIT_SUCCESS;
 }
