@@ -78,7 +78,7 @@
 #define BW_COMPILER_STRFTIME_FORMAT(string_index, first_to_check) \
     __attribute__(( format(strftime, string_index, first_to_check) ))
 #else
-#define BW_COMPILER_PRINTF_FORMAT(string_index, first_to_check)
+#define BW_COMPILER_STRFTIME_FORMAT(string_index, first_to_check)
 #endif
 
 #endif /* LIBBW_COMPILER_H_ */

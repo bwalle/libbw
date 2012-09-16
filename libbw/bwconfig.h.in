@@ -42,5 +42,6 @@
 #cmakedefine HAVE__STAT
 #cmakedefine HAVE_MKDIR
 #cmakedefine HAVE__MKDIR
+#cmakedefine HAVE_DIRECT_H
 
 #endif // LIBBW_BWCONFIG_H_

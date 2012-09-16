@@ -102,6 +102,7 @@ check_function_exists("_mkdir" HAVE__MKDIR)
 include(CheckIncludeFile)
 check_include_file("unistd.h" HAVE_UNISTD_H)
 check_include_file("syslog.h" HAVE_SYSLOG)
+check_include_file("direct.h" HAVE_DIRECT_H)
 
 include_directories( ${CMAKE_CURRENT_SOURCE_DIR} )
 # for bwconfig.h

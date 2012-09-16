@@ -28,15 +28,19 @@
 #include <cerrno>
 #include <cstdio>
 
+#include "bwconfig.h"
+
 #include <sys/types.h>
 #include <sys/stat.h>
 
 #ifdef HAVE_UNISTD_H
 #  include <unistd.h>
 #endif
+#ifdef HAVE_DIRECT_H
+#  include <direct.h>
+#endif
 
 #include "fileutils.h"
-#include "bwconfig.h"
 
 //
 // S_ISDIR    {{{
@@ -82,16 +86,16 @@ int bw_stat(const char *path, stat_t &buf)
 // bw_mkdir()   {{{
 //
 
-#if defined(HAVE_MKDIR)
-int bw_mkdir(const char *path, uint64_t mode)
-{
-    return mkdir(path, mode);
-}
-#elif defined(HAVE__MKDIR)
+#if defined(HAVE__MKDIR)
 int bw_mkdir(const char *path, uint64_t mode)
 {
     (void)mode;
     return _mkdir(path);
+}
+#elif defined(HAVE_MKDIR)
+int bw_mkdir(const char *path, uint64_t mode)
+{
+    return mkdir(path, mode);
 }
 #else
 #  error "Neither mkdir() nor _mkdir() are available on the system."
