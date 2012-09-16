@@ -75,6 +75,9 @@ check_function_exists("getopt_long" HAVE_GETOPT_LONG)
 unset(CMAKE_REQUIRED_DEFINITIONS)
 unset(CMAKE_REQUIRED_INCLUDES)
 
+check_function_exists("timegm" HAVE_TIMEGM)
+
+
 # check for strcasecmp() -> WIN32
 check_function_exists("strcasecmp" HAVE_STRCASECMP)
 # check for localtime_r() -> thread-safe version of localtime
@@ -150,6 +153,15 @@ if (NOT HAVE_GETOPT_LONG)
         ext/getopt/getopt_long.c
     )
 endif (NOT HAVE_GETOPT_LONG)
+
+# do the same for timegm
+if (NOT HAVE_TIMEGM)
+    include_directories("${CMAKE_CURRENT_SOURCE_DIR}/ext/timegm")
+    set(LIBBW_SRCS
+        ${LIBBW_SRCS}
+        ext/timegm/timegm.c
+    )
+endif (NOT HAVE_TIMEGM)
 
 add_library(
     bw

@@ -43,5 +43,6 @@
 #cmakedefine HAVE_MKDIR
 #cmakedefine HAVE__MKDIR
 #cmakedefine HAVE_DIRECT_H
+#cmakedefine HAVE_TIMEGM
 
 #endif // LIBBW_BWCONFIG_H_

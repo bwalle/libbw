@@ -31,6 +31,10 @@
 #include "datetime.h"
 #include "bwconfig.h"
 
+#ifndef HAVE_TIMEGM
+#  include "timegm.h"
+#endif
+
 namespace bw {
 
 /* gmtime_r() / localtime_r() {{{ */
