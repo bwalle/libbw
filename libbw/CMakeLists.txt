@@ -1,5 +1,5 @@
 # {{{
-# Copyright (c) 2009-2010, Bernhard Walle <bernhard@bwalle.de>
+# Copyright (c) 2009-2012, Bernhard Walle <bernhard@bwalle.de>
 # All rights reserved.
 #
 # Redistribution and use in source and binary forms, with or without
@@ -83,6 +83,8 @@ check_function_exists("localtime_r" HAVE_LOCALTIME_R)
 check_function_exists("gmtime_r" HAVE_GMTIME_R)
 # check for strftime()
 check_function_exists("strftime" HAVE_STRFTIME)
+# check for strptime()
+check_function_exists("strptime" HAVE_STRPTIME)
 # check for ftello()
 check_function_exists("ftello" HAVE_FTELLO)
 # check for fseeko()

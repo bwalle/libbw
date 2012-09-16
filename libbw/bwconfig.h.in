@@ -35,6 +35,7 @@
 #cmakedefine HAVE_LOCALTIME_R
 #cmakedefine HAVE_GMTIME_R
 #cmakedefine HAVE_STRFTIME
+#cmakedefine HAVE_STRPTIME
 #cmakedefine HAVE_FTELLO
 #cmakedefine HAVE_FSEEKO
 #cmakedefine HAVE_STAT

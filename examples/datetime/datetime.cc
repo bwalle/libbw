@@ -57,5 +57,10 @@ int main(int argc, char *argv[])
     time = bw::Datetime(2011, bw::Datetime::July, 5, 18, 30, 0, true);
     std::cout << "2011-07-05 18:30 UTC is " << time << std::endl;
 
+    std::cout << "Format: " << time.strftime("%d. %B %Y %H:%M:%S") << std::endl;
+
+    time = bw::Datetime::strptime("2012-02-03 18:35:36", "%Y-%m-%d %H:%M:%S");
+    std::cout << "Parsed time: " << time << std::endl;
+
     return EXIT_SUCCESS;
 }

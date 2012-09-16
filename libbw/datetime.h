@@ -250,6 +250,25 @@ class Datetime {
         BW_COMPILER_STRFTIME_FORMAT(2, 0);
 
         /**
+         * \brief Parses the time string \p time according to \p format and returns a Datetime object
+         *
+         * See the documentation of your system's strptime() implementation for details.
+         * If the locale of the program has been set, the input is parsed according to that
+         * locale settings.
+         *
+         * \note The function is only available if the system has a strptime() implementation.
+         *       Otherwise, an invalid Datetime object is returned.
+         *
+         * \param[in] time the time that should be parsed, e.g. <tt>"2012-01-01"</tt> for
+         *            January 1st in the ISO format.
+         * \param[in] format a format string, e.g. <tt>"%Y-%m-%d"</tt> for an ISO date.
+         * \param[in] isUtc \c true if the broken-up time is UTC, \c false if it's localtime.
+         * \return a valid Datetime object on success, an invalid Datetime on error.
+         */
+        static Datetime strptime(const std::string &time, const char *format, bool isUtc=false)
+        BW_COMPILER_STRFTIME_FORMAT(2, 0);
+
+        /**
          * \brief Converts the datetime object to a human readable string
          *
          * \return the string in the ISO format, i.e. <tt>"%Y-%m-%d %H:%M:%s"</tt>.

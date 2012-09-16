@@ -174,6 +174,23 @@ Datetime &Datetime::addSeconds(int secs)
     return *this;
 }
 
+#ifdef HAVE_STRPTIME
+Datetime Datetime::strptime(const std::string &time, const char *format, bool isUtc)
+{
+    struct tm timebuf;
+    if (!::strptime(time.c_str(), format, &timebuf))
+        return Datetime();
+
+    return Datetime(timebuf.tm_year+1900, timebuf.tm_mon+1, timebuf.tm_mday,
+                    timebuf.tm_mon, timebuf.tm_min, timebuf.tm_sec, isUtc);
+}
+#else
+Datetime Datetime::strptime(const std::string &time, const char *format, bool isUtc)
+{
+    return Datetime();
+}
+#endif
+
 #ifdef HAVE_STRFTIME
 std::string Datetime::strftime(const char *format) const
 {
