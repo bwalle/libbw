@@ -35,7 +35,6 @@ namespace bw {
 namespace io {
 
 TempFile::TempFile(const std::string &namepart, Flags flags)
-    throw (IOError)
     : m_flags(flags)
     , m_open(false)
     , m_exitHandler(NULL)

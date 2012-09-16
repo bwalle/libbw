@@ -53,10 +53,8 @@ class ReadlineLineReader : public AbstractLineReader {
 
     public:
         std::string readLine(const char *prompt = NULL);
-        void readHistory(const std::string &file)
-            throw (IOError);
-        void writeHistory(const std::string &file)
-            throw (IOError);
+        void readHistory(const std::string &file);
+        void writeHistory(const std::string &file);
         bool haveHistory() const;
         bool canEditLine() const;
         std::string editLine(const char *oldLine);
@@ -131,13 +129,11 @@ bool AbstractLineReader::eof() const
 }
 
 void AbstractLineReader::readHistory(const std::string &file)
-    throw (IOError)
 {
     (void)file;
 }
 
 void AbstractLineReader::writeHistory(const std::string &file)
-    throw (IOError)
 {
     (void)file;
 }
@@ -279,7 +275,6 @@ std::string ReadlineLineReader::editLine(const char *line)
 }
 
 void ReadlineLineReader::readHistory(const std::string &file)
-    throw (IOError)
 {
     int ret = read_history(file.c_str());
     if (ret < 0)
@@ -288,7 +283,6 @@ void ReadlineLineReader::readHistory(const std::string &file)
 }
 
 void ReadlineLineReader::writeHistory(const std::string &file)
-    throw (IOError)
 {
     int ret = write_history(file.c_str());
     if (ret < 0)

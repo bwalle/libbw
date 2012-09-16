@@ -46,7 +46,6 @@ struct TempFilePrivate {
 };
 
 std::string TempFile::_create(const std::string &namepart)
-    throw (IOError)
 {
     d = new TempFilePrivate;
 

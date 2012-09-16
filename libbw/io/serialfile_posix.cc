@@ -85,7 +85,6 @@ void SerialFile::closePort()
 }
 
 SerialFile &SerialFile::operator<<(const std::string& str)
-    throw (IOError)
 {
     errno = 0;
     int ret = write(d->fd, str.c_str(), str.length());
@@ -98,13 +97,11 @@ SerialFile &SerialFile::operator<<(const std::string& str)
 }
 
 SerialFile &SerialFile::operator<<(char c)
-    throw (IOError)
 {
     return operator<<( std::string(1, c) );
 }
 
 SerialFile &SerialFile::operator>>(std::string& str)
-    throw (IOError)
 {
     char buffer[BUFSIZ];
 
@@ -120,7 +117,6 @@ SerialFile &SerialFile::operator>>(std::string& str)
 }
 
 std::string SerialFile::readLine()
-    throw (IOError)
 {
     std::string result;
     char lastCharacter;

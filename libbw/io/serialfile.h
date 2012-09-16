@@ -122,8 +122,7 @@ class SerialFile {
          * \param[in] string the string that should be written to the serial port.
          * \return a reference to the serial port object
          */
-        SerialFile &operator<<(const std::string& string)
-        throw (IOError);
+        SerialFile &operator<<(const std::string& string);
 
         /**
          * \brief Outputs a character.
@@ -137,8 +136,7 @@ class SerialFile {
          * \param[in] c the character to write to the serial port.
          * \return a reference to the serial port.
          */
-        SerialFile &operator<<(char c)
-        throw (IOError);
+        SerialFile &operator<<(char c);
 
         /**
          * \brief Outputs a integer in hexadecimal.
@@ -152,8 +150,7 @@ class SerialFile {
          * \param[in] number the number to write to the serial port (as hexadecimal value).
          * \return a reference to the serial port.
          */
-        SerialFile &operator<<(unsigned long number)
-        throw (IOError);
+        SerialFile &operator<<(unsigned long number);
 
         /**
          * \brief Reads string
@@ -168,8 +165,7 @@ class SerialFile {
          * \param[in] string the string in which the data is stored.
          * \return a reference to the serial port.
          */
-        SerialFile &operator>>(std::string &string)
-        throw (IOError);
+        SerialFile &operator>>(std::string &string);
 
         /**
          * \brief Reads a line
@@ -180,8 +176,7 @@ class SerialFile {
          *
          * \return the line that has been read without line terminators
          */
-        std::string readLine()
-        throw (IOError);
+        std::string readLine();
 
         /**
          * \brief Returns the last error as string.

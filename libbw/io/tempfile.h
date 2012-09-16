@@ -90,8 +90,7 @@ class TempFile {
          *
          * \exception IOError
          */
-        TempFile(const std::string &namepart, Flags flags=NoFlags)
-        throw (IOError);
+        TempFile(const std::string &namepart, Flags flags=NoFlags);
 
         /**
          * \brief Destroys the temporary file
@@ -147,8 +146,7 @@ class TempFile {
          * \return the name of the temporary file
          * \throw IOError if creation of the temporary file failed.
          */
-        std::string _create(const std::string &namePart)
-        throw (IOError);
+        std::string _create(const std::string &namePart);
 
         /**
          * \brief Closes the temporary file handle

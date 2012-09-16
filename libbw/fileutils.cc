@@ -110,7 +110,6 @@ namespace bw {
 /* FileUtils {{{ */
 
 int64_t FileUtils::size(const std::string &filename)
-    throw (Error)
 {
     int64_t size;
 
@@ -152,7 +151,6 @@ bool FileUtils::exists(const std::string &filename)
 }
 
 bool FileUtils::isDirectory(const std::string &dirname)
-    throw (Error)
 {
     stat_t statresult;
     int err = bw_stat(dirname.c_str(), statresult);
@@ -163,7 +161,6 @@ bool FileUtils::isDirectory(const std::string &dirname)
 }
 
 void FileUtils::mkdir(const std::string &dir, bool recursive)
-    throw (Error)
 {
     if (!recursive) {
         if (!FileUtils::exists(dir)) {

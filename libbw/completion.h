@@ -160,8 +160,7 @@ class LineReader {
          * \param[in] file the history file that should be read
          * \exception IOError if the file cannot be opened for reading
          */
-        virtual void readHistory(const std::string &file)
-            throw (IOError) = 0;
+        virtual void readHistory(const std::string &file) = 0;
 
         /**
          * \brief Write history to file
@@ -172,8 +171,7 @@ class LineReader {
          * \param[in] file the file where the history should be written to
          * \exception IOError if the file cannot be opened or written to
          */
-        virtual void writeHistory(const std::string &file)
-            throw (IOError) = 0;
+        virtual void writeHistory(const std::string &file) = 0;
 
         /**
          * \brief Checks if the implementation has history functionality.
@@ -276,8 +274,7 @@ class AbstractLineReader : public LineReader {
          * \param[in] file the history file
          * \exception IOError never
          */
-        void readHistory(const std::string &file)
-            throw (IOError);
+        void readHistory(const std::string &file);
 
         /**
          * \brief Writes the history
@@ -287,8 +284,7 @@ class AbstractLineReader : public LineReader {
          * \param[in] file the file that should be read
          * \exception IOError never
          */
-        void writeHistory(const std::string &file)
-            throw (IOError);
+        void writeHistory(const std::string &file);
 
         /**
          * \copydoc LineReader::haveHistory()

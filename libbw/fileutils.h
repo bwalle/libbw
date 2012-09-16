@@ -61,8 +61,7 @@ class FileUtils {
          * \exception Error if the size of the file cannot be determined for example because the
          *            file doesn't exist
          */
-        static int64_t size(const std::string &filename)
-        throw (Error);
+        static int64_t size(const std::string &filename);
 
         /**
          * \brief Checks if the \p filename exists
@@ -86,8 +85,7 @@ class FileUtils {
          * \exception Error if information about \p dirname cannot be retrieved, for example
          *            because \p dirname doesn't exist or because permission is not granted
          */
-        static bool isDirectory(const std::string &dirname)
-        throw (Error);
+        static bool isDirectory(const std::string &dirname);
 
         /**
          * \brief Creates a new directory.
@@ -104,8 +102,7 @@ class FileUtils {
          *
          * \throw Error on any error
          */
-        static void mkdir(const std::string &dir, bool recursive=false)
-        throw (Error);
+        static void mkdir(const std::string &dir, bool recursive=false);
 
         /**
          * \brief Joins two path components
