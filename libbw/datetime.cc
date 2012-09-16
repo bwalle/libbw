@@ -178,6 +178,7 @@ Datetime &Datetime::addSeconds(int secs)
 Datetime Datetime::strptime(const std::string &time, const char *format, bool isUtc)
 {
     struct tm timebuf;
+    memset(&timebuf, 0, sizeof(struct tm));
     if (!::strptime(time.c_str(), format, &timebuf))
         return Datetime();
 
