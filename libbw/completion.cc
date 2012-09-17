@@ -178,7 +178,7 @@ std::string SimpleLineReader::readLine(const char *prompt)
     else
         std::cout << prompt;
     std::getline(std::cin, ret, '\n');
-    if (std::cout.eof())
+    if (std::cin.eof())
         setEof(true);
     return ret;
 }
