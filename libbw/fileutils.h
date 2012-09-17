@@ -139,6 +139,15 @@ class FileUtils {
          * \return the basename
          */
         static std::string basename(const std::string &path);
+
+        /**
+         * \brief Returns the full path to the home directory
+         *
+         * \return the home directory, e.g. <tt>"/home/bwalle"</tt> on Linux, <tt>"/Users/bwalle"</tt>
+         *         on Mac OS or <tt>"c:\users\bwalle"</tt> on MS Windows.
+         * \exception SystemError if operating system calls fail.
+         */
+        static std::string homeDirectory();
 };
 
 /* }}} */

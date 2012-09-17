@@ -100,6 +100,8 @@ check_function_exists("_stat" HAVE__STAT)
 check_function_exists("mkdir" HAVE_MKDIR)
 # check for _mkdir() which should be the mkdir() equivalent on Win32
 check_function_exists("_mkdir" HAVE__MKDIR)
+# check for getpwuid_r()
+check_function_exists("getpwuid_r" HAVE_GETPWUID_R)
 
 # check for unistd.h and syslog.h
 include(CheckIncludeFile)

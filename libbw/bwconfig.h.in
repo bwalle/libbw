@@ -42,6 +42,7 @@
 #cmakedefine HAVE__STAT
 #cmakedefine HAVE_MKDIR
 #cmakedefine HAVE__MKDIR
+#cmakedefine HAVE_GETPWUID_R
 #cmakedefine HAVE_DIRECT_H
 #cmakedefine HAVE_TIMEGM
 

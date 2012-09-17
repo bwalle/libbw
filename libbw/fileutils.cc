@@ -28,6 +28,8 @@
 #include <cerrno>
 #include <cstdio>
 
+#include <libbw/stringutil.h>
+
 #include "bwconfig.h"
 
 #include <sys/types.h>
@@ -38,6 +40,14 @@
 #endif
 #ifdef HAVE_DIRECT_H
 #  include <direct.h>
+#endif
+#ifdef HAVE_GETPWUID_R
+#  include <pwd.h>
+#  include <unistd.h>
+#endif
+#ifdef _WIN32
+#  include <windows.h>
+#  include <shlobj.h>
 #endif
 
 #include "fileutils.h"
@@ -209,6 +219,38 @@ std::string basename(const std::string &path)
     else
         return path.substr(slashPos + 1);
 }
+
+#if defined(HAVE_GETPWUID_R)
+std::string FileUtils::homeDirectory()
+{
+    long size = sysconf(_SC_GETPW_R_SIZE_MAX);
+    if (size < 0)
+        throw SystemError("Unable to call sysconf(_SC_GETPW_R_SIZE_MAX)", errno);
+
+    char *buffer = new char[size];
+    struct passwd mypasswd;
+    struct passwd *result = NULL;
+
+    uid_t myuid = getuid();
+    int ret = getpwuid_r(myuid, &mypasswd, buffer, size, &result);
+    if (ret < 0)
+        throw SystemError("Unable to call getpwuid_r()", errno);
+    else if (!result)
+        throw SystemError("Unable to call getpwuid_r(): UID " + str(myuid) + " not found.", ENOENT);
+
+    return result->pw_dir;
+}
+#elif defined(_WIN32)
+std::string FileUtils::homeDirectory()
+{
+    TCHAR path[MAX_PATH];
+
+    if (!SUCCEEDED(SHGetFolderPath(NULL, CSIDL_PROFILE|CSIDL_FLAG_CREATE, NULL, 0, path)))
+        throw SystemError("Unable to call SHGetFolderPath");
+
+    return std::string(path);
+}
+#endif
 
 /* }}} */
 
