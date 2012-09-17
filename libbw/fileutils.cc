@@ -238,7 +238,11 @@ std::string FileUtils::homeDirectory()
     else if (!result)
         throw SystemError("Unable to call getpwuid_r(): UID " + str(myuid) + " not found.", ENOENT);
 
-    return result->pw_dir;
+    std::string homedir(result->pw_dir);
+
+    delete[] buffer;
+
+    return homedir;
 }
 #elif defined(_WIN32)
 std::string FileUtils::homeDirectory()
