@@ -62,5 +62,10 @@ int main(int argc, char *argv[])
     time = bw::Datetime::strptime("2012-02-03 18:35:36", "%Y-%m-%d %H:%M:%S");
     std::cout << "Parsed time: " << time << std::endl;
 
+    time = bw::Datetime(2013, bw::Datetime::October, 27, 0, 0, 0, false);
+    std::cout << "DST test time: " << time << std::endl;
+    time.addDays(1);
+    std::cout << "DST test time after adding one day: " << time << std::endl;
+
     return EXIT_SUCCESS;
 }

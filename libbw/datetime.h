@@ -352,8 +352,10 @@ class Datetime {
          *
          * This function needs to be called whenever the timestamp is changed or the UTC flag is
          * changed. Then all members in m_tm are re-calculated.
+         *
+         * \return a self reference
          */
-        void fillTime();
+        Datetime &fillTime();
 
     private:
         time_t      m_time;

@@ -73,29 +73,29 @@ Datetime::Datetime(const time_t &time)
     : m_time(time)
     , m_useUtc(false)
 {
-    fillTime();
+    localtime_r(&time, &m_tm);
 }
 
 Datetime::Datetime(int year, int month, int day, int hour, int minute, int second, bool utc)
     : m_useUtc(false)
 {
-    struct tm time;
+    struct tm tm;
 
-    memset(&time, 0, sizeof(struct tm));
-    time.tm_year = year - 1900;
-    time.tm_mon = month - 1;
-    time.tm_mday = day;
-    time.tm_hour = hour;
-    time.tm_min = minute;
-    time.tm_sec = second;
-    time.tm_isdst = -1;
+    memset(&tm, 0, sizeof(struct tm));
+    tm.tm_year = year - 1900;
+    tm.tm_mon = month - 1;
+    tm.tm_mday = day;
+    tm.tm_hour = hour;
+    tm.tm_min = minute;
+    tm.tm_sec = second;
+    tm.tm_isdst = -1;
 
     if (utc)
-        m_time = timegm(&time);
+        m_time = timegm(&tm);
     else
-        m_time = mktime(&time);
+        m_time = mktime(&tm);
 
-    fillTime();
+    localtime_r(&m_time, &m_tm);
 }
 
 Datetime Datetime::now()
@@ -116,7 +116,10 @@ bool Datetime::useUtc() const
 void Datetime::setUseUtc(bool use_utc)
 {
     m_useUtc = use_utc;
-    fillTime();
+    if (m_useUtc)
+        gmtime_r(&m_time, &m_tm);
+    else
+        localtime_r(&m_time, &m_tm);
 }
 
 int Datetime::day() const
@@ -157,25 +160,26 @@ Datetime::Weekday Datetime::weekday() const
 
 Datetime &Datetime::addDays(int days)
 {
-    return addSeconds(days * 24 * 60 * 60);
+    m_tm.tm_mday += days;
+    return fillTime();
 }
 
 Datetime &Datetime::addHours(int hours)
 {
-    return addSeconds(hours * 60 * 60);
+    m_tm.tm_hour += hours;
+    return fillTime();
 }
 
 Datetime &Datetime::addMinutes(int minutes)
 {
-    return addSeconds(minutes * 60);
+    m_tm.tm_min += minutes;
+    return fillTime();
 }
 
 Datetime &Datetime::addSeconds(int secs)
 {
-    m_time += secs;
-    fillTime();
-
-    return *this;
+    m_tm.tm_sec += secs;
+    return fillTime();
 }
 
 #ifdef HAVE_STRPTIME
@@ -257,12 +261,15 @@ bool Datetime::operator>=(const Datetime &other)
     return m_time >= other.m_time;
 }
 
-void Datetime::fillTime()
+Datetime &Datetime::fillTime()
 {
+    m_tm.tm_isdst = -1; // we need to recompute the DST flag
     if (m_useUtc)
-        gmtime_r(&m_time, &m_tm);
+        m_time = timegm(&m_tm);
     else
-        localtime_r(&m_time, &m_tm);
+        m_time = mktime(&m_tm);
+
+    return *this;
 }
 
 std::ostream &operator<<(std::ostream &os, const Datetime &datetime)
