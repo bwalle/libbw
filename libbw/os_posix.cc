@@ -66,7 +66,6 @@ int daemonize(int flags)
     int maxfd = sysconf(_SC_OPEN_MAX);
     if (maxfd == -1)
         maxfd = BD_MAX_CLOSE;
-    int minfd = STDIN_FILENO; // 0
 
     if (flags & DAEMONIZE_NOCLOSE)
         maxfd = STDERR_FILENO;
