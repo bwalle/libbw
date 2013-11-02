@@ -44,7 +44,7 @@ FileErrorlog::FileErrorlog(const char *filename)
 {
     if (!filename)
         m_file = stderr;
-    if (std::strcmp(filename, "stderr") == 0)
+    else if (std::strcmp(filename, "stderr") == 0)
         m_file = stderr;
     else if (std::strcmp(filename, "stdout") == 0)
         m_file = stdout;
