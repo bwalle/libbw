@@ -107,7 +107,7 @@ class SystemError : public Error {
          * \param[in] string the error message
          * \param[in] errorcode the system error code (errno)
          */
-        SystemError(const std::string &string, int errorcode)
+        SystemError(const std::string &string, int errorcode=errno)
             : Error(string)
             , m_errorcode(errorcode)
         {
