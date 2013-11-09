@@ -38,6 +38,7 @@
 
 #include <stdexcept>
 #include <cstring>
+#include <cerrno>
 
 namespace bw {
 
