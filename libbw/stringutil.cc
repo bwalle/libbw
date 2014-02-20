@@ -50,7 +50,7 @@ std::string stripl(std::string a)
     if (a.length() == 0)
         return a;
 
-    a.erase(0, a.find_first_not_of("\n \t", 0));
+    a.erase(0, a.find_first_not_of("\r\n \t", 0));
 
     return a;
 }
@@ -60,7 +60,7 @@ std::string stripr(std::string a)
     if (a.length() == 0)
         return a;
 
-    a.erase(a.find_last_not_of("\n \t")+1);
+    a.erase(a.find_last_not_of("\r\n \t")+1);
 
     return a;
 }
