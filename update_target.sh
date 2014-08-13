@@ -28,7 +28,7 @@
 
 
 TEMPDIR=`mktemp -d -t libbw-XXXXXX`
-REVISION=`hg log -r . --template '{latesttag}-{latesttagdistance}-{node|short}'`
+REVISION=`git describe HEAD`
 VERSION=`cat VERSION`
 TARGET=$1
 
@@ -56,7 +56,7 @@ if [ -z "$TARGET" ] ; then
     exit 0
 fi
 
-hg archive "$TEMPDIR"
+git archive --format=tar --prefix=libbw/ HEAD | (cd "$TEMPDIR" && tar xf -)
 
 if ! [ -d "$TARGET" ] ; then
     echo -n "Target '$TARGET' does not exist. Should I create the directory [y/n]? "
@@ -67,12 +67,11 @@ if ! [ -d "$TARGET" ] ; then
         error "Ok. So I'll abort!"
     fi
 fi
-sh
 
-rsync -v -r --delete $TEMPDIR/libbw/ $TARGET
+rsync -v -r --delete $TEMPDIR/libbw/src/ $TARGET
 
 cat > $TARGET/.libbw <<EOF
-HG_COMMIT=$REVISION
+GIT_COMMIT=$REVISION
 VERSION=$VERSION
 EOF
 
