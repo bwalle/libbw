@@ -68,7 +68,7 @@ if ! [ -d "$TARGET" ] ; then
     fi
 fi
 
-rsync -v -r --delete $TEMPDIR/libbw/src/ $TARGET
+rsync -v -r --delete "$TEMPDIR/libbw/libbw/" $TARGET
 
 cat > $TARGET/.libbw <<EOF
 GIT_COMMIT=$REVISION
