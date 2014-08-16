@@ -363,6 +363,10 @@ class Datetime {
         bool        m_useUtc;
 };
 
+/* }}} */
+
+} // end namespace bw
+
 /**
  * \brief Prints a Datetime object
  *
@@ -372,11 +376,7 @@ class Datetime {
  * \param[in] datetime the date/time object
  * \return the output stream
  */
-std::ostream &operator<<(std::ostream &os, const Datetime &datetime);
-
-/* }}} */
-
-} // end namespace bw
+std::ostream &operator<<(std::ostream &os, const bw::Datetime &datetime);
 
 #endif /* DATETIME_H */
 

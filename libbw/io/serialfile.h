@@ -64,9 +64,6 @@ struct SerialFilePrivate;
 class SerialFile {
 
     public:
-        friend std::ostream &operator<<(std::ostream &os, const SerialFile &serialFile);
-
-    public:
         /**
          * Flow control.
          */
@@ -203,6 +200,16 @@ class SerialFile {
                          FlowControl    flowControl,
                          bool           rawMode = true);
 
+        /**
+         * @brief Converts a serial file to a string representation
+         *
+         * This is mainly a helper function for the output operator defined in the global
+         * namespace.
+         *
+         * @return the file name
+         */
+        std::string str() const;
+
     protected:
         /**
          * \brief Creates a lock for the serial port
@@ -229,6 +236,12 @@ class SerialFile {
         SerialFilePrivate *d;
 };
 
+/* }}} */
+
+} // end namespace io
+} // end namespace bw
+
+
 /**
  * \brief Prints the port name to the given ostream
  *
@@ -250,11 +263,6 @@ class SerialFile {
  * \param[in] serialFile the serial file object
  * \return \p os
  */
-std::ostream &operator<<(std::ostream &os, const SerialFile &serialFile);
-
-/* }}} */
-
-} // end namespace io
-} // end namespace bw
+std::ostream &operator<<(std::ostream &os, const bw::io::SerialFile &serialFile);
 
 #endif /* SERIALFILE_H */
