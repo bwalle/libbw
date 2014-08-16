@@ -2,3 +2,4 @@ build
 doc
 CMakeLists.txt.user
 .DS_Store
+__cmake_systeminformation/
