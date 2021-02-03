@@ -46,14 +46,14 @@ endif (${LFS_LDFLAGS})
 if (${CMAKE_SYSTEM_NAME} STREQUAL "Darwin")
     find_path(READLINE_INCLUDE_DIR readline/readline.h
         NO_DEFAULT_PATH
-        PATHS /opt/local/include /usr/local/include /usr/include)
+        PATHS /opt/homebrew/opt/readline/include /opt/local/include /usr/local/include /usr/include)
 else ()
     find_path(READLINE_INCLUDE_DIR readline/readline.h)
 endif ()
 mark_as_advanced(READLINE_INCLUDE_DIR)
 
 find_library(READLINE_LIBRARY readline
-    HINTS /opt/local/lib /usr/lib64 /usr/lib)
+    HINTS /opt/homebrew/opt/readline/lib /opt/local/lib /usr/lib64 /usr/lib)
 mark_as_advanced(READLINE_LIBRARY)
 
 if (READLINE_LIBRARY AND READLINE_INCLUDE_DIR)
