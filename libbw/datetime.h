@@ -363,10 +363,6 @@ private:
     bool        m_useUtc;
 };
 
-/* }}} */
-
-} // end namespace bw
-
 /**
  * \brief Prints a Datetime object
  *
@@ -376,7 +372,12 @@ private:
  * \param[in] datetime the date/time object
  * \return the output stream
  */
-std::ostream &operator<<(std::ostream &os, const bw::Datetime &datetime);
+std::ostream &operator<<(std::ostream &os, const Datetime &datetime);
+
+/* }}} */
+
+} // end namespace bw
+
 
 #endif /* DATETIME_H */
 

@@ -272,15 +272,14 @@ Datetime &Datetime::fillTime()
     return *this;
 }
 
-
-/* }}} */
-
-} // end namespace bw
-
 std::ostream &operator<<(std::ostream &os, const bw::Datetime &datetime)
 {
     os << datetime.str();
     return os;
 }
+
+/* }}} */
+
+} // end namespace bw
 
 // vim: set sw=4 ts=4 et fdm=marker:
