@@ -29,7 +29,7 @@
 
 TEMPDIR=`mktemp -d -t libbw-XXXXXX`
 REVISION=`git describe HEAD`
-VERSION=`cat VERSION`
+VERSION=`cat VERSION.txt`
 TARGET=$1
 
 cleanup()
